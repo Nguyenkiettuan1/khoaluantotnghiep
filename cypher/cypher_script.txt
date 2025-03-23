@@ -1,0 +1,243 @@
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+ON CREATE SET university.description = "Cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, chịu sự quản lý nhà nước về giáo dục của Bộ Giáo dục và Đào tạo; là trường đại học đào tạo đa ngành, đa lĩnh vực."
+ON MATCH SET university.description = "Cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, chịu sự quản lý nhà nước về giáo dục của Bộ Giáo dục và Đào tạo; là trường đại học đào tạo đa ngành, đa lĩnh vực."
+MERGE (university)-[:OFFERS]->(programs:Programs {name: "Chương trình đào tạo"})
+ON CREATE SET programs.details = "Trường Đại học Sài Gòn đào tạo từ trình độ đại học và sau đại học, theo 2 phương thức: chính quy và giáo dục thường xuyên."
+ON MATCH SET programs.details = "Trường Đại học Sài Gòn đào tạo từ trình độ đại học và sau đại học, theo 2 phương thức: chính quy và giáo dục thường xuyên."
+MERGE (university)-[:HAS_DEGREE]->(phd:Degree {name: "Tiến sĩ"})
+ON CREATE SET phd.count = 5
+ON MATCH SET phd.count = 5
+MERGE (university)-[:HAS_DEGREE]->(master:Degree {name: "Cao học"})
+ON CREATE SET master.count = 12
+ON MATCH SET master.count = 12
+MERGE (university)-[:HAS_DEGREE]->(bachelor:Degree {name: "Đại học"})
+ON CREATE SET bachelor.count = 39
+ON MATCH SET bachelor.count = 39
+MERGE (university)-[:PROVIDES_CERTIFICATE]->(certificate:Certificate {name: "Chứng chỉ Bồi dưỡng nghiệp vụ sư phạm"})
+ON CREATE SET certificate.details = "Cấp các chứng chỉ Bồi dưỡng nghiệp vụ sư phạm cho giảng viên đại học, cao đẳng và bồi dưỡng nghiệp vụ sư phạm cho giáo viên Tiếng Anh Tiểu học."
+ON MATCH SET certificate.details = "Cấp các chứng chỉ Bồi dưỡng nghiệp vụ sư phạm cho giảng viên đại học, cao đẳng và bồi dưỡng nghiệp vụ sư phạm cho giáo viên Tiếng Anh Tiểu học."
+MERGE (university)-[:PROVIDES_CERTIFICATE]->(it_certificate:Certificate {name: "Chứng chỉ Công nghệ Thông tin"})
+ON CREATE SET it_certificate.details = "Chứng chỉ Công nghệ Thông tin."
+ON MATCH SET it_certificate.details = "Chứng chỉ Công nghệ Thông tin."
+MERGE (university)-[:PROVIDES_CERTIFICATE]->(english_certificate:Certificate {name: "Chứng chỉ Tiếng Anh"})
+ON CREATE SET english_certificate.details = "Chứng chỉ Tiếng Anh theo khung năng lực Ngoại ngữ 6 bậc dùng cho Việt Nam."
+ON MATCH SET english_certificate.details = "Chứng chỉ Tiếng Anh theo khung năng lực Ngoại ngữ 6 bậc dùng cho Việt Nam."
+MERGE (university)-[:AWARDED]->(award:Award {name: "Huân chương Lao động Hạng Ba"})
+ON CREATE SET award.date = "2018", award.issued_by = "Chủ tịch nước Cộng hòa Xã hội Chủ nghĩa Việt Nam"
+ON MATCH SET award.date = "2018", award.issued_by = "Chủ tịch nước Cộng hòa Xã hội Chủ nghĩa Việt Nam."
+MERGE (university)-[:ACCREDITED]->(accreditation:Accreditation {name: "Chứng nhận kiểm định chất lượng giáo dục"})
+ON CREATE SET accreditation.date = "13/5/2017"
+ON MATCH SET accreditation.date = "13/5/2017"
+
+
+MERGE (department:Department {name: "Bộ phận trong cơ cấu tổ chức"})
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (university)-[:HAS_DEPARTMENT]->(department)
+
+
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (programs:Programs {name: "Chương trình đào tạo"})
+MERGE (university)-[:OFFERS]->(programs)
+
+MERGE (bachelor:Degree {name: "Đại học"})
+MERGE (university)-[:HAS_DEGREE]->(bachelor)
+
+MERGE (master:Degree {name: "Cao học"})
+MERGE (university)-[:HAS_DEGREE]->(master)
+
+MERGE (phd:Degree {name: "Tiến sĩ"})
+MERGE (university)-[:HAS_DEGREE]->(phd)
+
+MERGE (certificate:Certificate {name: "Chứng chỉ Bồi dưỡng nghiệp vụ sư phạm"})
+MERGE (university)-[:PROVIDES_CERTIFICATE]->(certificate)
+
+MERGE (it_certificate:Certificate {name: "Chứng chỉ Công nghệ Thông tin"})
+MERGE (university)-[:PROVIDES_CERTIFICATE]->(it_certificate)
+
+MERGE (english_certificate:Certificate {name: "Chứng chỉ Tiếng Anh"})
+MERGE (university)-[:PROVIDES_CERTIFICATE]->(english_certificate)
+
+MERGE (department:Department {name: "Bộ phận trong cơ cấu tổ chức"})
+MERGE (university)-[:HAS_DEPARTMENT]->(department)
+
+MERGE (regular_program:Program {name: "Hệ chính quy"})
+MERGE (university)-[:OFFERS]->(regular_program)
+
+MERGE (continuing_education:Program {name: "Giáo dục thường xuyên"})
+MERGE (university)-[:OFFERS]->(continuing_education)
+
+MERGE (bachelor_program:Program {name: "Trình độ Đại học"})
+MERGE (regular_program)-[:INCLUDES]->(bachelor_program)
+
+MERGE (high_quality_program:Program {name: "Chương trình chất lượng cao: Công nghệ Thông tin"})
+MERGE (regular_program)-[:INCLUDES]->(high_quality_program)
+
+MERGE (postgraduate_program:Program {name: "Trình độ Sau Đại học"})
+MERGE (regular_program)-[:INCLUDES]->(postgraduate_program)
+
+MERGE (phd_program:Program {name: "Trình độ Tiến sĩ"})
+MERGE (regular_program)-[:INCLUDES]->(phd_program)
+
+MERGE (facility:Facility {name: "Cơ sở vật chất"})
+MERGE (university)-[:HAS_FACILITY]->(facility)
+
+MERGE (campus1:Campus {name: "Cơ sở 273 An Dương Vương, Q.5"})
+MERGE (facility)-[:HAS_CAMPUS]->(campus1)
+
+MERGE (campus2:Campus {name: "Cơ sở 105 Bà Huyện Thanh Quan, Q.3"})
+MERGE (facility)-[:HAS_CAMPUS]->(campus2)
+
+MERGE (campus3:Campus {name: "Cơ sở 04 Tôn Đức Thắng, Q.1"})
+MERGE (facility)-[:HAS_CAMPUS]->(campus3)
+
+MERGE (dormitory:Dormitory {name: "Ký túc xá 99 An Dương Vương, Q.8"})
+MERGE (facility)-[:HAS_DORMITORY]->(dormitory)
+
+
+MERGE (international_cooperation:InternationalCooperation {name: "Hợp tác Quốc tế"})
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (university)-[:HAS_INTERNATIONAL_COOPERATION]->(international_cooperation)
+
+MERGE (bachelor_program:Program {name: "Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"})
+MERGE (university)-[:OFFERS]->(bachelor_program)
+
+MERGE (imc_krems:University {name: "Trường Đại học Khoa học Ứng dụng IMC Krems"})
+MERGE (bachelor_program)-[:LINKED_WITH]->(imc_krems)
+
+MERGE (chinese_language_program:Program {name: "Chương trình đào tạo tiếng Hoa"})
+MERGE (university)-[:OFFERS]->(chinese_language_program)
+
+MERGE (taiwan_association:Organization {name: "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt"})
+MERGE (chinese_language_program)-[:LINKED_WITH]->(taiwan_association)
+
+MERGE (scholarship:Scholarship {name: "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"})
+MERGE (university)-[:OFFERS]->(scholarship)
+
+
+MERGE (singapore_hospital:Organization {name: "Bệnh viện Tan Tock Seng"})
+MERGE (singapore_hospital2:Organization {name: "Bệnh viện John Hopkins"})
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (bachelor_program:Program {name: "Học bổng Cử nhân hệ chính quy"})
+MERGE (university)-[:OFFERS]->(bachelor_program)
+
+MERGE (taiwan_scholarship:Scholarship {name: "Học bổng của Bộ Giáo dục Đài Loan"})
+MERGE (university)-[:OFFERS]->(taiwan_scholarship)
+
+MERGE (internship:Program {name: "Thực tập có lương"})
+MERGE (university)-[:OFFERS]->(internship)
+
+MERGE (huddersfield_university:University {name: "Đại học Huddersfiled"})
+MERGE (university)-[:HAS_INTERNATIONAL_COOPERATION]->(huddersfield_university)
+
+MERGE (it_transfer_program:Program {name: "Chương trình chuyển tiếp Công nghệ thông tin"})
+MERGE (university)-[:LINKED_WITH]->(it_transfer_program)
+
+MERGE (english_transfer_program:Program {name: "Chương trình chuyển tiếp Ngôn ngữ Anh"})
+MERGE (university)-[:LINKED_WITH]->(english_transfer_program)
+
+MERGE (tesol_master:Program {name: "Thạc sĩ Giảng dạy tiếng Anh (Master of TESOL)"})
+MERGE (huddersfield_university)-[:OFFERS]->(tesol_master)
+
+MERGE (business_management_transfer:Program {name: "Chương trình chuyển tiếp Quản trị kinh doanh"})
+MERGE (university)-[:LINKED_WITH]->(business_management_transfer)
+
+MERGE (finance_transfer_program:Program {name: "Chương trình chuyển tiếp Tài chính - Ngân hàng"})
+MERGE (university)-[:LINKED_WITH]->(finance_transfer_program)
+
+
+MERGE (research:Research {name: "Nghiên cứu khoa học sinh viên"})
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (university)-[:HAS_RESEARCH]->(research)
+
+MERGE (project:Project {name: "Đề tài Nghiên cứu khoa học cấp cơ sở"})
+MERGE (research)-[:INCLUDES]->(project)
+
+MERGE (condition:Condition {name: "Điều kiện tham gia NCKH"})
+MERGE (project)-[:HAS_CONDITION]->(condition)
+
+MERGE (benefit:Benefit {name: "Quyền lợi tham gia NCKH"})
+MERGE (project)-[:HAS_BENEFIT]->(benefit)
+
+MERGE (publication:Publication {name: "Bài báo Khoa học và báo cáo tham luận Hội thảo"})
+MERGE (research)-[:INCLUDES]->(publication)
+
+MERGE (journal:Journal {name: "Tạp chí chuyên ngành"})
+MERGE (publication)-[:PUBLISHED_IN]->(journal)
+
+MERGE (conference:Conference {name: "Hội thảo/Hội nghị chuyên ngành"})
+MERGE (publication)-[:PRESENTED_AT]->(conference)
+
+
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (journal:Journal {name: "Tạp chí Khoa học Đại học Sài Gòn"})
+ON CREATE SET journal.description = "Diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn."
+ON MATCH SET journal.description = "Diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn."
+MERGE (university)-[:PUBLISHES]->(journal)
+
+MERGE (address:Address {name: "273 An Dương Vương, Phường 3, Quận 5, TP. Hồ Chí Minh"})
+MERGE (university)-[:HAS_ADDRESS]->(address)
+
+MERGE (contact:Contact {name: "Thông tin liên hệ"})
+ON CREATE SET contact.phone = "(028) 38 321 360", contact.email = "tcdhsg@sgu.edu.vn", contact.website = "http://sj.sgu.edu.vn/"
+ON MATCH SET contact.phone = "(028) 38 321 360", contact.email = "tcdhsg@sgu.edu.vn", contact.website = "http://sj.sgu.edu.vn/"
+MERGE (university)-[:HAS_CONTACT]->(contact)
+
+MERGE (license:License {name: "Giấy phép hoạt động tạp chí"})
+ON CREATE SET license.details = "Số 22/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 23/01/2015."
+ON MATCH SET license.details = "Số 22/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 23/01/2015."
+MERGE (journal)-[:HAS_LICENSE]->(license)
+
+MERGE (issn:ISSN {name: "Mã số chuẩn quốc tế (ISSN)"})
+ON CREATE SET issn.code = "1859-3208"
+ON MATCH SET issn.code = "1859-3208"
+MERGE (journal)-[:HAS_ISSN]->(issn)
+
+MERGE (regulation:Regulation {name: "Quy định chung về bài báo khoa học"})
+ON CREATE SET regulation.details = "Phải nêu rõ mục tiêu nghiên cứu; cần có các kết quả mới, có giá trị khoa học và thực tiễn trong lĩnh vực nghiên cứu; phải được phản biện và phải có danh mục chú thích và tài liệu tham khảo."
+ON MATCH SET regulation.details = "Phải nêu rõ mục tiêu nghiên cứu; cần có các kết quả mới, có giá trị khoa học và thực tiễn trong lĩnh vực nghiên cứu; phải được phản biện và phải có danh mục chú thích và tài liệu tham khảo."
+MERGE (journal)-[:HAS_REGULATION]->(regulation)
+
+
+MERGE (journal:Journal {name: "Tạp chí Khoa học Đại học Sài Gòn"})
+ON CREATE SET journal.description = "Diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn."
+ON MATCH SET journal.description = "Diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn."
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (university)-[:PUBLISHES]->(journal)
+
+MERGE (submission_rule:SubmissionRule {name: "Thể lệ gửi bài đăng tạp chí Khoa học Đại Học Sài Gòn"})
+ON CREATE SET submission_rule.details = "Bài gửi đăng trên Tạp chí phải là công trình khoa học, các báo cáo học thuật hoặc kết quả thực hiện đề tài khoa học mới của tác giả trong và ngoài nước, có giá trị khoa học và thực tiễn, chưa từng công bố trong ấn phẩm khác, được viết bằng tiếng Việt hoặc tiếng Anh."
+ON MATCH SET submission_rule.details = "Bài gửi đăng trên Tạp chí phải là công trình khoa học, các báo cáo học thuật hoặc kết quả thực hiện đề tài khoa học mới của tác giả trong và ngoài nước, có giá trị khoa học và thực tiễn, chưa từng công bố trong ấn phẩm khác, được viết bằng tiếng Việt hoặc tiếng Anh."
+MERGE (journal)-[:HAS_SUBMISSION_RULE]->(submission_rule)
+
+
+MERGE (training_info:TrainingInfo {name: "Thông tin Đào tạo"})
+MERGE (university:University {name: "Trường Đại học Sài Gòn"})
+MERGE (university)-[:HAS_TRAINING_INFO]->(training_info)
+
+MERGE (class_schedule:ClassSchedule {name: "Quy định về số tiết và thời gian của các tiết học trong ngày"})
+MERGE (training_info)-[:INCLUDES]->(class_schedule)
+
+MERGE (room_code_info:RoomCodeInfo {name: "Thông tin về mã phòng học"})
+MERGE (training_info)-[:INCLUDES]->(room_code_info)
+
+MERGE (training_portal:Portal {name: "Trang Phòng Đào tạo"})
+ON CREATE SET training_portal.address = "daotao.sgu.edu.vn", training_portal.function = "Cổng thông tin giữa Nhà trường và sinh viên, phụ huynh về các hoạt động đào tạo."
+ON MATCH SET training_portal.address = "daotao.sgu.edu.vn", training_portal.function = "Cổng thông tin giữa Nhà trường và sinh viên, phụ huynh về các hoạt động đào tạo."
+MERGE (training_info)-[:HAS_PORTAL]->(training_portal)
+
+MERGE (training_info_page:Portal {name: "Trang Thông tin Đào tạo"})
+ON CREATE SET training_info_page.address = "thongtindaotao.sgu.edu.vn", training_info_page.function = "Cung cấp các thông tin liên quan đến công tác đào tạo đến sinh viên."
+ON MATCH SET training_info_page.address = "thongtindaotao.sgu.edu.vn", training_info_page.function = "Cung cấp các thông tin liên quan đến công tác đào tạo đến sinh viên."
+MERGE (training_info)-[:HAS_PORTAL]->(training_info_page)
+
+MERGE (online_registration:OnlineRegistration {name: "Đăng ký môn học qua mạng"})
+MERGE (training_info)-[:INCLUDES]->(online_registration)
+
+MERGE (filter_section:FilterSection {name: "Phần lọc"})
+MERGE (online_registration)-[:HAS_FILTER_SECTION]->(filter_section)
+
+MERGE (course_selection:CourseSelection {name: "Phần hiển thị danh sách các môn học muốn đăng ký"})
+MERGE (online_registration)-[:HAS_COURSE_SELECTION]->(course_selection)
+
+MERGE (selected_courses:SelectedCourses {name: "Phần hiển thị danh sách các môn đã được chọn hoặc đã đăng ký trước đó"})
+MERGE (online_registration)-[:HAS_SELECTED_COURSES]->(selected_courses)

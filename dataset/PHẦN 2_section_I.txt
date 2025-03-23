@@ -1,0 +1,132 @@
+PHẦN 2 - I
+
+THÔNG TIN ĐÀO TẠO
+1. Quy định về số tiết và thời gian của các tiết học trong ngày
+Ca 1 Ca 2 Ca 3
+Tiết Thời gian Tiết Thời gian Tiết Thời gian
+1 07g00 đến 07g50 6 13g00 đến 13g50 11 17g40 đến 18g30
+2 07g50 đến 08g40 7 13g50 đến 14g40 12 18g30 đến 19g20
+Nghỉ 20 phút Nghỉ 20 phút 13 19g20 đến 20g10
+3 09g00 đến 09g50 8 15g00 đến 15g50
+4 09g50 đến 10g40 9 15g50 đến 16g40
+5 10g40 đến 11g30 10 16g40 đến 17g30
+2. Thông tin về mã phòng học
+Ký tự đầu tiên của mã phòng thể hiện cơ sở học:
+- C (cơ sở chính: 273 An Dương Vương, Q.5)
+- 1 (cơ sở 1: 105 Bà Huyện Thanh Quan và 28 Nguyễn Thông, Q.3)
+- 2 (cơ sở 2: 04 Tôn Đức Thắng, Q.1)
+Hệ thống đăng ký sẽ không chấp nhận đăng ký học tại hai cơ sở trở lên, trong
+cùng một buổi học.
+3. Trang Phòng Đào tạo
+Địa chỉ: daotao.sgu.edu.vn
+Chức năng: Cổng thông tin giữa Nhà trường và sinh viên, phụ huynh về các hoạt
+động đào tạo. Ngoài các thông tin chính thức thường xuyên cập nhật về quy định, quy
+chế, kế hoạch đào tạo, và các hoạt động khác liên quan, sinh viên và phụ huynh có
+thể tra cứu văn bằng tốt nghiệp, tra cứu các văn bản, quy định liên quan đến hoạt
+động đào tạo.
+4. Trang Thông tin Đào tạo
+Địa chỉ: thongtindaotao.sgu.edu.vn
+Chức năng:
+- Đăng kí môn học (qua mạng);
+- Cung cấp các thông tin liên quan đến công tác đào tạo đến sinh viên: thời khóa
+biểu, lịch thi, kết quả học tập, tổng kết học kì,…;
+- Tiếp nhận các phản hồi của sinh viên về công tác đào tạo (thông qua mục Góp
+ý kiến).
+Đăng nhập: Để sử dụng hệ thống, mỗi sinh viên được cấp một tài khoản. Tài
+TRƯỜNG ĐẠI HỌC SÀI GÒN
+khoản này sẽ được sử dụng cho đến khi sinh viên ra trường với tên đăng nhập là mã
+sinh viên và mật khẩu mặc định ban đầu là ngày tháng năm sinh (được ghi trên thẻ
+sinh viên và được định dạng ddmmyyyy). Ngay sau khi có được tài khoản (Phòng
+Đào tạo thông báo) sinh viên cần đăng nhập vào tài khoản của mình để thay đổi thông
+tin tài khoản để tránh tình trạng người khác truy cập vào tài khoản của mình.
+5. Đăng ký môn học qua mạng
+Sinh viên đăng nhập vào trang Thông tin Đào tạo, chọn mục “ĐĂNG KÝ MÔN
+HỌC” để tiến hành đăng ký môn học.
+Trang đăng ký sẽ gồm 3 phần:
+- Phần lọc để tìm nhanh các môn cần đăng ký.
+- Phần hiển thị danh sách các môn học muốn đăng ký (dựa theo điều kiện lọc)
+- Phần hiển thị danh sách các môn đã được chọn hoặc đã đăng ký trước đó.
+5.1. Phần lọc
+Gồm 2 phần: lọc theo môn học và lọc theo điều kiện
+(Nên dùng lọc theo môn học)
+- Lọc theo môn học là giúp để tìm nhanh đến môn học cần đăng ký nếu biết mã
+môn học hoặc tên môn học cần tìm bằng cách nhập mã môn hoặc tên môn vào ô
+trống (khuyến cáo lọc theo mã môn học). Sau đó bấm nút “Lọc>>” phần hiển thị sẽ
+hiển thị đúng môn học mà sinh viên đã nhập thông tin lọc.
+- Lọc theo điều kiện dùng để lọc cùng lúc nhiều môn học theo điều kiện “Lớp”
+hoặc, “Khoa” trong ô lọc thứ 1, ô lọc thứ 2 hiển thị tên lớp hoặc khoa (tùy theo ô lọc
+thứ 1), nhấp chọn vào ô lọc thứ 2 để chọn tên lớp hoặc khoa. Sau đó bấm nút
+“Lọc>>”.
+Nhập mã môn để tìm môn
+học nhanh
+Tích vào ô môn học
+cần chọn Hiển thị danh sách các môn học lọc theo điều
+kiện
+Hiển thị danh sách các
+môn đã chọn
+TRƯỜNG ĐẠI HỌC SÀI GÒN
+5.2. Phần hiển thị danh sách các môn để chọn đăng ký
+Phần này hiển thị danh sách các môn học theo điều kiện lọc phía trên với các
+thông tin của môn học bao gồm:
+- ĐK: Ô chọn lựa đăng ký;
+- Mã môn học: Mã môn học;
+- Tên môn học: Tên môn học;
+- NMH: Nhóm môn học;
+- TTH: Tổ thực hành hoặc thảo luận (nếu môn học đăng ký là môn có chia tổ
+thực hành hoặc thảo luận);
+- STC: Số tín chỉ của môn học;
+- STCHP: Số tín chỉ đóng học phí;
+- SCP: Số đăng ký tối đa cho phép;
+- CL: Số lượng còn lại cho phép đăng ký;
+- TH Tiết thực hành (để trắng là tiết lý thuyết);
+- Thứ: Thứ học trong tuần;
+- Tiết BĐ: Tiết bắt đầu môn học;
+- ST: Số tiết môn học diễn ra;
+- Phòng: Phòng học;
+- Tuần: Tuần học (01 ký số là đại diện cho 01 tuần học).
+Đây là dạng thời khóa biểu tuần của môn học được biểu diễn bởi dãy số với số là
+số thứ tự của tuần học trong học kỳ, dấu gạch là tuần không học.
+Ví dụ: 12-4----90123: là môn học học vào tuần 1, 2, 4, 9, 10, 11, 12, 13 của học kỳ
+- Sau khi xem thông tin các môn để lựa chọn môn cần đăng ký nếu muốn đăng
+ký môn nào thì tích chọn vào ô vuông trong cột đầu tiên (cột ĐK) của môn muốn học.
+- Khi tích chọn vào đăng ký hệ thống sẽ tự động kiểm tra các điều kiện của môn
+học (số lượng đăng ký, môn trực thuộc, môn song hành…). Nếu môn không cho phép
+đăng ký thì sẽ hiện lên thông báo lỗi chi tiết. Các thông báo lỗi thông dụng là:
+TRƯỜNG ĐẠI HỌC SÀI GÒN
+- Nếu đăng ký thành công, môn học sẽ được hiển thị trong phần hiển thị danh
+sách các môn học đã chọn (nếu là sinh viên niên chế sẽ bao gồm cả môn bắt buộc học
+môn học niên chế) và môn học đó sẽ có dấu tích và được bôi đậm.
+Tích chọn hoặc bỏ chọn
+Các môn được chọn sẽ được
+đăng ký
+bôi đậm
+Các môn học được
+5.3. Phần hiểđănng ktýh ị danh sách các môn đã được chọn hoặc đã đăng ký trước đó
+Sau khi đồng ý các môn này
+thì bấm vào nút Lưu đăng ký
+Nếu muốn thay đổi đăng ký thì bấm
+chọn vào đây và bấm vào nút Xóa
+- Các môn được nhấp chọn ở trên sẽ được hiển thị ở phần này với các thông tin
+ngắn gọn và thêm các thông tin về học phí như học phí, miễn giảm... và hệ thống tự
+động tính học phí từng môn học và học phí tổng cộng mà sinh viên cần đóng.
+- Nếu như thay đổi ý kiến muốn bỏ bớt môn học nào đó thì sinh viên tích chọn
+vào cột cuối cùng và bấm nút “Xóa” để bỏ môn đó ra khỏi danh sách đã chọn.
+- Nếu như đồng ý các môn đã đăng ký thì sinh viên bấm vào nút “Lưu đăng ký”
+để hệ thống lưu vào cơ sở dữ liệu và in ra bảng học phí cho sinh viên.
+Trường hợp nếu như môn học cần đăng ký vì lý do nào đó không đăng ký được
+TRƯỜNG ĐẠI HỌC SÀI GÒN
+(không được học, hết hạn đăng ký, hết số lượng cho phép), sinh viên có thể điền mã
+môn học đó vào phần đăng ký môn học nguyện vọng để cho người quản lý hoặc người
+có trách nhiệm xem xét.
+Sau khi đăng ký thành công, sinh viên có thể xem/ in được thời khoá biểu cho
+các môn mình đã đăng ký (gồm mã môn học, tên môn học, thời gian và địa điểm học)
+bằng cách nhấp chuột vào mục THỜI KHÓA BIỂU. Có thể xem Thời khóa biểu
+theo từng tuần hoặc Thời khóa biểu cả học kỳ của cá nhân (khuyến cáo xem Thời
+khóa biểu học kỳ cá nhân để thấy các môn học không xếp thời khóa biểu: thực tế
+chuyên môn, hoặc không bắt đầu học từ tuần đầu học kỳ).
+Lưu ý: Việc đăng ký học phần của từng sinh viên trong một học kỳ có thể được
+bổ sung/thay đổi nhiều lần trong thời gian cho phép đăng ký.
+6. Nộp tiền học phí
+Sinh viên cần theo dõi lịch thu tiền của Phòng Kế hoạch - Tài chính để nộp tiền
+học phí theo đúng quy định.
+TRƯỜNG ĐẠI HỌC SÀI GÒN

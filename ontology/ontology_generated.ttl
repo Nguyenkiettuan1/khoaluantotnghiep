@@ -1,0 +1,117 @@
+@prefix : <http://sgu.edu.vn/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Classes
+:University a owl:Class .
+:Department a owl:Class .
+:TrainingProgram a owl:Class .
+:Journal a owl:Class .
+:Student a owl:Class .
+:ResearchTopic a owl:Class .
+:Scholarship a owl:Class .
+:InternationalCooperation a owl:Class .
+:Campus a owl:Class .
+:QualityAssessment a owl:Class .
+
+# Properties
+:hasType a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:managedBy a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:offersTrainingMethod a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :TrainingProgram .
+
+:hasMainFields a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasQualityCertification a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasTrainingLevels a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasCampus a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Campus .
+
+:hasDormitoryAddress a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasInternationalCooperation a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :InternationalCooperation .
+
+:hasInternationalBachelorProgram a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasChineseLanguagePrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasScholarshipPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Scholarship .
+
+:hasTrainingLinks a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range rdfs:Literal .
+
+:hasResearchConditions a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range rdfs:Literal .
+
+:hasResearchBenefits a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range rdfs:Literal .
+
+:hasAwardedArticles a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range rdfs:Literal .
+
+:hasResearchRegulations a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range rdfs:Literal .
+
+:hasISSN a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .
+
+:servesAudience a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .
+
+:publishesArticleTypes a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .
+
+:hasArticleRegulations a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .
+
+:usesCitationStandard a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .
+
+:hasTechnicalRequirements a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .
+
+:hasCitationGuidelines a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range rdfs:Literal .

@@ -1,0 +1,25 @@
+@prefix : <http://sgu.edu.vn/ontology#> .
+@prefix sgu: <http://sgu.edu.vn/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:TruongDaiHocSaiGon a sgu:University .
+:TruongDaiHocSaiGon sgu:hasCampus "273 An Dương Vương, Phường 3, Quận 5, TP. Hồ Chí Minh" .
+:TruongDaiHocSaiGon sgu:hasPostgraduatePrograms "Hóa hữu cơ, Quản trị Kinh doanh, Hóa lý thuyết và Hóa lý, Tài chính – Ngân hàng, Khoa học Máy tính, Toán Giải tích, Lịch sử Việt Nam, Văn học Việt Nam, LL & PPDH bộ môn Toán, Luật dân sự và tố tụng dân sự, Ngôn ngữ học, Quản lý Giáo dục" .
+:TruongDaiHocSaiGon sgu:hasTrainingProgram "Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử" .
+:TruongDaiHocSaiGon sgu:hasInternationalCooperation :InternationalCooperation .
+:TruongDaiHocSaiGon sgu:hasQualityAssurance :QualityAssurance .
+:TruongDaiHocSaiGon sgu:offersFieldOfStudy "Kinh tế, Kỹ thuật, Công nghệ, Văn hóa xã hội, Chính trị, Nghệ thuật, Sư phạm" .
+:TruongDaiHocSaiGon sgu:hasResearchProject "Nghiên cứu khoa học sinh viên" .
+:TruongDaiHocSaiGon sgu:offersScholarship "Học bổng toàn phần của Bộ Y tế Singapore, Học bổng Cử nhân hệ chính quy, vừa học vừa làm" .
+:TruongDaiHocSaiGon sgu:publishesJournal :TapChiKhoaHocDaiHocSaiGon .
+
+:TapChiKhoaHocDaiHocSaiGon a sgu:Journal .
+:TapChiKhoaHocDaiHocSaiGon sgu:hasISSN "1859-3208" .
+:TapChiKhoaHocDaiHocSaiGon sgu:containsArticle :Article .
+:TapChiKhoaHocDaiHocSaiGon sgu:hasWebsite "http://sj.sgu.edu.vn/" .
+:TapChiKhoaHocDaiHocSaiGon sgu:servesAudience "Cán bộ giảng dạy, nghiên cứu, quản lý, sinh viên các trường đại học, cao đẳng" .
+:TapChiKhoaHocDaiHocSaiGon sgu:hasCitationGuidelines "Phải nêu rõ mục tiêu nghiên cứu, cần có các kết quả mới" .
+:TapChiKhoaHocDaiHocSaiGon sgu:hasArticleContentRegulations "Phải gồm đầy đủ các nội dung: mục tiêu và đối tượng nghiên cứu" .
+
+:Article a sgu:Article .

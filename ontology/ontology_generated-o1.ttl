@@ -1,0 +1,155 @@
+@prefix : <http://sgu.edu.vn/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:University a rdfs:Class .
+:Department a rdfs:Class .
+:TrainingProgram a rdfs:Class .
+:Journal a rdfs:Class .
+:Student a rdfs:Class .
+:ResearchTopic a rdfs:Class .
+:Scholarship a rdfs:Class .
+:InternationalCooperation a rdfs:Class .
+:Campus a rdfs:Class .
+:QualityAssessment a rdfs:Class .
+
+:type a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:managedBy a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:trainingMethods a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:numberOfPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:integer .
+
+:mainFields a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:qualityCertification a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:certificationDate a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:date .
+
+:regularPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:highQualityProgram a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:postgraduatePrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:doctoralPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:continuingEducationPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:secondDegreePrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:numberOfCampuses a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:integer .
+
+:campusArea a rdf:Property ;
+    rdfs:domain :Campus ;
+    rdfs:range xsd:float .
+
+:dormitoryAddress a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:dormitoryArea a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:float .
+
+:internationalCooperationWith a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :InternationalCooperation .
+
+:internationalBachelorPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:languagePrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:scholarshipPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Scholarship .
+
+:collaborativePrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:researchParticipationConditions a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:researchBenefits a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:rewardedArticles a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:researchRegulationsLocation a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:journalISSN a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:journalContactAddress a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:journalWebsite a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:journalAudience a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:publishedArticleTypes a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:articleContentRegulations a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:citationStandards a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:technicalRequirements a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
+
+:foreignLanguageCitationNotes a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
