@@ -9,8 +9,8 @@ class Neo4jConnection:
     def close(self):
         self._driver.close()
 
-    def run_cypher(self, cypher_query, params):
+    def run_cypher(self, cypher_query):
         with self._driver.session() as session:
-            result = session.run(cypher_query, **params)
+            result = session.run(cypher_query)
             return result.data()  # Fetch all results
 

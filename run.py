@@ -88,15 +88,23 @@ conversation_messages = [
         "role": "system",
         "content": (
             "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE tối ưu để đưa dữ liệu vào Neo4j. "
-            "Các yêu cầu:\n"
-            "1. Mỗi node phải có thuộc tính 'name' không trống.\n"
-            "2. Nếu một node với cùng thuộc tính 'name' đã được khai báo (ví dụ: biến 'university'), hãy tái sử dụng biến đó, không khai báo lại.\n"
-            "3. Câu lệnh Cypher phải được tối ưu và chạy được trên Neo4j.\n"
-            "4. Chỉ xuất ra mã Cypher thuần túy, không có lời giải thích, chú thích hay định dạng markdown.\n"
-            "5. Chỉ sử dụng các lớp và thuộc tính đã được định nghĩa trong ontology.\n"
-            "6. Không sử dụng dấu hai chấm (:) để truy cập thuộc tính; hãy dùng dấu chấm (.) (ví dụ: SET university.hasType = '...' ).\n"
-            "7. Không thêm dấu chấm thừa ở cuối các câu lệnh.\n"
-            "Hãy ghi nhớ toàn bộ các câu lệnh đã sinh ra trong cuộc trò chuyện này để duy trì tính nhất quán."
+            "Yêu cầu về đảm bảo tính đầy đủ và chất lượng của knowledge graph:\n"
+            "1. Đảm bảo mỗi node đều có ít nhất một mối quan hệ với node khác.\n"
+            "2. Kiểm tra và tạo mối quan hệ hai chiều khi cần thiết (ví dụ: hasTrainingProgram <-> belongsToUniversity).\n"
+            "3. Mỗi node phải có đầy đủ các thuộc tính bắt buộc từ ontology.\n"
+            "4. Sử dụng OPTIONAL MATCH để kiểm tra và thiết lập các mối quan hệ tiềm năng.\n"
+            "\nYêu cầu về cú pháp và tối ưu hóa:\n"
+            "5. Mỗi node phải có thuộc tính 'name' không trống và là duy nhất trong cùng một loại node.\n"
+            "6. Nếu một node với cùng 'name' đã được khai báo, tái sử dụng biến đó thay vì khai báo lại.\n"
+            "7. Sử dụng WITH để chuỗi các thao tác phức tạp và đảm bảo tính rõ ràng.\n"
+            "8. Sử dụng các pattern để match nhiều node và quan hệ trong một câu lệnh.\n"
+            "\nYêu cầu về định dạng và kiểu dữ liệu:\n"
+            "9. Chỉ sử dụng các lớp và thuộc tính được định nghĩa trong ontology.\n"
+            "10. Không sử dụng dấu hai chấm (:) cho thuộc tính, thay vào đó dùng dấu chấm (.).\n"
+            "11. Loại bỏ dấu chấm thừa ở cuối câu lệnh.\n"
+            "12. Chỉ xuất mã Cypher thuần túy, không kèm giải thích hay markdown.\n"
+            "\nHãy duy trì nhất quán các node và quan hệ đã tạo trong toàn bộ cuộc trò chuyện."
+            "\nĐảm bảo xử lý cả trường hợp node không có dữ liệu hoặc quan hệ bị thiếu."
         )
     },
 ]
@@ -160,14 +168,14 @@ print(f"✅ Mã Cypher đã được làm sạch và lưu vào: {cypher_output_p
 # BƯỚC 2: Đẩy dữ liệu lên Neo4j
 # ================================
 print("\nBắt đầu kết nối đến Neo4j...")
-uri = "bolt://localhost:7687"
-neo4j_user = "neo4j"
-neo4j_password = "123456798"
-dbname = "sgu"
+uri = os.getenv("NEO4J_URI")
+neo4j_user = os.getenv("NEO4J_USER")
+neo4j_password = os.getenv("NEO4J_PASSWORD")
+dbname = os.getenv("NEO4J_DATABASE")
 conn = Neo4jConnection(uri, neo4j_user, neo4j_password, dbname)
 print("✅ Kết nối đến Neo4j thành công.")
 
-result = conn.run_cypher(cypher_script, {})
+result = conn.run_cypher(cypher_script)
 print("✅ Dữ liệu đã được đưa vào Neo4j!")
 conn.close()
 print("✅ Đã đóng kết nối Neo4j.")

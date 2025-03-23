@@ -1,10 +1,11 @@
 MERGE (university:University {name: 'Trường Đại học Sài Gòn'})
-SET university.hasType = 'Cơ sở giáo dục Đại học công lập'
-SET university.managedBy = 'UBND TP. Hồ Chí Minh'
-SET university.offersTrainingMethod = 'Chính quy và giáo dục thường xuyên'
-SET university.hasMainFields = 'Kinh tế - Kỹ thuật - Công nghệ, Văn hóa xã hội, chính trị, Nghệ thuật và Sư phạm'
-SET university.hasQualityCertification = 'Chứng nhận kiểm định chất lượng giáo dục'
-SET university.hasTrainingLevels = 'Đại học, Sau đại học, Tiến sĩ'
+SET university.hasType = 'Công lập',
+university.managedBy = 'UBND TP. Hồ Chí Minh',
+university.offersTrainingMethod = 'Chính quy, Giáo dục thường xuyên',
+university.hasMainFields = 'Kinh tế, Kỹ thuật, Công nghệ, Văn hóa xã hội, Chính trị, Nghệ thuật, Sư phạm',
+university.hasQualityCertification = 'Chứng nhận kiểm định chất lượng giáo dục',
+university.hasTrainingLevels = 'Đại học, Sau đại học, Tiến sĩ'
+WITH university
 MERGE (program1:TrainingProgram {name: 'Giáo dục Chính trị - Du lịch'})
 MERGE (program2:TrainingProgram {name: 'Giáo dục Mầm non - Kế toán'})
 MERGE (program3:TrainingProgram {name: 'Giáo dục Tiểu học - Khoa học Môi trường'})
@@ -24,150 +25,103 @@ MERGE (program16:TrainingProgram {name: 'CNKT Điện tử - Viễn thông - Tha
 MERGE (program17:TrainingProgram {name: 'CNKT Điện, Điện tử - Thông tin - Thư viện'})
 MERGE (program18:TrainingProgram {name: 'Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng'})
 MERGE (program19:TrainingProgram {name: 'Công nghệ Thông tin - Việt Nam học'})
-MERGE (program20:TrainingProgram {name: 'Công nghệ Thông tin - Chất lượng cao'})
-MERGE (postgraduateProgram1:TrainingProgram {name: 'Hóa hữu cơ - Quản trị Kinh doanh'})
-MERGE (postgraduateProgram2:TrainingProgram {name: 'Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng'})
-MERGE (postgraduateProgram3:TrainingProgram {name: 'Khoa học Máy tính - Toán Giải tích'})
-MERGE (postgraduateProgram4:TrainingProgram {name: 'Lịch sử Việt Nam - Văn học Việt Nam'})
-MERGE (postgraduateProgram5:TrainingProgram {name: 'LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự'})
-MERGE (postgraduateProgram6:TrainingProgram {name: 'Ngôn ngữ học'})
-MERGE (postgraduateProgram7:TrainingProgram {name: 'Quản lý Giáo dục'})
-MERGE (doctoralProgram1:TrainingProgram {name: 'Hóa hữu cơ'})
-MERGE (doctoralProgram2:TrainingProgram {name: 'Lịch sử Việt Nam'})
-MERGE (doctoralProgram3:TrainingProgram {name: 'Quản lý Giáo dục'})
-MERGE (doctoralProgram4:TrainingProgram {name: 'Toán Giải tích'})
-MERGE (doctoralProgram5:TrainingProgram {name: 'Quản trị Kinh doanh'})
-MERGE (university)-[:hasPrograms]->(program1)
-MERGE (university)-[:hasPrograms]->(program2)
-MERGE (university)-[:hasPrograms]->(program3)
-MERGE (university)-[:hasPrograms]->(program4)
-MERGE (university)-[:hasPrograms]->(program5)
-MERGE (university)-[:hasPrograms]->(program6)
-MERGE (university)-[:hasPrograms]->(program7)
-MERGE (university)-[:hasPrograms]->(program8)
-MERGE (university)-[:hasPrograms]->(program9)
-MERGE (university)-[:hasPrograms]->(program10)
-MERGE (university)-[:hasPrograms]->(program11)
-MERGE (university)-[:hasPrograms]->(program12)
-MERGE (university)-[:hasPrograms]->(program13)
-MERGE (university)-[:hasPrograms]->(program14)
-MERGE (university)-[:hasPrograms]->(program15)
-MERGE (university)-[:hasPrograms]->(program16)
-MERGE (university)-[:hasPrograms]->(program17)
-MERGE (university)-[:hasPrograms]->(program18)
-MERGE (university)-[:hasPrograms]->(program19)
-MERGE (university)-[:hasPrograms]->(program20)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram1)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram2)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram3)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram4)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram5)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram6)
-MERGE (university)-[:hasPrograms]->(postgraduateProgram7)
-MERGE (university)-[:hasPrograms]->(doctoralProgram1)
-MERGE (university)-[:hasPrograms]->(doctoralProgram2)
-MERGE (university)-[:hasPrograms]->(doctoralProgram3)
-MERGE (university)-[:hasPrograms]->(doctoralProgram4)
-MERGE (university)-[:hasPrograms]->(doctoralProgram5)
-SET university.offersTrainingMethod = 'Giáo dục thường xuyên (vừa làm vừa học, Liên kết đào tạo, Liên thông, Bằng hai)'
-MERGE (program21:TrainingProgram {name: 'Đào tạo Đại học liên thông Công nghệ Thông tin'})
-MERGE (program22:TrainingProgram {name: 'Đào tạo Đại học liên thông Kế toán'})
-MERGE (program23:TrainingProgram {name: 'Đào tạo Đại học liên thông Quản trị Kinh doanh'})
-MERGE (program24:TrainingProgram {name: 'Đào tạo Đại học liên thông Giáo dục Mầm non'})
-MERGE (program25:TrainingProgram {name: 'Đào tạo Đại học liên thông Giáo dục Tiểu học'})
-MERGE (program26:TrainingProgram {name: 'Đào tạo văn bằng thứ hai Ngôn ngữ Anh'})
-MERGE (program27:TrainingProgram {name: 'Đào tạo văn bằng thứ hai Kế toán'})
-MERGE (program28:TrainingProgram {name: 'Đào tạo văn bằng thứ hai Luật'})
-MERGE (program29:TrainingProgram {name: 'Đào tạo văn bằng thứ hai Quản trị Kinh doanh'})
-MERGE (program30:TrainingProgram {name: 'Đào tạo văn bằng thứ hai Giáo dục Tiểu học'})
-MERGE (program31:TrainingProgram {name: 'Đào tạo văn bằng thứ hai Quản lý Giáo dục'})
-MERGE (program32:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học Quản trị Kinh doanh'})
-MERGE (program33:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học Tài chính - Ngân hàng'})
-MERGE (program34:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học Tài chính - Kế toán'})
-MERGE (program35:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học Luật'})
-MERGE (program36:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học Giáo dục Tiểu học'})
-MERGE (program37:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học Giáo dục Mầm non'})
-MERGE (university)-[:hasPrograms]->(program21)
-MERGE (university)-[:hasPrograms]->(program22)
-MERGE (university)-[:hasPrograms]->(program23)
-MERGE (university)-[:hasPrograms]->(program24)
+MERGE (program20:TrainingProgram {name: 'Chương trình chất lượng cao: Công nghệ Thông tin'})
+WITH university,
+[program1, program2, program3, program4, program5, program6, program7, program8, program9, program10, program11, program12, program13, program14, program15, program16, program17, program18, program19, program20] AS programs
+FOREACH (program IN programs |
+MERGE (university)-[:hasPrograms]->(program)
+)
+WITH 'Trường Đại học Sài Gòn' AS universityName
+MERGE (university:University {name: universityName})
+WITH university
+MERGE (program21:TrainingProgram {name: 'Giáo dục thường xuyên'})
+MERGE (program22:TrainingProgram {name: 'Đào tạo Đại học liên thông'})
+MERGE (program23:TrainingProgram {name: 'Đào tạo văn bằng thứ hai'})
+MERGE (program24:TrainingProgram {name: 'Đào tạo hệ đại học vừa làm vừa học'})
+WITH university, [program21, program22, program23, program24] AS programs
+FOREACH (program IN programs |
+MERGE (university)-[:hasPrograms]->(program)
+)
+MERGE (campus1:Campus {name: 'Cơ sở 273 An Dương Vương, Q.5', area: '42.743 m2'})
+MERGE (campus2:Campus {name: 'Cơ sở 105 Bà Huyện Thanh Quan, Q.3', area: '4.823 m2'})
+MERGE (campus3:Campus {name: 'Cơ sở 04 Tôn Đức Thắng, Q.1', area: '19.655 m2'})
+MERGE (dormitory:Campus {name: 'Ký túc xá 99 An Dương Vương, Q.8', area: '4.800 m2'})
+WITH university, [campus1, campus2, campus3, dormitory] AS campuses
+FOREACH (campus IN campuses |
+MERGE (university)-[:hasCampus]->(campus)
+)
+MERGE (internationalCoop:InternationalCooperation {name: 'Hợp tác quốc tế'})
+SET internationalCoop.description = 'Hợp tác với các trường Đại học nước ngoài và các tổ chức quốc tế'
+MERGE (university)-[:hasInternationalCooperation]->(internationalCoop)
+MERGE (program25:TrainingProgram {name: 'Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử'})
+SET program25.description = 'Liên kết đào tạo giữa trường Đại học Sài Gòn và trường Đại học Khoa học Ứng dụng IMC Krems (Cộng hòa Áo)'
 MERGE (university)-[:hasPrograms]->(program25)
+WITH 'Trường Đại học Sài Gòn' AS universityName
+MERGE (university:University {name: universityName})
+WITH university
+MERGE (program26:TrainingProgram {name: 'Chương trình liên kết đào tạo Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử'})
+SET program26.description = 'Triển khai theo Quyết định số 1498/QĐ-BGDĐT ngày 28/4/2014 của Bộ trưởng Bộ Giáo dục và Đào tạo'
 MERGE (university)-[:hasPrograms]->(program26)
+MERGE (program27:TrainingProgram {name: 'Chương trình đào tạo tiếng Hoa'})
+SET program27.description = 'Liên kết với Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt'
 MERGE (university)-[:hasPrograms]->(program27)
-MERGE (university)-[:hasPrograms]->(program28)
-MERGE (university)-[:hasPrograms]->(program29)
-MERGE (university)-[:hasPrograms]->(program30)
-MERGE (university)-[:hasPrograms]->(program31)
-MERGE (university)-[:hasPrograms]->(program32)
-MERGE (university)-[:hasPrograms]->(program33)
-MERGE (university)-[:hasPrograms]->(program34)
-MERGE (university)-[:hasPrograms]->(program35)
-MERGE (university)-[:hasPrograms]->(program36)
-MERGE (university)-[:hasPrograms]->(program37)
-MERGE (campus1:Campus {name: 'Cơ sở 273 An Dương Vương, Q.5'})
-SET campus1.area = '42.743 m2'
-MERGE (campus2:Campus {name: 'Cơ sở 105 Bà Huyện Thanh Quan, Q.3'})
-SET campus2.area = '4.823 m2'
-MERGE (campus3:Campus {name: 'Cơ sở 04 Tôn Đức Thắng, Q.1'})
-SET campus3.area = '19.655 m2'
-MERGE (dormitory:Campus {name: 'Ký túc xá 99 An Dương Vương, Q.8'})
-SET dormitory.area = '4.800 m2'
-MERGE (university)-[:hasCampus]->(campus1)
-MERGE (university)-[:hasCampus]->(campus2)
-MERGE (university)-[:hasCampus]->(campus3)
-MERGE (university)-[:hasCampus]->(dormitory)
-SET university.hasInternationalCooperation = 'Hợp tác với các trường Đại học nước ngoài và các tổ chức quốc tế'
-SET university.hasInternationalBachelorProgram = 'Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử'
-MERGE (program38:TrainingProgram {name: 'Chương trình liên kết đào tạo Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử'})
-SET program38.implementedBy = 'Trường Đại học Sài Gòn và trường Đại học Khoa học Ứng dụng IMC Krems'
-SET program38.decisionNumber = '1498/QĐ-BGDĐT'
-SET program38.decisionDate = '28/4/2014'
-MERGE (program39:TrainingProgram {name: 'Chương trình đào tạo tiếng Hoa'})
-SET program39.linkedWith = 'Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt'
-SET program39.contents = 'Hoa ngữ giao tiếp, Luyện thi TOCFL, Hoa ngữ lớp Online'
-SET program39.certificationBy = 'Trung tâm Hoa Ngữ Sư Phạm Đài Loan'
 MERGE (scholarship1:Scholarship {name: 'Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship'})
 SET scholarship1.details = 'Học bổng toàn phần chương trình đào tạo Trợ lý bác sĩ trong thời gian 3 năm với trị giá SGD 120,000'
-SET scholarship1.benefits = 'Trợ cấp sinh hoạt phí từ SGD 720/tháng, hỗ trợ ký túc xá, chi phí đi lại, dịch vụ y tế'
+MERGE (university)-[:hasScholarshipPrograms]->(scholarship1)
 MERGE (scholarship2:Scholarship {name: 'Học bổng của Bộ Giáo dục Đài Loan'})
 SET scholarship2.details = 'Học bổng Cử nhân hệ chính quy, vừa học vừa làm đối với các Khối ngành Kinh tế, Thương mại, Thực phẩm, Dịch vụ, Công nghệ Thông tin, Kỹ thuật'
-SET scholarship2.benefits = 'Miễn giảm học phí, phí ký túc xá, thực tập có lương'
-MERGE (trainingLink1:TrainingProgram {name: 'Chương trình chuyển tiếp Công nghệ thông tin'})
-MERGE (trainingLink2:TrainingProgram {name: 'Chương trình chuyển tiếp Ngôn ngữ Anh'})
-MERGE (trainingLink3:TrainingProgram {name: 'Chương trình chuyển tiếp Sư phạm Anh'})
-MERGE (trainingLink4:TrainingProgram {name: 'Chương trình chuyển tiếp Quản trị kinh doanh'})
-MERGE (trainingLink5:TrainingProgram {name: 'Chương trình chuyển tiếp Tài chính - Ngân hàng'})
-MERGE (university)-[:hasPrograms]->(program38)
-MERGE (university)-[:hasPrograms]->(program39)
-MERGE (university)-[:hasScholarshipPrograms]->(scholarship1)
 MERGE (university)-[:hasScholarshipPrograms]->(scholarship2)
-MERGE (university)-[:hasTrainingLinks]->(trainingLink1)
-MERGE (university)-[:hasTrainingLinks]->(trainingLink2)
-MERGE (university)-[:hasTrainingLinks]->(trainingLink3)
-MERGE (university)-[:hasTrainingLinks]->(trainingLink4)
-MERGE (university)-[:hasTrainingLinks]->(trainingLink5)
+MERGE (program28:TrainingProgram {name: 'Chương trình liên kết đào tạo các ngành Công nghệ thông tin, Ngôn ngữ Anh, Sư phạm Anh, Quản trị kinh doanh, Tài chính - Ngân hàng'})
+SET program28.details = 'Ký kết hợp tác và xây dựng chương trình chuyển tiếp'
+MERGE (university)-[:hasPrograms]->(program28)
+MERGE (program29:TrainingProgram {name: 'Thạc sĩ Giảng dạy tiếng Anh (Master of TESOL)'})
+SET program29.details = 'Trao đổi thông tin, lên kế hoạch liên kết chương trình với Đại học Huddersfiled (Vương quốc Anh)'
+MERGE (university)-[:hasPrograms]->(program29)
+WITH 'Trường Đại học Sài Gòn' AS universityName
+MERGE (university:University {name: universityName})
+WITH university
 MERGE (researchTopic:ResearchTopic {name: 'Nghiên cứu khoa học cấp cơ sở'})
-SET researchTopic.conditions = 'Có kết quả học tập trung bình trở lên, không bị kỷ luật, không có đề tài bị hủy hoặc nghiệm thu không đạt'
-SET researchTopic.benefits = 'Hỗ trợ kinh phí, cộng điểm rèn luyện, cấp giấy chứng nhận NCKH, thưởng kinh phí cho đề tài tốt và xuất sắc'
+SET researchTopic.details = 'Sinh viên tham gia thực hiện đề tài trong thời gian từ 06 – 09 tháng dưới sự hướng dẫn của Giảng viên'
+MERGE (university)-[:hasPrograms]->(researchTopic)
+MERGE (benefit1:ResearchTopic {name: 'Quyền lợi NCKH'})
+SET benefit1.details = 'Đối với các đề tài có kết quả nghiệm thu đạt trở lên sẽ được hỗ trợ kinh phí, cộng điểm rèn luyện năm học và cấp giấy chứng nhận NCKH'
+MERGE (university)-[:hasPrograms]->(benefit1)
+MERGE (benefit2:ResearchTopic {name: 'Bài báo Khoa học và báo cáo tham luận Hội thảo'})
+SET benefit2.details = 'Sinh viên có bài báo đăng trên các Tạp chí chuyên ngành trong nước, quốc tế hoặc báo cáo khoa học đăng trên kỷ yếu các Hội thảo'
+MERGE (university)-[:hasPrograms]->(benefit2)
 MERGE (journal:Journal {name: 'Tạp chí Khoa học Đại học Sài Gòn'})
-SET journal.managedBy = 'Trường Đại học Sài Gòn'
-SET journal.servesAudience = 'Cán bộ giảng dạy, nghiên cứu, quản lý, sinh viên các trường đại học, cao đẳng, các viện, học viện, các trung tâm nghiên cứu'
-SET journal.purpose = 'Diễn đàn khoa học công bố kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên'
-MERGE (university)-[:hasResearchConditions]->(researchTopic)
-MERGE (university)-[:hasQualityCertification]->(journal)
-SET journal.issn = '1859-3208'
-SET journal.license = 'Số 22/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 23/01/2015'
+SET journal.managedBy = 'Trường Đại học Sài Gòn',
+journal.servesAudience = 'Cán bộ giảng dạy, nghiên cứu, quản lý, sinh viên các trường đại học, cao đẳng, các viện, học viện, các trung tâm nghiên cứu'
+MERGE (university)-[:hasPrograms]->(journal)
+WITH 'Trường Đại học Sài Gòn' AS universityName
+MERGE (university:University {name: universityName})
+WITH university
+MERGE (journal:Journal {name: 'Tạp chí Khoa học Đại học Sài Gòn'})
+SET journal.managedBy = 'Trường Đại học Sài Gòn',
+journal.ISSN = '1859-3208',
+journal.hasArticleRegulations = 'Phải nêu rõ mục tiêu nghiên cứu; cần có các kết quả mới, có giá trị khoa học và thực tiễn',
+journal.usesCitationStandard = 'IEEE, APA',
+journal.servesAudience = 'Cán bộ giảng dạy, nghiên cứu, quản lý, sinh viên các trường đại học, cao đẳng, các viện, học viện, các trung tâm nghiên cứu'
+MERGE (university)-[:hasPrograms]->(journal)
 SET journal.contactInfo = 'Điện thoại: (028) 38 321 360, Email: tcdhsg@sgu.edu.vn, Website: http://sj.sgu.edu.vn/'
-SET journal.hasArticleRegulations = 'Phải nêu rõ mục tiêu nghiên cứu, có kết quả mới, được phản biện, có danh mục chú thích và tài liệu tham khảo'
-SET journal.technicalRequirements = 'Bài viết không quá 12 trang A4, soạn thảo trên Word, bảng mã Unicode, Font Times New Roman, cỡ chữ 13'
-SET journal.hasCitationGuidelines = 'Trích dẫn và danh mục Tài liệu tham khảo theo tiêu chuẩn IEEE hoặc APA'
-SET journal.imageRequirements = 'Hình minh họa cần rõ ràng, 300 dpi hoặc cao hơn, định dạng EPS, PDF, AI, PNG, JPG, BMP'
-SET journal.submissionEmail = 'tcdhsg@sgu.edu.vn'
-SET journal.contactPhone = '028.38 321 360'
-SET journal.editingOfficeAddress = 'Ban Biên tập Tạp chí Khoa học Đại học Sài Gòn, phòng C010 – Trường Đại học Sài Gòn, số 273 An Dương Vương, phường 3, quận 5, Thành phố Hồ Chí Minh'
-MERGE (trainingInfo:TrainingProgram {name: 'Thông tin đào tạo'})
-SET trainingInfo.classSchedule = 'Ca 1: 07g00 đến 07g50, Ca 2: 07g50 đến 08g40, Ca 3: 09g00 đến 09g50, Nghỉ 20 phút giữa các ca'
-SET trainingInfo.classroomCodes = 'C: cơ sở chính, 1: cơ sở 1, 2: cơ sở 2'
-SET trainingInfo.registrationSystem = 'daotao.sgu.edu.vn'
-SET trainingInfo.trainingInfoPage = 'thongtindaotao.sgu.edu.vn'
-MERGE (university)-[:hasTrainingLinks]->(trainingInfo)
+MERGE (regulation:ResearchTopic {name: 'Quy định chung về bài báo khoa học'})
+SET regulation.details = 'Phải nêu rõ mục tiêu nghiên cứu; cần có các kết quả mới, có giá trị khoa học và thực tiễn trong lĩnh vực nghiên cứu'
+MERGE (university)-[:hasPrograms]->(regulation)
+MERGE (submissionGuideline:ResearchTopic {name: 'Thể lệ gửi bài đăng tạp chí Khoa học Đại Học Sài Gòn'})
+SET submissionGuideline.details = 'Bài gửi đăng trên Tạp chí phải là công trình khoa học, các báo cáo học thuật hoặc kết quả thực hiện đề tài khoa học mới'
+MERGE (university)-[:hasPrograms]->(submissionGuideline)
+WITH 'Trường Đại học Sài Gòn' AS universityName
+MERGE (university:University {name: universityName})
+WITH university
+MERGE (submissionGuideline:ResearchTopic {name: 'Hướng dẫn gửi bài'})
+SET submissionGuideline.details = 'Hình minh họa cần rõ ràng, gửi kèm file ảnh, hình cùng với toàn văn bài viết'
+MERGE (university)-[:hasPrograms]->(submissionGuideline)
+MERGE (trainingInfo:ResearchTopic {name: 'Thông tin đào tạo'})
+SET trainingInfo.details = 'Quy định về số tiết và thời gian của các tiết học trong ngày, thông tin về mã phòng học'
+MERGE (university)-[:hasPrograms]->(trainingInfo)
+MERGE (trainingPage:ResearchTopic {name: 'Trang Phòng Đào tạo'})
+SET trainingPage.details = 'Cổng thông tin giữa Nhà trường và sinh viên, phụ huynh về các hoạt động đào tạo'
+MERGE (university)-[:hasPrograms]->(trainingPage)
+MERGE (infoPage:ResearchTopic {name: 'Trang Thông tin Đào tạo'})
+SET infoPage.details = 'Đăng kí môn học, cung cấp thông tin liên quan đến công tác đào tạo đến sinh viên'
+MERGE (university)-[:hasPrograms]->(infoPage)
