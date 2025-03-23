@@ -1,0 +1,1076 @@
+# Test Results - 2025-03-23 23:38:13
+
+## Query 1
+### Description
+1. Kiểm tra cấu trúc cơ bản
+
+### Query
+```cypher
+MATCH (n)
+RETURN DISTINCT labels(n) as NodeTypes, count(*) as Count
+ORDER BY Count DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "NodeTypes": [
+      "TrainingProgram"
+    ],
+    "Count": 29
+  },
+  {
+    "NodeTypes": [
+      "Department"
+    ],
+    "Count": 19
+  },
+  {
+    "NodeTypes": [
+      "Campus"
+    ],
+    "Count": 4
+  },
+  {
+    "NodeTypes": [
+      "InternationalCooperation"
+    ],
+    "Count": 3
+  },
+  {
+    "NodeTypes": [
+      "Scholarship"
+    ],
+    "Count": 2
+  },
+  {
+    "NodeTypes": [
+      "University"
+    ],
+    "Count": 1
+  },
+  {
+    "NodeTypes": [
+      "ResearchTopic"
+    ],
+    "Count": 1
+  },
+  {
+    "NodeTypes": [
+      "Journal"
+    ],
+    "Count": 1
+  }
+]
+```
+
+---
+
+## Query 2
+### Description
+2. Kiểm tra tổng số khoa và chương trình đào tạo
+
+### Query
+```cypher
+MATCH (u:University)-[:hasDepartment]->(d:Department)
+WITH count(d) as departmentCount
+MATCH (u:University)-[:offersTrainingProgram]->(t:TrainingProgram)
+WITH departmentCount, count(t) as programCount
+RETURN departmentCount as TotalDepartments, programCount as TotalPrograms;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "TotalDepartments": 19,
+    "TotalPrograms": 29
+  }
+]
+```
+
+---
+
+## Query 3
+### Description
+3. Kiểm tra các khoa có từ "Sư phạm" trong tên
+
+### Query
+```cypher
+MATCH (d:Department)
+WHERE d.name CONTAINS 'Sư phạm'
+RETURN d.name as PedagogyDepartments
+ORDER BY d.name;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "PedagogyDepartments": "Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Lịch sử - Luật"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Mỹ thuật - Quản lý Giáo dục"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Ngữ Văn - Quản trị Kinh doanh"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Sinh học - Quản trị Văn phòng"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Tiếng Anh - Quốc tế học"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Toán học - Tài chính - Ngân hàng"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Vật lý - Tâm lý học"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Âm nhạc - Kinh doanh Quốc tế"
+  },
+  {
+    "PedagogyDepartments": "Sư phạm Địa lý - Kỹ thuật Điện"
+  }
+]
+```
+
+---
+
+## Query 4
+### Description
+4. Kiểm tra tổng diện tích các cơ sở
+
+### Query
+```cypher
+MATCH (c:Campus)
+RETURN sum(c.area) as TotalArea, count(c) as TotalCampuses;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "TotalArea": 72021,
+    "TotalCampuses": 4
+  }
+]
+```
+
+---
+
+## Query 5
+### Description
+5. Kiểm tra các chương trình đào tạo liên thông
+
+### Query
+```cypher
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS 'liên thông'
+RETURN t.name as TransferPrograms
+ORDER BY t.name;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "TransferPrograms": "Đào tạo Đại học liên thông Công nghệ Thông tin"
+  },
+  {
+    "TransferPrograms": "Đào tạo Đại học liên thông Giáo dục Mầm non"
+  },
+  {
+    "TransferPrograms": "Đào tạo Đại học liên thông Giáo dục Tiểu học"
+  },
+  {
+    "TransferPrograms": "Đào tạo Đại học liên thông Kế toán"
+  },
+  {
+    "TransferPrograms": "Đào tạo Đại học liên thông Quản trị Kinh doanh"
+  }
+]
+```
+
+---
+
+## Query 6
+### Description
+6. Kiểm tra thông tin hợp tác quốc tế và học bổng
+
+### Query
+```cypher
+MATCH (u:University)-[:hasInternationalCooperation]->(i:InternationalCooperation),
+(u)-[:hasScholarship]->(s:Scholarship)
+RETURN i.name as Cooperation, s.name as Scholarship;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "Cooperation": "Chương trình liên kết đào tạo với Đại học Huddersfield",
+    "Scholarship": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
+  },
+  {
+    "Cooperation": "Chương trình đào tạo tiếng Hoa liên kết với Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt",
+    "Scholarship": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
+  },
+  {
+    "Cooperation": "Chương trình liên kết đào tạo Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử",
+    "Scholarship": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
+  },
+  {
+    "Cooperation": "Chương trình liên kết đào tạo với Đại học Huddersfield",
+    "Scholarship": "Học bổng của Bộ Giáo dục Đài Loan và trường Đại học tại Đài Loan"
+  },
+  {
+    "Cooperation": "Chương trình đào tạo tiếng Hoa liên kết với Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt",
+    "Scholarship": "Học bổng của Bộ Giáo dục Đài Loan và trường Đại học tại Đài Loan"
+  },
+  {
+    "Cooperation": "Chương trình liên kết đào tạo Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử",
+    "Scholarship": "Học bổng của Bộ Giáo dục Đài Loan và trường Đại học tại Đài Loan"
+  }
+]
+```
+
+---
+
+## Query 7
+### Description
+7. Kiểm tra các khoa có nhiều ngành kết hợp (chứa dấu -)
+
+### Query
+```cypher
+MATCH (d:Department)
+WHERE d.name CONTAINS ' - '
+WITH d, size(split(d.name, ' - ')) as departmentCount
+RETURN d.name as Department, departmentCount as NumberOfCombinedFields
+ORDER BY departmentCount DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "Department": "Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông",
+    "NumberOfCombinedFields": 3
+  },
+  {
+    "Department": "Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh",
+    "NumberOfCombinedFields": 3
+  },
+  {
+    "Department": "Sư phạm Toán học - Tài chính - Ngân hàng",
+    "NumberOfCombinedFields": 3
+  },
+  {
+    "Department": "CNKT Điện tử - Viễn thông - Thanh nhạc",
+    "NumberOfCombinedFields": 3
+  },
+  {
+    "Department": "CNKT Điện, Điện tử - Thông tin - Thư viện",
+    "NumberOfCombinedFields": 3
+  },
+  {
+    "Department": "Giáo dục Chính trị - Du lịch",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Giáo dục Mầm non - Kế toán",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Giáo dục Tiểu học - Khoa học Môi trường",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Âm nhạc - Kinh doanh Quốc tế",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Địa lý - Kỹ thuật Điện",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Lịch sử - Luật",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Mỹ thuật - Quản lý Giáo dục",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Ngữ Văn - Quản trị Kinh doanh",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Sinh học - Quản trị Văn phòng",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Tiếng Anh - Quốc tế học",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Sư phạm Vật lý - Tâm lý học",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng",
+    "NumberOfCombinedFields": 2
+  },
+  {
+    "Department": "Công nghệ Thông tin - Việt Nam học",
+    "NumberOfCombinedFields": 2
+  }
+]
+```
+
+---
+
+## Query 8
+### Description
+8. Kiểm tra chương trình đào tạo theo loại hình
+
+### Query
+```cypher
+MATCH (t:TrainingProgram)
+WITH t,
+CASE
+WHEN t.name CONTAINS 'vừa làm vừa học' THEN 'VLVH'
+WHEN t.name CONTAINS 'văn bằng hai' THEN 'VB2'
+WHEN t.name CONTAINS 'liên thông' THEN 'Liên thông'
+ELSE 'Chính quy'
+END as type
+RETURN type, count(*) as Count
+ORDER BY Count DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "type": "Chính quy",
+    "Count": 18
+  },
+  {
+    "type": "VLVH",
+    "Count": 6
+  },
+  {
+    "type": "Liên thông",
+    "Count": 5
+  }
+]
+```
+
+---
+
+## Query 9
+### Description
+9. Kiểm tra tạp chí khoa học
+
+### Query
+```cypher
+MATCH (j:Journal)
+RETURN j.name, j.issn, j.email, j.website, j.pointRecognition;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "j.name": "Tạp chí Khoa học Đại học Sài Gòn",
+    "j.issn": "1859-3208",
+    "j.email": "tcdhsg@sgu.edu.vn",
+    "j.website": "http://sj.sgu.edu.vn/",
+    "j.pointRecognition": 20
+  }
+]
+```
+
+---
+
+## Query 10
+### Description
+10. Kiểm tra thông tin đào tạo
+
+### Query
+```cypher
+MATCH (t:TrainingProgram {name: 'Thông tin đào tạo'})
+RETURN t.schedule, t.classroomCode, t.registrationSystem;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "t.schedule": "Ca 1: 07g00 đến 07g50, Ca 2: 07g50 đến 08g40, Ca 3: 09g00 đến 09g50, Nghỉ 20 phút",
+    "t.classroomCode": "C: cơ sở chính, 1: cơ sở 1, 2: cơ sở 2",
+    "t.registrationSystem": "daotao.sgu.edu.vn"
+  }
+]
+```
+
+---
+
+## Query 11
+### Description
+11. Kiểm tra các cơ sở theo quận
+
+### Query
+```cypher
+MATCH (c:Campus)
+WITH c, split(c.name, ', ')[1] as district
+RETURN district, count(*) as CampusCount, collect(c.name) as Campuses;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "district": "Q.5",
+    "CampusCount": 1,
+    "Campuses": [
+      "Cơ sở 273 An Dương Vương, Q.5"
+    ]
+  },
+  {
+    "district": "Q.3",
+    "CampusCount": 1,
+    "Campuses": [
+      "Cơ sở 105 Bà Huyện Thanh Quan, Q.3"
+    ]
+  },
+  {
+    "district": "Q.1",
+    "CampusCount": 1,
+    "Campuses": [
+      "Cơ sở 04 Tôn Đức Thắng, Q.1"
+    ]
+  },
+  {
+    "district": "Q.8",
+    "CampusCount": 1,
+    "Campuses": [
+      "Ký túc xá 99 An Dương Vương, Q.8"
+    ]
+  }
+]
+```
+
+---
+
+## Query 12
+### Description
+12. Kiểm tra các chương trình chất lượng cao
+
+### Query
+```cypher
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS 'chất lượng cao'
+RETURN t.name as HighQualityPrograms;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "HighQualityPrograms": "Chương trình chất lượng cao: Công nghệ Thông tin"
+  }
+]
+```
+
+---
+
+## Query 13
+### Description
+13. Kiểm tra các mối quan hệ của trường
+
+### Query
+```cypher
+MATCH (u:University)-[r]->(n)
+RETURN type(r) as RelationshipType, count(*) as Count
+ORDER BY Count DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "RelationshipType": "offersTrainingProgram",
+    "Count": 29
+  },
+  {
+    "RelationshipType": "hasDepartment",
+    "Count": 19
+  },
+  {
+    "RelationshipType": "hasCampus",
+    "Count": 4
+  },
+  {
+    "RelationshipType": "hasInternationalCooperation",
+    "Count": 3
+  },
+  {
+    "RelationshipType": "hasScholarship",
+    "Count": 2
+  },
+  {
+    "RelationshipType": "hasResearchTopic",
+    "Count": 1
+  },
+  {
+    "RelationshipType": "hasJournal",
+    "Count": 1
+  }
+]
+```
+
+---
+
+## Query 14
+### Description
+14. Kiểm tra các khoa công nghệ và kỹ thuật
+
+### Query
+```cypher
+MATCH (d:Department)
+WHERE d.name CONTAINS 'Công nghệ' OR d.name CONTAINS 'Kỹ thuật'
+RETURN d.name as TechnologyDepartments;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "TechnologyDepartments": "Sư phạm Địa lý - Kỹ thuật Điện"
+  },
+  {
+    "TechnologyDepartments": "Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông"
+  },
+  {
+    "TechnologyDepartments": "Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm"
+  },
+  {
+    "TechnologyDepartments": "Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng"
+  },
+  {
+    "TechnologyDepartments": "Công nghệ Thông tin - Việt Nam học"
+  }
+]
+```
+
+---
+
+## Query 15
+### Description
+15. Kiểm tra tính toàn vẹn của dữ liệu
+
+### Query
+```cypher
+MATCH (n)
+WHERE NOT (n)-[]-()
+RETURN labels(n) as IsolatedNodeTypes, count(*) as Count;
+```
+
+### Status: success
+
+### Result
+```json
+[]
+```
+
+---
+
+## Query 16
+### Description
+16. Kiểm tra các chương trình đặc biệt
+
+### Query
+```cypher
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS 'Chương trình'
+RETURN t.name as SpecialPrograms;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "SpecialPrograms": "Chương trình đại trà"
+  },
+  {
+    "SpecialPrograms": "Chương trình chất lượng cao: Công nghệ Thông tin"
+  }
+]
+```
+
+---
+
+## Query 17
+### Description
+17. Kiểm tra phân bố các cơ sở theo diện tích
+
+### Query
+```cypher
+MATCH (c:Campus)
+WITH c.area as area,
+CASE
+WHEN c.area > 20000 THEN 'Rất lớn'
+WHEN c.area > 10000 THEN 'Lớn'
+WHEN c.area > 5000 THEN 'Trung bình'
+ELSE 'Nhỏ'
+END as sizeCategory
+RETURN sizeCategory, count(*) as Count, collect(c.name) as Campuses
+ORDER BY min(c.area);
+```
+
+### Status: error
+
+### Error
+```
+{code: Neo.ClientError.Statement.SyntaxError} {message: Variable `c` not defined (line 9, column 49 (offset: 225))
+"RETURN sizeCategory, count(*) as Count, collect(c.name) as Campuses"
+                                                 ^}
+```
+
+---
+
+## Query 18
+### Description
+18. Kiểm tra các chương trình song ngành
+
+### Query
+```cypher
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS ' - ' AND NOT t.name CONTAINS 'liên thông'
+AND NOT t.name CONTAINS 'vừa làm vừa học'
+RETURN t.name as DualPrograms;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "DualPrograms": "Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng"
+  },
+  {
+    "DualPrograms": "Khoa học Máy tính - Toán Giải tích"
+  },
+  {
+    "DualPrograms": "Lịch sử Việt Nam - Văn học Việt Nam"
+  },
+  {
+    "DualPrograms": "LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự"
+  }
+]
+```
+
+---
+
+## Query 19
+### Description
+19. Kiểm tra tất cả các thuộc tính của Journal
+
+### Query
+```cypher
+MATCH (j:Journal)
+RETURN properties(j) as JournalProperties;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "JournalProperties": {
+      "phone": "(028) 38 321 360",
+      "issn": "1859-3208",
+      "website": "http://sj.sgu.edu.vn/",
+      "email": "tcdhsg@sgu.edu.vn",
+      "description": "Diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn",
+      "name": "Tạp chí Khoa học Đại học Sài Gòn",
+      "license": "Số 22/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 23/01/2015",
+      "pointRecognition": 20
+    }
+  }
+]
+```
+
+---
+
+## Query 20
+### Description
+20. Kiểm tra các đề tài nghiên cứu và quan hệ
+
+### Query
+```cypher
+MATCH (r:ResearchTopic)<-[rel]-(n)
+RETURN r.name as ResearchTopic, type(rel) as RelationType, labels(n) as ConnectedTo;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "ResearchTopic": "Đề tài Nghiên cứu khoa học cấp cơ sở",
+    "RelationType": "hasPublicationType",
+    "ConnectedTo": [
+      "Journal"
+    ]
+  },
+  {
+    "ResearchTopic": "Đề tài Nghiên cứu khoa học cấp cơ sở",
+    "RelationType": "hasResearchTopic",
+    "ConnectedTo": [
+      "University"
+    ]
+  }
+]
+```
+
+---
+
+## Query 21
+### Description
+21. Kiểm tra thống kê về các loại node
+
+### Query
+```cypher
+MATCH (n)
+WITH labels(n) as nodeType, count(*) as count
+RETURN nodeType, count
+ORDER BY count DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "nodeType": [
+      "TrainingProgram"
+    ],
+    "count": 29
+  },
+  {
+    "nodeType": [
+      "Department"
+    ],
+    "count": 19
+  },
+  {
+    "nodeType": [
+      "Campus"
+    ],
+    "count": 4
+  },
+  {
+    "nodeType": [
+      "InternationalCooperation"
+    ],
+    "count": 3
+  },
+  {
+    "nodeType": [
+      "Scholarship"
+    ],
+    "count": 2
+  },
+  {
+    "nodeType": [
+      "University"
+    ],
+    "count": 1
+  },
+  {
+    "nodeType": [
+      "ResearchTopic"
+    ],
+    "count": 1
+  },
+  {
+    "nodeType": [
+      "Journal"
+    ],
+    "count": 1
+  }
+]
+```
+
+---
+
+## Query 22
+### Description
+22. Kiểm tra độ dài tên các khoa
+
+### Query
+```cypher
+MATCH (d:Department)
+RETURN d.name, size(d.name) as NameLength
+ORDER BY NameLength DESC
+LIMIT 5;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "d.name": "Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông",
+    "NameLength": 47
+  },
+  {
+    "d.name": "Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng",
+    "NameLength": 45
+  },
+  {
+    "d.name": "Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm",
+    "NameLength": 45
+  },
+  {
+    "d.name": "CNKT Điện, Điện tử - Thông tin - Thư viện",
+    "NameLength": 41
+  },
+  {
+    "d.name": "Sư phạm Toán học - Tài chính - Ngân hàng",
+    "NameLength": 40
+  }
+]
+```
+
+---
+
+## Query 23
+### Description
+23. Kiểm tra các chương trình theo từng lĩnh vực
+
+### Query
+```cypher
+MATCH (t:TrainingProgram)
+WITH t,
+CASE
+WHEN t.name CONTAINS 'Công nghệ' OR t.name CONTAINS 'Kỹ thuật' THEN 'Công nghệ'
+WHEN t.name CONTAINS 'Kinh tế' OR t.name CONTAINS 'Kinh doanh' THEN 'Kinh tế'
+WHEN t.name CONTAINS 'Sư phạm' OR t.name CONTAINS 'Giáo dục' THEN 'Giáo dục'
+WHEN t.name CONTAINS 'Luật' THEN 'Luật'
+ELSE 'Khác'
+END as field
+RETURN field, count(*) as Count
+ORDER BY Count DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "field": "Khác",
+    "Count": 12
+  },
+  {
+    "field": "Giáo dục",
+    "Count": 8
+  },
+  {
+    "field": "Kinh tế",
+    "Count": 4
+  },
+  {
+    "field": "Luật",
+    "Count": 3
+  },
+  {
+    "field": "Công nghệ",
+    "Count": 2
+  }
+]
+```
+
+---
+
+## Query 24
+### Description
+24. Kiểm tra mối quan hệ giữa các node
+
+### Query
+```cypher
+MATCH (a)-[r]->(b)
+RETURN labels(a)[0] as FromType, type(r) as Relationship, labels(b)[0] as ToType,
+count(*) as Count
+ORDER BY Count DESC;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "FromType": "University",
+    "Relationship": "offersTrainingProgram",
+    "ToType": "TrainingProgram",
+    "Count": 29
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasDepartment",
+    "ToType": "Department",
+    "Count": 19
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasCampus",
+    "ToType": "Campus",
+    "Count": 4
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasInternationalCooperation",
+    "ToType": "InternationalCooperation",
+    "Count": 3
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasScholarship",
+    "ToType": "Scholarship",
+    "Count": 2
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasResearchTopic",
+    "ToType": "ResearchTopic",
+    "Count": 1
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasJournal",
+    "ToType": "Journal",
+    "Count": 1
+  },
+  {
+    "FromType": "Journal",
+    "Relationship": "hasPublicationType",
+    "ToType": "ResearchTopic",
+    "Count": 1
+  }
+]
+```
+
+---
+
+## Query 25
+### Description
+25. Kiểm tra node có nhiều relationship nhất
+
+### Query
+```cypher
+MATCH (n)-[r]-()
+WITH n, count(r) as relCount
+RETURN labels(n) as NodeType, n.name as Name, relCount
+ORDER BY relCount DESC
+LIMIT 5;
+```
+
+### Status: success
+
+### Result
+```json
+[
+  {
+    "NodeType": [
+      "University"
+    ],
+    "Name": "Trường Đại học Sài Gòn",
+    "relCount": 59
+  },
+  {
+    "NodeType": [
+      "ResearchTopic"
+    ],
+    "Name": "Đề tài Nghiên cứu khoa học cấp cơ sở",
+    "relCount": 2
+  },
+  {
+    "NodeType": [
+      "Journal"
+    ],
+    "Name": "Tạp chí Khoa học Đại học Sài Gòn",
+    "relCount": 2
+  },
+  {
+    "NodeType": [
+      "Department"
+    ],
+    "Name": "Giáo dục Mầm non - Kế toán",
+    "relCount": 1
+  },
+  {
+    "NodeType": [
+      "Department"
+    ],
+    "Name": "Sư phạm Âm nhạc - Kinh doanh Quốc tế",
+    "relCount": 1
+  }
+]
+```
+
+---
+

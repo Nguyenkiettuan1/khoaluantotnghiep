@@ -3,6 +3,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection
 from clearCypher import clean_cypher_code
+from utils import validate_cypher_query
 
 load_dotenv()
 
@@ -138,11 +139,13 @@ for idx, chunk in enumerate(data_chunks):
 
 
     generated_cypher = generate_cypher_from_data_conversation(conversation_messages, client)
+    
     conversation_messages.append({
         "role": "assistant",
         "content": generated_cypher
     })
     generated_cypher = clean_cypher_code(generated_cypher, remove_trailing_dot=True)
+    check_cypher = validate_cypher_query(generated_cypher)
     all_generated_cypher += f"// Từ đoạn {idx+1}\n" + generated_cypher + "\n\n"
     with open(cypher_output_path, "a", encoding="utf-8") as f:
         f.write(generated_cypher + "\n")
