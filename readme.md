@@ -169,7 +169,7 @@ graph TD
     E --> K[K answer]
     K --> F[Response Generator]
     G --> P[Answer]
-    P --> A
+    P --> M[Steamlit Interface]
 ```
 
 
