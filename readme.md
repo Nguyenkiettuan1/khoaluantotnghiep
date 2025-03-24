@@ -3,6 +3,22 @@
 ## Giới thiệu
 Hệ thống tìm kiếm thông minh cho Trường Đại học Sài Gòn sử dụng Vector Search và OpenAI để tạo câu trả lời chính xác từ dữ liệu có cấu trúc.
 
+## Kiến trúc tổng quan
+
+```mermaid
+graph TD
+    A[Dữ liệu nguồn] --> B[Xử lý & Làm sạch dữ liệu]
+    B --> C[Tạo Embeddings]
+    C --> D[Vector Index]
+    D --> E[Neo4j Graph Database]
+    E --> F[API Backend]
+    F --> G[Web Interface]
+    
+    style A fill:#f9f,stroke:#333
+    style E fill:#bbf,stroke:#333
+    style G fill:#bfb,stroke:#333
+```
+
 ## Quy trình xây dựng hệ thống
 
 ### 1. Chuẩn bị dữ liệu và Ontology
@@ -13,7 +29,7 @@ Hệ thống tìm kiếm thông minh cho Trường Đại học Sài Gòn sử d
 - Đưa các câu hỏi đó vào folder QA
 QA/
 ├── QA_SGU_v1.txt          # Các câu hỏi năng lực
-└── QA_SGU_v2.txt       # Các câu hỏi năng lực
+└── QA_SGU_v2.txt          # Các câu hỏi năng lực
 ```
 
 #### b. Tạo Ontology từ Competency Questions
@@ -69,37 +85,90 @@ Quá trình này sẽ:
    - Lưu tất cả queries vào `cypher/populate_ontology.cypher`
    - Sẵn sàng cho việc import vào Neo4j
 
-#### b. Import vào Neo4j
-```bash
+### 3. Vector Index và Embeddings
 
-### 3. Xây dựng Vector Index và Embedding
+#### a. Tạo Vector Embeddings
+```mermaid
+graph LR
+    A[Text Chunks] --> B[OpenAI API]
+    B --> C[Embeddings]
+    C --> D[Vector Store]
+    D --> E[Neo4j Vector Index]
+```
 
-#### a. Kiến trúc hệ thống
+1. **Chunking và Preprocessing**:
+   - Chia văn bản thành các đoạn có độ dài phù hợp (chunking)
+   - Làm sạch dữ liệu: loại bỏ ký tự đặc biệt, định dạng văn bản
+   - Lưu metadata cho mỗi chunk để truy xuất nguồn
+
+2. **Tạo Embeddings**:
+   ```python
+   from openai import OpenAI
+   
+   # Tạo embedding vector cho mỗi chunk
+   def create_embedding(text_chunk):
+       client = OpenAI()
+       response = client.embeddings.create(
+           model="text-embedding-ada-002",
+           input=text_chunk,
+           encoding_format="float"
+       )
+       return response.data[0].embedding
+   ```
+
+3. **Xây dựng Vector Index**:
+   ```cypher
+   // Tạo vector index trong Neo4j
+   for label in node_labels:
+        try:
+            index_name = f"{label.lower()}_embedding_index"
+            neo4j.create_vector_index(
+                index_name=index_name,
+                node_label=label
+            )
+            print(f"Created index: {index_name}")
+        except Exception as e:
+            print(f"Error creating index for {label}: {str(e)}")
+
+#### b. Lưu trữ và Truy vấn
+
+1. **Lưu Embeddings**:
+   ```cypher
+   update_query = f"""
+                MATCH (n:{labels_str}) WHERE ID(n) = $node_id
+                SET n.embedding = $embedding
+                """
+                neo4j.run_cypher(update_query, {
+                    "node_id": node['id'],
+                    "embedding": embedding
+                })
+   ```
+
+2. **Vector Search Query**:
+   ```cypher
+   // Tìm kiếm k chunks gần nhất
+    results = neo4j.similarity_search(
+                query_text=query,
+                node_label=node_type,
+                limit=limit,
+                min_similarity=min_similarity
+            )
+   ```
+
+### 4. Giao diện và Xử lý
+
+#### a. Kiến trúc Backend
 ```mermaid
 graph TD
-    A[Dữ liệu Nguồn] --> B[Text Preprocessing]
-    B --> C[Embedding Generation]
-    C --> D[Vector Index]
-    D --> E[Vector Database]
-    E --> F[Search API]
-    F --> G[Web Interface]
-
-    style A fill:#f9f,stroke:#333
-    style E fill:#bbf,stroke:#333
-    style G fill:#bfb,stroke:#333
+    A[FastAPI Backend] --> B[Query Processor]
+    B --> C[Vector Search]
+    B --> D[Knowledge Graph]
+    C --> E[Neo4j Database]
+    D --> E
+    A --> F[Response Generator]
+    F --> G[OpenAI API]
 ```
 
 
 
-2. **Quy trình xử lý truy vấn**:
-   ```mermaid
-   sequenceDiagram
-       User->>+Frontend: Nhập câu hỏi
-       Frontend->>+API: POST /api/search
-       API->>+Embedding: Tạo vector
-       Embedding->>+Vector DB: Tìm kiếm
-       Vector DB-->>-API: Kết quả
-       API-->>-Frontend: JSON Response
-       Frontend-->>-User: Hiển thị kết quả
-   ```
 

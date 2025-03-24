@@ -55,7 +55,7 @@ class Neo4jVectorSearchError(Exception):
 class Neo4jConnection:
     # OpenAI configuration
     EMBEDDING_MODEL = "text-embedding-ada-002"
-    CHAT_MODEL = "gpt-3.5-turbo"
+    CHAT_MODEL = "gpt-4o-mini"
     EMBEDDING_DIMENSION = 1536
 
     def __init__(self, uri: str, user: str, password: str, dbname: str):
@@ -122,44 +122,7 @@ class Neo4jConnection:
             logger.error(f"Query execution failed: {str(e)}")
             raise Neo4jVectorSearchError(f"Query execution failed: {str(e)}")
 
-    def create_vector_index(self, index_name: str, node_label: str, property_name: str = "embedding") -> None:
-        """
-        Create a vector index for similarity search
-        
-        Args:
-            index_name: Name of the index
-            node_label: Label of nodes to index
-            property_name: Name of the property containing the vector
-        """
-        try:
-            logger.info(f"Creating vector index {index_name} for {node_label}")
-            
-            # Check if index exists
-            check_query = f"""
-            SHOW INDEXES
-            YIELD name, type
-            WHERE name = $index_name
-            RETURN count(*) as count
-            """
-            result = self.run_cypher(check_query, {"index_name": index_name})
-            
-            if result[0]["count"] == 0:
-                create_index_query = f"""
-                CREATE VECTOR INDEX {index_name} 
-                FOR (n:{node_label})
-                ON (n.{property_name})
-                OPTIONS {{indexConfig: {{
-                    `vector.dimensions`: {self.EMBEDDING_DIMENSION},
-                    `vector.similarity_function`: 'cosine'
-                }}}}
-                """
-                self.run_cypher(create_index_query)
-                logger.info(f"Successfully created vector index {index_name}")
-            else:
-                logger.info(f"Vector index {index_name} already exists")
-        except Exception as e:
-            logger.error(f"Failed to create vector index: {str(e)}")
-            raise Neo4jVectorSearchError(f"Failed to create vector index: {str(e)}")
+
 
     def generate_embedding(self, text: str) -> List[float]:
         """
