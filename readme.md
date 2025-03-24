@@ -160,13 +160,16 @@ graph LR
 #### a. Kiến trúc Backend
 ```mermaid
 graph TD
-    A[FastAPI Backend] --> B[Query Processor]
+    A[Backend] --> B[Query Processor]
     B --> C[Vector Search]
     B --> D[Knowledge Graph]
     C --> E[Neo4j Database]
     D --> E
-    A --> F[Response Generator]
     F --> G[OpenAI API]
+    E --> K[K answer]
+    K --> F[Response Generator]
+    G --> P[Answer]
+    P --> A
 ```
 
 
