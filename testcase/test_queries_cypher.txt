@@ -1,0 +1,155 @@
+// Test Queries để kiểm tra dữ liệu từ populate_ontology.cypher
+
+// 1. Kiểm tra cấu trúc cơ bản
+MATCH (n) 
+RETURN DISTINCT labels(n) as NodeTypes, count(*) as Count
+ORDER BY Count DESC;
+
+// 2. Kiểm tra tổng số khoa và chương trình đào tạo
+MATCH (u:University)-[:hasDepartment]->(d:Department)
+WITH count(d) as departmentCount
+MATCH (u:University)-[:offersTrainingProgram]->(t:TrainingProgram)
+WITH departmentCount, count(t) as programCount
+RETURN departmentCount as TotalDepartments, programCount as TotalPrograms;
+
+// 3. Kiểm tra các khoa có từ "Sư phạm" trong tên
+MATCH (d:Department)
+WHERE d.name CONTAINS 'Sư phạm'
+RETURN d.name as PedagogyDepartments
+ORDER BY d.name;
+
+// 4. Kiểm tra tổng diện tích các cơ sở
+MATCH (c:Campus)
+RETURN sum(c.area) as TotalArea, count(c) as TotalCampuses;
+
+// 5. Kiểm tra các chương trình đào tạo liên thông
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS 'liên thông'
+RETURN t.name as TransferPrograms
+ORDER BY t.name;
+
+// 6. Kiểm tra thông tin hợp tác quốc tế và học bổng
+MATCH (u:University)-[:hasInternationalCooperation]->(i:InternationalCooperation),
+      (u)-[:hasScholarship]->(s:Scholarship)
+RETURN i.name as Cooperation, s.name as Scholarship;
+
+// 7. Kiểm tra các khoa có nhiều ngành kết hợp (chứa dấu -)
+MATCH (d:Department)
+WHERE d.name CONTAINS ' - '
+WITH d, size(split(d.name, ' - ')) as departmentCount
+RETURN d.name as Department, departmentCount as NumberOfCombinedFields
+ORDER BY departmentCount DESC;
+
+// 8. Kiểm tra chương trình đào tạo theo loại hình
+MATCH (t:TrainingProgram)
+WITH t,
+CASE 
+  WHEN t.name CONTAINS 'vừa làm vừa học' THEN 'VLVH'
+  WHEN t.name CONTAINS 'văn bằng hai' THEN 'VB2'
+  WHEN t.name CONTAINS 'liên thông' THEN 'Liên thông'
+  ELSE 'Chính quy'
+END as type
+RETURN type, count(*) as Count
+ORDER BY Count DESC;
+
+// 9. Kiểm tra tạp chí khoa học
+MATCH (j:Journal)
+RETURN j.name, j.issn, j.email, j.website, j.pointRecognition;
+
+// 10. Kiểm tra thông tin đào tạo
+MATCH (t:TrainingProgram {name: 'Thông tin đào tạo'})
+RETURN t.schedule, t.classroomCode, t.registrationSystem;
+
+// 11. Kiểm tra các cơ sở theo quận
+MATCH (c:Campus)
+WITH c, split(c.name, ', ')[1] as district
+RETURN district, count(*) as CampusCount, collect(c.name) as Campuses;
+
+// 12. Kiểm tra các chương trình chất lượng cao
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS 'chất lượng cao'
+RETURN t.name as HighQualityPrograms;
+
+// 13. Kiểm tra các mối quan hệ của trường
+MATCH (u:University)-[r]->(n)
+RETURN type(r) as RelationshipType, count(*) as Count
+ORDER BY Count DESC;
+
+// 14. Kiểm tra các khoa công nghệ và kỹ thuật
+MATCH (d:Department)
+WHERE d.name CONTAINS 'Công nghệ' OR d.name CONTAINS 'Kỹ thuật'
+RETURN d.name as TechnologyDepartments;
+
+// 15. Kiểm tra tính toàn vẹn của dữ liệu
+MATCH (n)
+WHERE NOT (n)-[]-()
+RETURN labels(n) as IsolatedNodeTypes, count(*) as Count;
+
+// 16. Kiểm tra các chương trình đặc biệt
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS 'Chương trình'
+RETURN t.name as SpecialPrograms;
+
+// 17. Kiểm tra phân bố các cơ sở theo diện tích
+MATCH (c:Campus)
+WITH c.area as area,
+CASE 
+  WHEN c.area > 20000 THEN 'Rất lớn'
+  WHEN c.area > 10000 THEN 'Lớn'
+  WHEN c.area > 5000 THEN 'Trung bình'
+  ELSE 'Nhỏ'
+END as sizeCategory
+RETURN sizeCategory, count(*) as Count, collect(c.name) as Campuses
+ORDER BY min(c.area);
+
+// 18. Kiểm tra các chương trình song ngành
+MATCH (t:TrainingProgram)
+WHERE t.name CONTAINS ' - ' AND NOT t.name CONTAINS 'liên thông'
+AND NOT t.name CONTAINS 'vừa làm vừa học'
+RETURN t.name as DualPrograms;
+
+// 19. Kiểm tra tất cả các thuộc tính của Journal
+MATCH (j:Journal)
+RETURN properties(j) as JournalProperties;
+
+// 20. Kiểm tra các đề tài nghiên cứu và quan hệ
+MATCH (r:ResearchTopic)<-[rel]-(n)
+RETURN r.name as ResearchTopic, type(rel) as RelationType, labels(n) as ConnectedTo;
+
+// 21. Kiểm tra thống kê về các loại node
+MATCH (n) 
+WITH labels(n) as nodeType, count(*) as count
+RETURN nodeType, count
+ORDER BY count DESC;
+
+// 22. Kiểm tra độ dài tên các khoa
+MATCH (d:Department)
+RETURN d.name, size(d.name) as NameLength
+ORDER BY NameLength DESC
+LIMIT 5;
+
+// 23. Kiểm tra các chương trình theo từng lĩnh vực
+MATCH (t:TrainingProgram)
+WITH t,
+CASE
+  WHEN t.name CONTAINS 'Công nghệ' OR t.name CONTAINS 'Kỹ thuật' THEN 'Công nghệ'
+  WHEN t.name CONTAINS 'Kinh tế' OR t.name CONTAINS 'Kinh doanh' THEN 'Kinh tế'
+  WHEN t.name CONTAINS 'Sư phạm' OR t.name CONTAINS 'Giáo dục' THEN 'Giáo dục'
+  WHEN t.name CONTAINS 'Luật' THEN 'Luật'
+  ELSE 'Khác'
+END as field
+RETURN field, count(*) as Count
+ORDER BY Count DESC;
+
+// 24. Kiểm tra mối quan hệ giữa các node
+MATCH (a)-[r]->(b)
+RETURN labels(a)[0] as FromType, type(r) as Relationship, labels(b)[0] as ToType,
+count(*) as Count
+ORDER BY Count DESC;
+
+// 25. Kiểm tra node có nhiều relationship nhất
+MATCH (n)-[r]-()
+WITH n, count(r) as relCount
+RETURN labels(n) as NodeType, n.name as Name, relCount
+ORDER BY relCount DESC
+LIMIT 5;

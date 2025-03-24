@@ -1,117 +1,90 @@
 @prefix : <http://sgu.edu.vn/ontology#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 # Classes
-:University a owl:Class .
-:Department a owl:Class .
-:TrainingProgram a owl:Class .
-:Journal a owl:Class .
-:Student a owl:Class .
-:ResearchTopic a owl:Class .
-:Scholarship a owl:Class .
-:InternationalCooperation a owl:Class .
-:Campus a owl:Class .
-:QualityAssessment a owl:Class .
+:University a rdfs:Class .
+:Department a rdfs:Class .
+:TrainingProgram a rdfs:Class .
+:Journal a rdfs:Class .
+:Student a rdfs:Class .
+:ResearchTopic a rdfs:Class .
+:Scholarship a rdfs:Class .
+:InternationalCooperation a rdfs:Class .
+:Campus a rdfs:Class .
+:QualityAssessment a rdfs:Class .
 
 # Properties
-:hasType a rdf:Property ;
+:hasDepartment a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :Department .
 
-:managedBy a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
-
-:offersTrainingMethod a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
-
-:hasPrograms a rdf:Property ;
+:offersTrainingProgram a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :TrainingProgram .
 
-:hasMainFields a rdf:Property ;
+:hasStudent a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :Student .
 
-:hasQualityCertification a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+:hasResearchTopic a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range :ResearchTopic .
 
-:hasTrainingLevels a rdf:Property ;
+:hasScholarship a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
-
-:hasCampus a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Campus .
-
-:hasDormitoryAddress a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :Scholarship .
 
 :hasInternationalCooperation a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :InternationalCooperation .
 
-:hasInternationalBachelorProgram a rdf:Property ;
+:hasCampus a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :Campus .
 
-:hasChineseLanguagePrograms a rdf:Property ;
+:hasQualityAssessment a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :QualityAssessment .
 
-:hasScholarshipPrograms a rdf:Property ;
+:hasJournal a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :Scholarship .
+    rdfs:range :Journal .
 
-:hasTrainingLinks a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range rdfs:Literal .
+:hasTrainingLevel a rdf:Property ;
+    rdfs:domain :TrainingProgram ;
+    rdfs:range :Department .
 
-:hasResearchConditions a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range rdfs:Literal .
+:hasProgramType a rdf:Property ;
+    rdfs:domain :TrainingProgram ;
+    rdfs:range :TrainingProgram .
 
-:hasResearchBenefits a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range rdfs:Literal .
-
-:hasAwardedArticles a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range rdfs:Literal .
-
-:hasResearchRegulations a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range rdfs:Literal .
-
-:hasISSN a rdf:Property ;
+:hasPublicationType a rdf:Property ;
     rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :ResearchTopic .
 
 :servesAudience a rdf:Property ;
     rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
+    rdfs:range :Student .
 
-:publishesArticleTypes a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
+# Relationships
+:SGU a :University ;
+    :hasDepartment :Department ;
+    :offersTrainingProgram :TrainingProgram ;
+    :hasStudent :Student ;
+    :hasResearchTopic :ResearchTopic ;
+    :hasScholarship :Scholarship ;
+    :hasInternationalCooperation :InternationalCooperation ;
+    :hasCampus :Campus ;
+    :hasQualityAssessment :QualityAssessment ;
+    :hasJournal :Journal .
 
-:hasArticleRegulations a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
+:SGU_Department a :Department ;
+    :hasTrainingLevel :TrainingProgram .
 
-:usesCitationStandard a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
+:SGU_Student a :Student ;
+    :hasResearchTopic :ResearchTopic .
 
-:hasTechnicalRequirements a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
-
-:hasCitationGuidelines a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range rdfs:Literal .
+:SGU_Journal a :Journal ;
+    :servesAudience :Student ;
+    :hasPublicationType :ResearchTopic .
