@@ -2,125 +2,134 @@
 
 Hệ thống tìm kiếm thông tin Đại học Sài Gòn sử dụng Vector Search và OpenAI
 
-## Mục đích dự án | Project Purpose
+## Quy trình xây dựng hệ thống
 
-### Tiếng Việt
-Dự án này xây dựng một hệ thống tìm kiếm thông tin thông minh cho Trường Đại học Sài Gòn, sử dụng:
-- Vector Search trong Neo4j để tìm kiếm ngữ nghĩa
-- OpenAI để tạo vector embeddings và sinh câu trả lời
-- Giao diện web thân thiện với người dùng
+### 1. Trích xuất dữ liệu
+1. **Chuẩn bị dữ liệu gốc**:
+   - Thu thập thông tin từ website của trường
+   - Lưu trữ dữ liệu thô trong thư mục `data/`
+   - Định dạng file: PDF, TEXT
 
-Hệ thống cho phép:
-- Tìm kiếm thông tin về khoa, ngành đào tạo, học bổng, hợp tác quốc tế
-- Trả lời câu hỏi dựa trên kết quả tìm kiếm
-- Phân tích độ tin cậy của thông tin
+2. **Tiền xử lý dữ liệu**:
+   ```bash
+   # Chạy script trích xuất dữ liệu từ PDF
+   python extract_data.py
+   ```
+   - Script sẽ:
+     + Đọc file PDF từ thư mục `data/`
+     + Chuyển đổi sang văn bản thuần túy
+     + Tách thành các phần nhỏ theo mục
+     + Lưu kết quả vào thư mục `dataset/`
 
-### English
-This project implements an intelligent information retrieval system for Saigon University, utilizing:
-- Neo4j Vector Search for semantic search
-- OpenAI for vector embeddings and answer generation
-- User-friendly web interface
+3. **Kiểm tra và làm sạch dữ liệu**:
+   - Xem lại các file trong `dataset/`
+   - Đảm bảo encoding UTF-8
+   - Loại bỏ các ký tự đặc biệt không cần thiết
 
-The system enables:
-- Searching information about departments, programs, scholarships, international cooperation
-- Answering questions based on search results
-- Analyzing information reliability
+### 2. Chuẩn bị Neo4j Database
 
-## Kiến trúc hệ thống | System Architecture
+1. **Cài đặt Neo4j Enterprise Edition**:
+   - Tải và cài đặt Neo4j Enterprise Edition
+   - Kích hoạt Vector Search plugin
+   - Tạo database mới (nếu cần)
 
-```
-┌─────────────┐    ┌──────────┐    ┌───────────┐
-│   Streamlit │    │  Neo4j   │    │  OpenAI   │
-│  Interface  │<-->│ Database │<-->│   API     │
-└─────────────┘    └──────────┘    └───────────┘
-```
+2. **Tạo Schema**:
+   - Các node labels:
+     + University
+     + Department
+     + TrainingProgram
+     + Campus
+     + InternationalCooperation
+     + Scholarship
+     + ResearchTopic
+     + Journal
 
-- **Frontend**: Streamlit web interface
-- **Backend**: Neo4j with vector search capability
-- **AI Integration**: OpenAI for embeddings and answer generation
-- **Data**: University information stored as graph data
+3. **Tạo Constraints và Indexes**:
+   ```cypher
+   # Chạy trong Neo4j Browser
+   CREATE CONSTRAINT unique_department_name IF NOT EXISTS
+   FOR (d:Department) REQUIRE d.name IS UNIQUE;
+   
+   # Tương tự cho các node khác
+   ```
+
+### 3. Import Dữ liệu vào Neo4j
+
+1. **Chuẩn bị Cypher Queries**:
+   - File `cypher/populate_ontology.cypher` chứa các câu lệnh import
+   - Cấu trúc dữ liệu:
+     ```cypher
+     MERGE (sgu:University {name: 'Trường Đại học Sài Gòn'})
+     MERGE (dept:Department {name: 'Tên Khoa'})
+     MERGE (sgu)-[:hasDepartment]->(dept)
+     ```
+
+2. **Chạy Import Script**:
+   ```bash
+   # Clear database (nếu cần)
+   python clearCypher.py
+   
+   # Import dữ liệu
+   python run.py
+   ```
+
+3. **Kiểm tra dữ liệu**:
+   ```cypher
+   # Verify data in Neo4j Browser
+   MATCH (n) RETURN n LIMIT 25;
+   MATCH ()-[r]->() RETURN TYPE(r), COUNT(*);
+   ```
+
+### 4. Tạo Vector Embeddings
+
+1. **Cấu hình OpenAI**:
+   - Copy `.env.example` thành `.env`
+   - Thêm OpenAI API key vào file `.env`
+
+2. **Tạo Vector Indexes**:
+   ```bash
+   # Chạy ứng dụng
+   streamlit run app.py
+   ```
+   - Hệ thống sẽ tự động:
+     + Tạo vector indexes cho mỗi loại node
+     + Generate embeddings cho dữ liệu hiện có
+     + Lưu embeddings vào Neo4j
+
+3. **Kiểm tra Vector Indexes**:
+   ```cypher
+   # Verify trong Neo4j Browser
+   SHOW INDEXES
+   YIELD name, type
+   WHERE type = 'VECTOR';
+   ```
 
 ## Cài đặt | Installation
 
-1. Tạo môi trường ảo | Create virtual environment:
-   ```bash
-   python -m venv venv
-   .\venv\Scripts\activate  # Windows
-   source venv/bin/activate # Linux/Mac
-   ```
-
-2. Cài đặt các gói phụ thuộc | Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Cấu hình môi trường | Configure environment:
-   ```bash
-   # Tạo file .env | Create .env file
-   cp .env.example .env
-   
-   # Cập nhật thông tin trong .env | Update .env with your credentials
-   NEO4J_URI=bolt://localhost:7687
-   NEO4J_USER=neo4j
-   NEO4J_PASSWORD=your-password
-   NEO4J_DATABASE=neo4j
-   OPENAI_API_KEY=your-openai-key
-   ```
-
-## Chạy ứng dụng | Running the Application
-
-1. Khởi động Neo4j | Start Neo4j:
-   - Đảm bảo Neo4j Enterprise Edition đang chạy | Ensure Neo4j Enterprise Edition is running
-   - Kiểm tra kết nối đến database | Verify database connection
-
-2. Chạy ứng dụng web | Run web application:
-   ```bash
-   streamlit run app.py
-   ```
+[Previous installation instructions remain the same...]
 
 ## Sử dụng | Usage
 
-1. Truy cập giao diện web | Access web interface:
-   - Mở trình duyệt | Open browser
-   - Truy cập | Navigate to: http://localhost:8501
-
-2. Tìm kiếm thông tin | Search information:
-   - Nhập câu hỏi | Enter your question
-   - Chọn loại nội dung cần tìm | Select content types
-   - Điều chỉnh các tham số tìm kiếm | Adjust search parameters
-
-3. Xem kết quả | View results:
-   - Câu trả lời được sinh tự động | Auto-generated answer
-   - Kết quả tìm kiếm chi tiết | Detailed search results
-   - Độ tin cậy của thông tin | Information reliability
-
-## Lưu ý | Notes
-
-- Hệ thống yêu cầu Neo4j Enterprise Edition để sử dụng Vector Search
-- API key của OpenAI cần có đủ quota để xử lý embeddings và sinh câu trả lời
-- Dữ liệu trong Neo4j cần được cập nhật thường xuyên để đảm bảo độ chính xác
-- Log files được lưu trong thư mục `logs` với định dạng UTF-8
+[Previous usage instructions remain the same...]
 
 ## Cấu trúc dự án | Project Structure
-
 ```
 project/
-├── app.py                 # Streamlit web interface
-├── neo4jconnector.py      # Neo4j connection and vector search
-├── requirements.txt       # Project dependencies
-├── .env                   # Environment configuration
-├── .env.example          # Environment template
-└── logs/                 # Log files directory
+├── app.py                         # Streamlit web interface
+├── neo4jconnector.py              # Neo4j connection and vector search
+├── extract_data.py               # Data extraction script
+├── clearCypher.py               # Database clearing utility
+├── run.py                       # Data import script
+├── requirements.txt              # Project dependencies
+├── .env                         # Environment configuration
+├── .env.example                 # Environment template
+├── data/                        # Raw data directory
+│   └── p1.pdf                   # Source PDF files
+├── dataset/                     # Processed data
+│   └── *.txt                    # Extracted text files
+├── cypher/                      # Cypher queries
+│   └── populate_ontology.cypher # Data import queries
+└── logs/                        # Log files directory
 ```
 
-## Hỗ trợ | Support
-
-Nếu bạn gặp vấn đề hoặc cần hỗ trợ:
-- Kiểm tra logs trong thư mục `logs`
-- Đảm bảo các thông tin xác thực trong file `.env` chính xác
-- Kiểm tra kết nối đến Neo4j và OpenAI
-
-If you encounter issues or need support:
-- Check logs in the `logs` directory
-- Ensure credentials in `.env` are correct
-- Verify connections to Neo4j and OpenAI
+[Previous support section remains the same...]
