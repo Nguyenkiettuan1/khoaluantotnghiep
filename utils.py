@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 
 def generate_ontology_from_cqs(
-    qc_folder="Qc",
+    qc_folder="QA",
     output_path="./ontology/ontology_generated.ttl",
     model="gpt-4o-mini"
 ):
