@@ -160,18 +160,21 @@ graph LR
 
 #### a. Kiến trúc Backend
 ```mermaid
-graph TD
-    A[Backend] --> B[Query Processor]
-    B --> C[Vector Search]
-    B --> D[Knowledge Graph]
-    C --> E[Neo4j Database]
-    D --> E
-    F --> G[OpenAI API]
-    E --> K[K answer]
-    K --> F[Response Generator]
-    G --> P[Answer]
-    P --> M[Steamlit Interface]
-```
+sequenceDiagram
+    User->>Streamlit Interface: Submits query
+    Streamlit Interface->>Backend: Forwards query
+    Backend->>Query Processor: Processes query
+    Query Processor->>Vector Search: Performs semantic search
+    Query Processor->>Knowledge Graph: Extracts structured information
+    Vector Search->>Neo4j Database: Retrieves vector data
+    Knowledge Graph->>Neo4j Database: Retrieves graph data
+    Neo4j Database->>Backend: Returns K answers
+    Backend->>Response Generator: Passes retrieved data
+    Response Generator->>OpenAI API: Requests answer formulation
+    OpenAI API->>Response Generator: Returns formatted answer
+    Response Generator->>Streamlit Interface: Sends final response
+    Streamlit Interface->>User: Displays result
+
 
 
 
