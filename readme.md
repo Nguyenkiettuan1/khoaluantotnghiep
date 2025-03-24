@@ -165,7 +165,7 @@ sequenceDiagram
     Streamlit Interface->>Backend: Forwards query
     Backend->>Query Processor: Processes query
     Query Processor->>Vector Search: Performs semantic search
-    <!-- Query Processor->>Knowledge Graph: Extracts structured information -->
+
     Vector Search->>Neo4j Database: Retrieves vector data
     Knowledge Graph->>Neo4j Database: Retrieves graph data
     Neo4j Database->>Backend: Returns K answers
