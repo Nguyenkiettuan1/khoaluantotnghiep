@@ -134,6 +134,7 @@ graph LR
 
 1. **Lưu Embeddings**:
    ```cypher
+   //Cập nhật embedding vào node
    update_query = f"""
                 MATCH (n:{labels_str}) WHERE ID(n) = $node_id
                 SET n.embedding = $embedding
