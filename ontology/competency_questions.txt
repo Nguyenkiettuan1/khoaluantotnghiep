@@ -1,0 +1,15 @@
+CQ1: What are the main departments within Saigon University?
+CQ2: Who are the key administrative roles at Saigon University?
+CQ3: What units support the operation of Saigon University?
+CQ4: What bachelor programs are offered at Saigon University?
+CQ5: What master’s degree programs are available at Saigon University?
+CQ6: Which doctoral programs can students pursue at Saigon University?
+CQ7: What international partnerships does Saigon University have?
+CQ8: What types of exchange programs are available for students at Saigon University?
+CQ9: How does Saigon University facilitate international cooperation in education and research?
+CQ10: What types of student research projects are conducted at Saigon University?
+CQ11: How are student research findings published at Saigon University?
+CQ12: What support is available for students conducting research at Saigon University?
+CQ13: How many campuses does Saigon University have and what are their locations?
+CQ14: What facilities are available for students at Saigon University?
+CQ15: What is the total area of Saigon University’s campuses?

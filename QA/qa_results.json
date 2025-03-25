@@ -1,0 +1,520 @@
+[
+  {
+    "question": "CQ1: What are the main departments within Saigon University?",
+    "answer": "The main departments within Saigon University include:\n\n1. Computer Science\n2. Calculus\n3. Vietnamese History\n4. Vietnamese Literature\n5. Teaching Methodology in Mathematics\n6. Civil Law and Civil Procedure\n7. Linguistics\n8. Educational Management\n9. Organic Chemistry\n10. Business Administration\n11. Finance - Banking\n12. Early Childhood Education\n13. Primary Education\n\nThese departments cover a range of disciplines at both undergraduate and postgraduate levels.",
+    "extracted_info": {
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "question": "CQ2: Who are the key administrative roles at Saigon University?",
+    "answer": "The provided context does not specify the key administrative roles at Saigon University. Therefore, the answer cannot be fully determined from the context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        }
+      ],
+      "relations": []
+    }
+  },
+  {
+    "question": "CQ3: What units support the operation of Saigon University?",
+    "answer": "The provided context does not specify the specific units that support the operation of Saigon University. Therefore, the answer cannot be fully determined from the context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        }
+      ],
+      "relations": []
+    }
+  },
+  {
+    "question": "CQ4: What bachelor programs are offered at Saigon University?",
+    "answer": "Saigon University offers the following bachelor programs:\n\n1. Business Administration\n2. E-commerce Management\n3. Information Technology\n4. Accounting\n5. Early Childhood Education\n6. Primary Education\n\nAdditionally, there are programs for second bachelor's degrees in:\n- English Language\n- Accounting\n- Law\n- Business Administration\n- Primary Education\n- Educational Management\n\nPlease note that the information is based on the context provided and may not be exhaustive.",
+    "extracted_info": {
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "question": "CQ5: What master’s degree programs are available at Saigon University?",
+    "answer": "The context does not provide specific information about the master's degree programs available at Saigon University. Therefore, the answer cannot be fully determined from the provided context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        },
+        {
+          "type": "degree_program",
+          "id": "masters_degree_programs",
+          "properties": {
+            "level": "master's"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "offers",
+          "target": "masters_degree_programs"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ6: Which doctoral programs can students pursue at Saigon University?",
+    "answer": "The provided context does not specify any doctoral programs that students can pursue at Saigon University. Therefore, the answer cannot be fully determined from the context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        },
+        {
+          "type": "program",
+          "id": "doctoral_program",
+          "properties": {
+            "description": "Doctoral programs"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "offers",
+          "target": "doctoral_program"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ7: What international partnerships does Saigon University have?",
+    "answer": "Saigon University has established international partnerships with various universities and organizations around the world, including those in the United States, the United Kingdom, Russia, France, Australia, China, Singapore, Malaysia, Austria, New Zealand, and Sweden. These partnerships are aimed at implementing training projects and expanding cooperation in multiple dimensions. Notably, Saigon University collaborates with IMC Krems University in Austria for a Bachelor's program in Business Administration and E-commerce Management, and it also has a Chinese language training program in partnership with the Taiwan National University of Education. Additionally, the university offers scholarships in collaboration with international organizations, such as the full scholarship program from the Ministry of Health of Singapore for training physician assistants.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University",
+            "location": "Vietnam"
+          }
+        },
+        {
+          "type": "university",
+          "id": "imc_krems_university",
+          "properties": {
+            "name": "IMC Krems University",
+            "location": "Austria"
+          }
+        },
+        {
+          "type": "university",
+          "id": "taiwan_national_university_of_education",
+          "properties": {
+            "name": "Taiwan National University of Education",
+            "location": "Taiwan"
+          }
+        },
+        {
+          "type": "organization",
+          "id": "ministry_of_health_singapore",
+          "properties": {
+            "name": "Ministry of Health of Singapore"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "has_partnership_with",
+          "target": "imc_krems_university"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_partnership_with",
+          "target": "taiwan_national_university_of_education"
+        },
+        {
+          "source": "saigon_university",
+          "type": "collaborates_with",
+          "target": "ministry_of_health_singapore"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ8: What types of exchange programs are available for students at Saigon University?",
+    "answer": "The context does not provide specific details about the types of exchange programs available for students at Saigon University. It mentions various international cooperation programs and scholarships, but does not explicitly outline exchange programs. Therefore, the answer cannot be fully determined from the context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        },
+        {
+          "type": "program",
+          "id": "exchange_programs",
+          "properties": {
+            "description": "Types of exchange programs available for students"
+          }
+        },
+        {
+          "type": "program",
+          "id": "international_cooperation_programs",
+          "properties": {
+            "description": "Various international cooperation programs"
+          }
+        },
+        {
+          "type": "program",
+          "id": "scholarships",
+          "properties": {
+            "description": "Various scholarships available"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "offers",
+          "target": "exchange_programs"
+        },
+        {
+          "source": "saigon_university",
+          "type": "offers",
+          "target": "international_cooperation_programs"
+        },
+        {
+          "source": "saigon_university",
+          "type": "offers",
+          "target": "scholarships"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ9: How does Saigon University facilitate international cooperation in education and research?",
+    "answer": "Saigon University facilitates international cooperation in education and research by establishing and maintaining partnerships with foreign universities and international organizations across various countries, including the United States, the United Kingdom, Russia, France, Australia, China, Singapore, Malaysia, Austria, New Zealand, and Sweden. These collaborations aim to implement training projects and expand multifaceted cooperation, contributing significantly to the university's educational and scientific research activities.\n\nAdditionally, the university has coordinated with the Ministry of Science and Technology and the Ministry of Education and Training in Vietnam, as well as other universities and international organizations, to successfully organize numerous forums on higher education and scientific research, which have garnered attention and positive evaluations from scholars and managers both domestically and internationally.\n\nFurthermore, Saigon University offers international training programs, such as the Bachelor's program in Business Administration and E-commerce Management in collaboration with IMC Krems University of Applied Sciences in Austria, and a Chinese language training program in partnership with the Taiwan Economic and Cultural Office. The university also provides various scholarship programs, such as the full scholarship from the Singapore Ministry of Health for training physician assistants, which enhances opportunities for students to study and gain international experience.",
+    "extracted_info": {
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "question": "CQ10: What types of student research projects are conducted at Saigon University?",
+    "answer": "The context does not provide specific information about the types of student research projects conducted at Saigon University. Therefore, the answer cannot be fully determined from the context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        },
+        {
+          "type": "research_project",
+          "id": "student_research_project",
+          "properties": {
+            "description": "types of student research projects"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "conducts",
+          "target": "student_research_project"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ11: How are student research findings published at Saigon University?",
+    "answer": "Student research findings at Saigon University can be published in specialized journals or presented at national and international conferences. Specifically, students can have their articles published in the Scientific Journal of Saigon University or submit reports to conference proceedings. These publications are recognized for academic credit and may contribute to their academic achievements, as they are considered in the evaluation of scientific points by the State Professor Council. Additionally, students are encouraged to submit their published works to the Department of Scientific Management for potential financial rewards and to accumulate points for their academic performance.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        },
+        {
+          "type": "publication",
+          "id": "scientific_journal_saigon_university",
+          "properties": {
+            "name": "Scientific Journal of Saigon University"
+          }
+        },
+        {
+          "type": "department",
+          "id": "department_of_scientific_management",
+          "properties": {
+            "name": "Department of Scientific Management"
+          }
+        },
+        {
+          "type": "council",
+          "id": "state_professor_council",
+          "properties": {
+            "name": "State Professor Council"
+          }
+        },
+        {
+          "type": "event",
+          "id": "national_international_conferences",
+          "properties": {
+            "description": "National and international conferences"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "publishes",
+          "target": "scientific_journal_saigon_university"
+        },
+        {
+          "source": "saigon_university",
+          "type": "hosts",
+          "target": "national_international_conferences"
+        },
+        {
+          "source": "scientific_journal_saigon_university",
+          "type": "provides_academic_credit",
+          "target": "state_professor_council"
+        },
+        {
+          "source": "department_of_scientific_management",
+          "type": "encourages_submission",
+          "target": "scientific_journal_saigon_university"
+        },
+        {
+          "source": "department_of_scientific_management",
+          "type": "provides_financial_rewards",
+          "target": "saigon_university"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ12: What support is available for students conducting research at Saigon University?",
+    "answer": "The context does not provide specific information about the support available for students conducting research at Saigon University. Therefore, the answer cannot be fully determined from the context.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "University",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University"
+          }
+        },
+        {
+          "type": "Student",
+          "id": "student",
+          "properties": {
+            "role": "researcher"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "student",
+          "type": "conducts_research_at",
+          "target": "saigon_university"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ13: How many campuses does Saigon University have and what are their locations?",
+    "answer": "Saigon University has three campuses located at the following addresses:\n\n1. Cơ sở 273 An Dương Vương, Q.5\n2. Cơ sở 105 Bà Huyện Thanh Quan, Q.3\n3. Cơ sở 04 Tôn Đức Thắng, Q.1\n\nAdditionally, there is a student dormitory located at 99 An Dương Vương, Q.8.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University",
+            "campus_count": 3
+          }
+        },
+        {
+          "type": "campus",
+          "id": "campus_1",
+          "properties": {
+            "address": "Cơ sở 273 An Dương Vương, Q.5"
+          }
+        },
+        {
+          "type": "campus",
+          "id": "campus_2",
+          "properties": {
+            "address": "Cơ sở 105 Bà Huyện Thanh Quan, Q.3"
+          }
+        },
+        {
+          "type": "campus",
+          "id": "campus_3",
+          "properties": {
+            "address": "Cơ sở 04 Tôn Đức Thắng, Q.1"
+          }
+        },
+        {
+          "type": "dormitory",
+          "id": "dormitory_1",
+          "properties": {
+            "address": "99 An Dương Vương, Q.8"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "has_campus",
+          "target": "campus_1"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_campus",
+          "target": "campus_2"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_campus",
+          "target": "campus_3"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_dormitory",
+          "target": "dormitory_1"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ14: What facilities are available for students at Saigon University?",
+    "answer": "Saigon University has three training facilities for undergraduate and postgraduate education, along with a student dormitory, covering a total area of nearly 30 hectares. The specific facilities include:\n\n- Facility at 273 An Dương Vương, District 5: 42,743 m²\n- Facility at 105 Bà Huyện Thanh Quan, District 3: 4,823 m²\n- Facility at 04 Tôn Đức Thắng, District 1: 19,655 m²\n- Student dormitory at 99 An Dương Vương, District 8: 4,800 m²",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University",
+            "location": "Saigon",
+            "total_area_hectares": 30
+          }
+        },
+        {
+          "type": "facility",
+          "id": "facility_1",
+          "properties": {
+            "address": "273 An Dương Vương, District 5",
+            "area_m2": 42743
+          }
+        },
+        {
+          "type": "facility",
+          "id": "facility_2",
+          "properties": {
+            "address": "105 Bà Huyện Thanh Quan, District 3",
+            "area_m2": 4823
+          }
+        },
+        {
+          "type": "facility",
+          "id": "facility_3",
+          "properties": {
+            "address": "04 Tôn Đức Thắng, District 1",
+            "area_m2": 19655
+          }
+        },
+        {
+          "type": "dormitory",
+          "id": "dormitory_1",
+          "properties": {
+            "address": "99 An Dương Vương, District 8",
+            "area_m2": 4800
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "has_facility",
+          "target": "facility_1"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_facility",
+          "target": "facility_2"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_facility",
+          "target": "facility_3"
+        },
+        {
+          "source": "saigon_university",
+          "type": "has_dormitory",
+          "target": "dormitory_1"
+        }
+      ]
+    }
+  },
+  {
+    "question": "CQ15: What is the total area of Saigon University’s campuses?",
+    "answer": "The total area of Saigon University’s campuses is nearly 30 hectares.",
+    "extracted_info": {
+      "entities": [
+        {
+          "type": "university",
+          "id": "saigon_university",
+          "properties": {
+            "name": "Saigon University",
+            "total_area": "30 hectares"
+          }
+        },
+        {
+          "type": "land_area",
+          "id": "campus_area",
+          "properties": {
+            "area": "30 hectares"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "source": "saigon_university",
+          "type": "has_campus_area",
+          "target": "campus_area"
+        }
+      ]
+    }
+  }
+]

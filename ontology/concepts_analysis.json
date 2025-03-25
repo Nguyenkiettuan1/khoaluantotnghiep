@@ -1,0 +1,138 @@
+{
+  "concepts": [
+    {
+      "name": "Department",
+      "description": "A division within the university that focuses on a specific academic discipline.",
+      "properties": [
+        "name",
+        "head",
+        "programs_offered"
+      ]
+    },
+    {
+      "name": "AdministrativeRole",
+      "description": "Key positions responsible for the management and administration of the university.",
+      "properties": [
+        "title",
+        "responsibilities"
+      ]
+    },
+    {
+      "name": "SupportUnit",
+      "description": "Units that provide operational support to the university.",
+      "properties": [
+        "name",
+        "function"
+      ]
+    },
+    {
+      "name": "BachelorProgram",
+      "description": "Undergraduate degree programs offered by the university.",
+      "properties": [
+        "name",
+        "duration",
+        "department"
+      ]
+    },
+    {
+      "name": "MasterProgram",
+      "description": "Graduate degree programs available at the university.",
+      "properties": [
+        "name",
+        "duration",
+        "department"
+      ]
+    },
+    {
+      "name": "DoctoralProgram",
+      "description": "Advanced academic programs leading to a doctoral degree.",
+      "properties": [
+        "name",
+        "duration",
+        "department"
+      ]
+    },
+    {
+      "name": "InternationalPartnership",
+      "description": "Collaborations with international institutions for academic exchange.",
+      "properties": [
+        "partner_institution",
+        "type",
+        "duration"
+      ]
+    },
+    {
+      "name": "ExchangeProgram",
+      "description": "Programs allowing students to study abroad or host international students.",
+      "properties": [
+        "name",
+        "duration",
+        "partner_institution"
+      ]
+    },
+    {
+      "name": "ResearchProject",
+      "description": "Student-led initiatives aimed at conducting research.",
+      "properties": [
+        "title",
+        "supervisor",
+        "outcomes"
+      ]
+    },
+    {
+      "name": "Campus",
+      "description": "Physical locations where the university operates.",
+      "properties": [
+        "name",
+        "location",
+        "area"
+      ]
+    },
+    {
+      "name": "Facility",
+      "description": "Resources and infrastructure available for student use.",
+      "properties": [
+        "type",
+        "location",
+        "capacity"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "source": "Department",
+      "target": "BachelorProgram",
+      "type": "offers"
+    },
+    {
+      "source": "Department",
+      "target": "MasterProgram",
+      "type": "offers"
+    },
+    {
+      "source": "Department",
+      "target": "DoctoralProgram",
+      "type": "offers"
+    },
+    {
+      "source": "AdministrativeRole",
+      "target": "SupportUnit",
+      "type": "manages"
+    },
+    {
+      "source": "InternationalPartnership",
+      "target": "ExchangeProgram",
+      "type": "includes"
+    },
+    {
+      "source": "ResearchProject",
+      "target": "Student",
+      "type": "conducted_by"
+    },
+    {
+      "source": "Campus",
+      "target": "Facility",
+      "type": "contains"
+    }
+  ]
+}
