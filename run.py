@@ -7,21 +7,7 @@ from utils import validate_cypher_query
 
 load_dotenv()
 
-# Hàm gọi API OpenAI
-def call_openai(user_prompt, system_prompt, client: OpenAI):
-    response = client.chat.completions.create(
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        model="gpt-4o-mini",
-        temperature=0.1,
-    )
-    cypher_script = response.choices[0].message.content
-    # Loại bỏ markdown nếu có
-    for keyword in ["```cypher", "```"]:
-        cypher_script = cypher_script.replace(keyword, "")
-    return cypher_script.strip()
+
 
 # Hàm chia nhỏ văn bản theo độ dài tối đa
 def split_text(text, max_length=3000):
