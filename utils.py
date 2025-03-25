@@ -31,12 +31,12 @@ def generate_ontology_from_cqs(
     system_prompt = (
         "Bạn là chuyên gia ontology. Nhiệm vụ của bạn là trích xuất đầy đủ các thành phần ontology từ danh sách các câu hỏi năng lực về Trường Đại học Sài Gòn.\n\n"
         "Yêu cầu:\n"
-        "1. Xác định các lớp (Classes) chính đại diện cho các thực thể được đề cập trong các câu hỏi.\n"
-        "2. Xác định các thuộc tính (Properties) kèm theo domain và range phù hợp.\n"
-        "3. Xác định các mối quan hệ (Relationship) giữa các lớp dựa trên ngữ cảnh của câu hỏi.\n"
-        "4. Chỉ sử dụng các thuật ngữ xuất hiện trong danh sách câu hỏi năng lực.\n"
-        "5. Đầu ra phải là mã Turtle thuần túy, khai báo các prefix chuẩn.\n\n"
-        "Trả ra kết quả là mã Turtle chuẩn, hoàn chỉnh, đúng cú pháp.\n"
+        "1. Xác định các lớp (Classes) chính đại diện cho các thực thể được đề cập trong các câu hỏi (ví dụ: University, Department, TrainingProgram, Journal, Student, ResearchTopic, Scholarship, InternationalCooperation, Campus, QualityAssessment).\n"
+        "2. Xác định các thuộc tính (Properties) kèm theo domain và range phù hợp, thể hiện mối quan hệ giữa các lớp.\n"
+        "3. Xác định các mối quan hệ giữa các lớp dựa trên ngữ cảnh của câu hỏi.\n"
+        "4. Chỉ sử dụng các thuật ngữ xuất hiện trong danh sách câu hỏi năng lực .\n"
+        "5. Đầu ra phải là mã Turtle thuần túy, khai báo các prefix chuẩn (ví dụ: @prefix : <http://sgu.edu.vn/ontology#> . @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .),  và không chứa bất kỳ lời giải thích, chú thích, hay định dạng markdown nào.\n\n"
+        "Trả ra kết quả là mã Turtle chuẩn, hoàn chỉnh, đúng cú pháp, thể hiện toàn bộ các thành phần ontology đã được xác định.\n"
     )
 
     # Prompt người dùng
@@ -225,11 +225,11 @@ def run_test_queries_and_save_results(
 if __name__ == "__main__":
     # Load environment variables
     load_dotenv()
-    
+    generate_ontology_from_cqs()
     # Example usage
-    run_test_queries_and_save_results(
-        uri=os.getenv("NEO4J_URI"),
-        user=os.getenv("NEO4J_USER"),
-        password=os.getenv("NEO4J_PASSWORD"),
-        dbname=os.getenv("NEO4J_DATABASE", "neo4j")
-    )
+    # run_test_queries_and_save_results(
+    #     uri=os.getenv("NEO4J_URI"),
+    #     user=os.getenv("NEO4J_USER"),
+    #     password=os.getenv("NEO4J_PASSWORD"),
+    #     dbname=os.getenv("NEO4J_DATABASE", "neo4j")
+    # )

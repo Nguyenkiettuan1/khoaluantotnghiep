@@ -1,8 +1,8 @@
 @prefix : <http://sgu.edu.vn/ontology#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# Classes
 :University a rdfs:Class .
 :Department a rdfs:Class .
 :TrainingProgram a rdfs:Class .
@@ -14,7 +14,6 @@
 :Campus a rdfs:Class .
 :QualityAssessment a rdfs:Class .
 
-# Properties
 :hasDepartment a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :Department .
@@ -51,40 +50,66 @@
     rdfs:domain :University ;
     rdfs:range :Journal .
 
-:hasTrainingLevel a rdf:Property ;
+:hasTrainingMethod a rdf:Property ;
     rdfs:domain :TrainingProgram ;
-    rdfs:range :Department .
+    rdfs:range xsd:string .
 
-:hasProgramType a rdf:Property ;
+:hasFieldOfStudy a rdf:Property ;
     rdfs:domain :TrainingProgram ;
-    rdfs:range :TrainingProgram .
+    rdfs:range xsd:string .
+
+:hasDegreeLevel a rdf:Property ;
+    rdfs:domain :TrainingProgram ;
+    rdfs:range xsd:string .
 
 :hasPublicationType a rdf:Property ;
     rdfs:domain :Journal ;
-    rdfs:range :ResearchTopic .
+    rdfs:range xsd:string .
 
 :servesAudience a rdf:Property ;
     rdfs:domain :Journal ;
-    rdfs:range :Student .
+    rdfs:range xsd:string .
 
-# Relationships
-:SGU a :University ;
-    :hasDepartment :Department ;
-    :offersTrainingProgram :TrainingProgram ;
-    :hasStudent :Student ;
-    :hasResearchTopic :ResearchTopic ;
-    :hasScholarship :Scholarship ;
-    :hasInternationalCooperation :InternationalCooperation ;
-    :hasCampus :Campus ;
-    :hasQualityAssessment :QualityAssessment ;
-    :hasJournal :Journal .
+:hasPublicationGuidelines a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
 
-:SGU_Department a :Department ;
-    :hasTrainingLevel :TrainingProgram .
+:hasTechnicalRequirements a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
 
-:SGU_Student a :Student ;
-    :hasResearchTopic :ResearchTopic .
+:hasCitationStandard a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range xsd:string .
 
-:SGU_Journal a :Journal ;
-    :servesAudience :Student ;
-    :hasPublicationType :ResearchTopic .
+:hasStudentHousing a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
+
+:hasCampusArea a rdf:Property ;
+    rdfs:domain :Campus ;
+    rdfs:range xsd:float .
+
+:hasCollaborationDetails a rdf:Property ;
+    rdfs:domain :InternationalCooperation ;
+    rdfs:range xsd:string .
+
+:hasScholarshipConditions a rdf:Property ;
+    rdfs:domain :Scholarship ;
+    rdfs:range xsd:string .
+
+:hasResearchParticipationConditions a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:hasResearchBenefits a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:hasResearchPublicationOpportunity a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range xsd:string .
+
+:hasQualityAssessmentDate a rdf:Property ;
+    rdfs:domain :QualityAssessment ;
+    rdfs:range xsd:date .
