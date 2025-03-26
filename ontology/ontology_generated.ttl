@@ -1,90 +1,48 @@
-@prefix : <http://sgu.edu.vn/ontology#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+ttl
+@prefix ex: <http://example.org/> .
 
-# Classes
-:University a rdfs:Class .
-:Department a rdfs:Class .
-:TrainingProgram a rdfs:Class .
-:Journal a rdfs:Class .
-:Student a rdfs:Class .
-:ResearchTopic a rdfs:Class .
-:Scholarship a rdfs:Class .
-:InternationalCooperation a rdfs:Class .
-:Campus a rdfs:Class .
-:QualityAssessment a rdfs:Class .
+ex:UniversityOfSaiGon a ex:University ;
+    ex:hasName "Trường Đại học Sài Gòn" ;
+    ex:hasDepartment ex:Department1, ex:Department2, ex:Department3 ;
+    ex:hasPublication ex:JournalOfSaigonUniversity .
 
-# Properties
-:hasDepartment a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Department .
+ex:Department1 a ex:Department ;
+    ex:hasName "Khoa Giáo dục" ;
+    ex:offersCourse ex:Course1, ex:Course2 .
 
-:offersTrainingProgram a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :TrainingProgram .
+ex:Course1 a ex:Course ;
+    ex:hasName "Cử nhân Giáo dục" ;
+    ex:hasSpecialization ex:Specialization1, ex:Specialization2 .
 
-:hasStudent a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Student .
+ex:Specialization1 a ex:Specialization ;
+    ex:hasName "Sư phạm Mầm non" .
 
-:hasResearchTopic a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range :ResearchTopic .
+ex:Specialization2 a ex:Specialization ;
+    ex:hasName "Sư phạm Tiểu học" .
 
-:hasScholarship a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Scholarship .
+ex:Department2 a ex:Department ;
+    ex:hasName "Khoa Kinh tế" ;
+    ex:offersCourse ex:Course3 .
 
-:hasInternationalCooperation a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :InternationalCooperation .
+ex:Course3 a ex:Course ;
+    ex:hasName "Cử nhân Kinh doanh" ;
+    ex:hasSpecialization ex:Specialization3 .
 
-:hasCampus a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Campus .
+ex:Specialization3 a ex:Specialization ;
+    ex:hasName "Quản trị Kinh doanh" .
 
-:hasQualityAssessment a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :QualityAssessment .
+ex:Department3 a ex:Department ;
+    ex:hasName "Khoa Ngoại ngữ" ;
+    ex:offersCourse ex:Course4 .
 
-:hasJournal a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Journal .
+ex:Course4 a ex:Course ;
+    ex:hasName "Cử nhân Ngôn ngữ Anh" .
 
-:hasTrainingLevel a rdf:Property ;
-    rdfs:domain :TrainingProgram ;
-    rdfs:range :Department .
+ex:JournalOfSaigonUniversity a ex:Publication ;
+    ex:hasName "Tạp chí Khoa học Đại học Sài Gòn" ;
+    ex:hasISSN "1859-2038" ;
+    ex:hasLink "http://sgj.edu.vn" .
 
-:hasProgramType a rdf:Property ;
-    rdfs:domain :TrainingProgram ;
-    rdfs:range :TrainingProgram .
-
-:hasPublicationType a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range :ResearchTopic .
-
-:servesAudience a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range :Student .
-
-# Relationships
-:SGU a :University ;
-    :hasDepartment :Department ;
-    :offersTrainingProgram :TrainingProgram ;
-    :hasStudent :Student ;
-    :hasResearchTopic :ResearchTopic ;
-    :hasScholarship :Scholarship ;
-    :hasInternationalCooperation :InternationalCooperation ;
-    :hasCampus :Campus ;
-    :hasQualityAssessment :QualityAssessment ;
-    :hasJournal :Journal .
-
-:SGU_Department a :Department ;
-    :hasTrainingLevel :TrainingProgram .
-
-:SGU_Student a :Student ;
-    :hasResearchTopic :ResearchTopic .
-
-:SGU_Journal a :Journal ;
-    :servesAudience :Student ;
-    :hasPublicationType :ResearchTopic .
+ex:EducationSystem a ex:EducationSystem ;
+    ex:hasMethod "Giáo dục thường xuyên" ;
+    ex:hasLinkage "Liên kết đào tạo" .
