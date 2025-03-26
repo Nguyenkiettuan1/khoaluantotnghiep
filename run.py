@@ -47,27 +47,36 @@ conversation_messages = [
     {
         "role": "system",
         "content": (
-            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE tối ưu để đưa dữ liệu vào Neo4j. "
+            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE tối ưu để đưa dữ liệu vào Neo4j mà không gặp bất cứ lỗi nào khi chạy. "
+            "Đảm bảo rằng mã Cypher sinh ra không gây ra lỗi 'Variable already declared' hay các lỗi cú pháp khác trên Neo4j.\n\n"
+            
             "Yêu cầu về đảm bảo tính đầy đủ và chất lượng của knowledge graph:\n"
-            "1. Đảm bảo mỗi node đều có ít nhất một mối quan hệ với node khác.\n"
-            "2. Kiểm tra và tạo mối quan hệ hai chiều khi cần thiết (ví dụ: hasTrainingProgram <-> belongsToUniversity).\n"
-            "3. Mỗi node phải có đầy đủ các thuộc tính bắt buộc từ ontology.\n"
-            "4. Sử dụng OPTIONAL MATCH để kiểm tra và thiết lập các mối quan hệ tiềm năng.\n"
-            "\nYêu cầu về cú pháp và tối ưu hóa:\n"
-            "5. Mỗi node phải có thuộc tính 'name' không trống và là duy nhất trong cùng một loại node.\n"
-            "6. Nếu một node với cùng 'name' đã được khai báo, tái sử dụng biến đó thay vì khai báo lại.\n"
-            "7. Sử dụng WITH để chuỗi các thao tác phức tạp và đảm bảo tính rõ ràng.\n"
-            "8. Sử dụng các pattern để match nhiều node và quan hệ trong một câu lệnh.\n"
-            "\nYêu cầu về định dạng và kiểu dữ liệu:\n"
-            "9. Chỉ sử dụng các lớp và thuộc tính được định nghĩa trong ontology.\n"
-            "10. Không sử dụng dấu hai chấm (:) cho thuộc tính, thay vào đó dùng dấu chấm (.).\n"
-            "11. Loại bỏ dấu chấm thừa ở cuối câu lệnh.\n"
-            "12. Chỉ xuất mã Cypher thuần túy, không kèm giải thích hay markdown.\n"
-            "\nHãy duy trì nhất quán các node và quan hệ đã tạo trong toàn bộ cuộc trò chuyện."
-            "\nĐảm bảo xử lý cả trường hợp node không có dữ liệu hoặc quan hệ bị thiếu."
+            "- Mỗi node phải có ít nhất một mối quan hệ với node khác.\n"
+            "- Kiểm tra và tạo mối quan hệ hai chiều khi cần thiết (ví dụ: hasTrainingProgram <-> belongsToUniversity).\n"
+            "- Mỗi node phải có đầy đủ các thuộc tính bắt buộc từ ontology.\n"
+            "- Sử dụng OPTIONAL MATCH để kiểm tra và thiết lập các mối quan hệ tiềm năng.\n\n"
+            
+            "Yêu cầu về cú pháp và tối ưu hóa:\n"
+            "- Mỗi node bắt buộc phải có thuộc tính 'name' không cho phép trống và mang tính duy nhất trong cùng một loại node.\n"
+            "- Mỗi node bắt buộc phải có thuộc tính 'description' không cho phép trống .\n"
+            "- Trước khi khai báo một node mới, hãy kiểm tra xem node đó đã được khai báo trước đó hay chưa. Nếu đã có (ví dụ: nếu node University với {name: 'Trường Đại học Sài Gòn', description: 'Cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, đào tạo đa ngành, đa lĩnh vực.'}) đã được gán cho biến `university`), hãy tái sử dụng biến đó cho các câu lệnh sau. Điều này áp dụng cho mọi loại node (Department, TrainingProgram, v.v.).\n"
+            "- Sử dụng WITH để chuỗi các thao tác phức tạp, đảm bảo tính rõ ràng của câu lệnh.\n"
+            "- Áp dụng các pattern để match nhiều node và quan hệ trong một câu lệnh, và đảm bảo không khai báo lại biến đã tồn tại.\n\n"
+            
+            "Yêu cầu về định dạng và kiểu dữ liệu:\n"
+            "- Chỉ sử dụng các lớp và thuộc tính được định nghĩa trong ontology.\n"
+            "- Không sử dụng dấu hai chấm (:) cho thuộc tính; thay vào đó dùng dấu chấm (.).\n"
+            "- Loại bỏ dấu chấm thừa ở cuối câu lệnh.\n"
+            "- Chỉ xuất mã Cypher thuần túy, không kèm lời giải thích, chú thích hay markdown.\n\n"
+            
+            "Hãy duy trì nhất quán các node và quan hệ đã tạo trong toàn bộ cuộc trò chuyện. "
+            "Đảm bảo xử lý cả trường hợp node không có dữ liệu hoặc quan hệ bị thiếu, "
+            "và sinh ra các câu lệnh Cypher có thể chạy trên Neo4j mà không gặp bất cứ lỗi nào."
         )
     },
 ]
+
+
 
 # Lấy danh sách file .txt trong thư mục dataset
 txt_files = [f for f in os.listdir(dataset_dir) if f.endswith(".txt")]
@@ -97,11 +106,6 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
     Ontology:
     {ontology}
 
-    Hãy sinh các câu lệnh Cypher MERGE để đưa dữ liệu vào Neo4j với các lưu ý sau:
-    - Nếu một node đã được khai báo (ví dụ: node University với {{name: 'Trường Đại học Sài Gòn'}}), hãy sử dụng lại biến đó thay vì tái khai báo.
-    - Tương tự, nếu các node khác (ví dụ: TrainingProgram, Department, ...) đã được khai báo, hãy tái sử dụng chúng.
-    - Không thêm dấu chấm thừa ở cuối các câu lệnh.
-    Trả ra kết quả là mã Cypher thuần túy, không có lời giải thích, chú thích hay markdown.
     """
     conversation_messages.append({"role": "user", "content": user_message})
 
