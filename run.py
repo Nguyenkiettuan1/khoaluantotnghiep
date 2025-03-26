@@ -7,8 +7,6 @@ from utils import validate_cypher_query
 
 load_dotenv()
 
-
-
 # Hàm chia nhỏ văn bản theo độ dài tối đa
 def split_text(text, max_length=3000):
     sentences = text.split('. ')
@@ -74,16 +72,17 @@ conversation_messages = [
     {
         "role": "system",
         "content": (
-            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE tối ưu để đưa dữ liệu vào Neo4j. "
+            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy tạo ra các câu lệnh Cypher tối ưu để đưa dữ liệu vào Neo4j. "
             "Các yêu cầu:\n"
-            "1. Mỗi node phải có thuộc tính 'name' không trống.\n"
+            "1. Mỗi node bắt buộc phải có name, cũng như mô tả của chúng.\n"
             "2. Nếu một node với cùng thuộc tính 'name' đã được khai báo (ví dụ: biến 'university'), hãy tái sử dụng biến đó, không khai báo lại.\n"
             "3. Câu lệnh Cypher phải được tối ưu và chạy được trên Neo4j.\n"
             "4. Chỉ xuất ra mã Cypher thuần túy, không có lời giải thích, chú thích hay định dạng markdown.\n"
             "5. Chỉ sử dụng các lớp và thuộc tính đã được định nghĩa trong ontology.\n"
             "6. Không sử dụng dấu hai chấm (:) để truy cập thuộc tính; hãy dùng dấu chấm (.) (ví dụ: SET university.hasType = '...' ).\n"
             "7. Không thêm dấu chấm thừa ở cuối các câu lệnh.\n"
-            "8. Mỗi node phải có ít nhất một quan hệ với một node khác.\n"
+            "8. Mỗi node bắt buộc phải có quan hệ trực tiếp hoặc gián tiếp với node có name là trường đại học sài gòn.\n"
+            "9. Mỗi node bắt buộc phải có name .\n"
             "Hãy ghi nhớ toàn bộ các câu lệnh đã sinh ra trong cuộc trò chuyện này để duy trì tính nhất quán."
     )
     },

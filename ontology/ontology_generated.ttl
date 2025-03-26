@@ -3,6 +3,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+# Classes
 :University a rdfs:Class .
 :Department a rdfs:Class .
 :TrainingProgram a rdfs:Class .
@@ -14,49 +15,58 @@
 :Campus a rdfs:Class .
 :QualityAssessment a rdfs:Class .
 
-:hasDepartment a rdf:Property ;
+# Properties
+:hasName a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :Department .
+    rdfs:range xsd:string .
 
-:offersTrainingProgram a rdf:Property ;
+:hasType a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :TrainingProgram .
+    rdfs:range xsd:string .
 
-:hasStudent a rdf:Property ;
+:managedBy a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :Student .
+    rdfs:range xsd:string .
 
-:hasResearchTopic a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range :ResearchTopic .
-
-:hasScholarship a rdf:Property ;
+:offersTrainingMethod a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :Scholarship .
+    rdfs:range xsd:string .
 
-:hasInternationalCooperation a rdf:Property ;
+:hasTrainingField a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :InternationalCooperation .
+    rdfs:range xsd:string .
+
+:hasQualityCertification a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range xsd:string .
 
 :hasCampus a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :Campus .
 
-:hasQualityAssessment a rdf:Property ;
+:hasStudentHousing a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :QualityAssessment .
+    rdfs:range xsd:string .
+
+:hasInternationalCooperation a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :InternationalCooperation .
+
+:hasScholarship a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Scholarship .
+
+:hasResearchTopic a rdf:Property ;
+    rdfs:domain :Student ;
+    rdfs:range :ResearchTopic .
 
 :hasJournal a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :Journal .
 
-:hasTrainingMethod a rdf:Property ;
-    rdfs:domain :TrainingProgram ;
-    rdfs:range xsd:string .
-
-:hasFieldOfStudy a rdf:Property ;
-    rdfs:domain :TrainingProgram ;
-    rdfs:range xsd:string .
+:hasTrainingProgram a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :TrainingProgram .
 
 :hasDegreeLevel a rdf:Property ;
     rdfs:domain :TrainingProgram ;
@@ -66,15 +76,11 @@
     rdfs:domain :Journal ;
     rdfs:range xsd:string .
 
-:servesAudience a rdf:Property ;
+:hasPublicationRule a rdf:Property ;
     rdfs:domain :Journal ;
     rdfs:range xsd:string .
 
-:hasPublicationGuidelines a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range xsd:string .
-
-:hasTechnicalRequirements a rdf:Property ;
+:hasTechnicalRequirement a rdf:Property ;
     rdfs:domain :Journal ;
     rdfs:range xsd:string .
 
@@ -82,34 +88,26 @@
     rdfs:domain :Journal ;
     rdfs:range xsd:string .
 
-:hasStudentHousing a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range xsd:string .
-
-:hasCampusArea a rdf:Property ;
-    rdfs:domain :Campus ;
-    rdfs:range xsd:float .
-
-:hasCollaborationDetails a rdf:Property ;
-    rdfs:domain :InternationalCooperation ;
-    rdfs:range xsd:string .
-
-:hasScholarshipConditions a rdf:Property ;
-    rdfs:domain :Scholarship ;
-    rdfs:range xsd:string .
-
-:hasResearchParticipationConditions a rdf:Property ;
+:hasResearchBenefit a rdf:Property ;
     rdfs:domain :Student ;
     rdfs:range xsd:string .
 
-:hasResearchBenefits a rdf:Property ;
-    rdfs:domain :Student ;
+:hasTrainingProgramType a rdf:Property ;
+    rdfs:domain :TrainingProgram ;
     rdfs:range xsd:string .
 
-:hasResearchPublicationOpportunity a rdf:Property ;
-    rdfs:domain :Student ;
+:hasTrainingFieldDetail a rdf:Property ;
+    rdfs:domain :TrainingProgram ;
     rdfs:range xsd:string .
 
-:hasQualityAssessmentDate a rdf:Property ;
-    rdfs:domain :QualityAssessment ;
-    rdfs:range xsd:date .
+# Relationships
+:University :hasTrainingProgram :TrainingProgram .
+:University :hasDepartment :Department .
+:University :hasScholarship :Scholarship .
+:University :hasInternationalCooperation :InternationalCooperation .
+:University :hasQualityCertification :QualityAssessment .
+:University :hasCampus :Campus .
+:Student :hasResearchTopic :ResearchTopic .
+:Journal :hasPublicationType :TrainingProgram .
+:Journal :hasCitationStandard :Journal .
+:TrainingProgram :hasDegreeLevel :University .

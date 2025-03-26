@@ -2,6 +2,7 @@ from neo4jconnector import Neo4jConnection
 from dotenv import load_dotenv
 import os
 import logging 
+
 def create_vector_indexes(neo4j):
     """Create vector indexes for all node types"""
     node_labels = [
