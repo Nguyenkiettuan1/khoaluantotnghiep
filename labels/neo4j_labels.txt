@@ -1,0 +1,14 @@
+Campus
+Degree
+Department
+Faculty
+InternationalCooperation
+Journal
+Program
+Research
+ResearchTopic
+Resource
+Scholarship
+Student
+TrainingProgram
+University

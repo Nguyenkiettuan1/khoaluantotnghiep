@@ -1,90 +1,86 @@
-@prefix : <http://sgu.edu.vn/ontology#> .
+
+@prefix : <http://example.org/sgu#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 # Classes
 :University a rdfs:Class .
+:Degree a rdfs:Class .
+:Program a rdfs:Class .
 :Department a rdfs:Class .
-:TrainingProgram a rdfs:Class .
+:Research a rdfs:Class .
+:InternationalCooperation a rdfs:Class .
 :Journal a rdfs:Class .
 :Student a rdfs:Class .
-:ResearchTopic a rdfs:Class .
-:Scholarship a rdfs:Class .
-:InternationalCooperation a rdfs:Class .
-:Campus a rdfs:Class .
-:QualityAssessment a rdfs:Class .
+:Faculty a rdfs:Class .
 
 # Properties
+:hasDegree a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Degree .
+
+:offersProgram a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Program .
+
 :hasDepartment a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :Department .
 
-:offersTrainingProgram a rdf:Property ;
+:conductsResearch a rdf:Property ;
     rdfs:domain :University ;
-    rdfs:range :TrainingProgram .
-
-:hasStudent a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Student .
-
-:hasResearchTopic a rdf:Property ;
-    rdfs:domain :Student ;
-    rdfs:range :ResearchTopic .
-
-:hasScholarship a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Scholarship .
+    rdfs:range :Research .
 
 :hasInternationalCooperation a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :InternationalCooperation .
 
-:hasCampus a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :Campus .
-
-:hasQualityAssessment a rdf:Property ;
-    rdfs:domain :University ;
-    rdfs:range :QualityAssessment .
-
-:hasJournal a rdf:Property ;
+:publishesIn a rdf:Property ;
     rdfs:domain :University ;
     rdfs:range :Journal .
 
-:hasTrainingLevel a rdf:Property ;
-    rdfs:domain :TrainingProgram ;
-    rdfs:range :Department .
-
-:hasProgramType a rdf:Property ;
-    rdfs:domain :TrainingProgram ;
-    rdfs:range :TrainingProgram .
-
-:hasPublicationType a rdf:Property ;
-    rdfs:domain :Journal ;
-    rdfs:range :ResearchTopic .
-
-:servesAudience a rdf:Property ;
-    rdfs:domain :Journal ;
+:hasStudent a rdf:Property ;
+    rdfs:domain :University ;
     rdfs:range :Student .
 
+:hasFaculty a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Faculty .
+
 # Relationships
-:SGU a :University ;
-    :hasDepartment :Department ;
-    :offersTrainingProgram :TrainingProgram ;
-    :hasStudent :Student ;
-    :hasResearchTopic :ResearchTopic ;
-    :hasScholarship :Scholarship ;
-    :hasInternationalCooperation :InternationalCooperation ;
-    :hasCampus :Campus ;
-    :hasQualityAssessment :QualityAssessment ;
-    :hasJournal :Journal .
+:University1 a :University ;
+    :hasDegree :BachelorDegree, :MasterDegree, :DoctoralDegree ;
+    :offersProgram :RegularProgram, :ContinuingEducationProgram, :HighQualityProgram ;
+    :hasDepartment :Department1, :Department2, :Department3 ;
+    :conductsResearch :ResearchProject1, :ResearchProject2 ;
+    :hasInternationalCooperation :Cooperation1, :Cooperation2 ;
+    :publishesIn :Journal1 ;
+    :hasStudent :Student1, :Student2 ;
+    :hasFaculty :Faculty1, :Faculty2 .
 
-:SGU_Department a :Department ;
-    :hasTrainingLevel :TrainingProgram .
+:BachelorDegree a :Degree .
+:MasterDegree a :Degree .
+:DoctoralDegree a :Degree .
 
-:SGU_Student a :Student ;
-    :hasResearchTopic :ResearchTopic .
+:RegularProgram a :Program .
+:ContinuingEducationProgram a :Program .
+:HighQualityProgram a :Program .
 
-:SGU_Journal a :Journal ;
-    :servesAudience :Student ;
-    :hasPublicationType :ResearchTopic .
+:Department1 a :Department .
+:Department2 a :Department .
+:Department3 a :Department .
+
+:ResearchProject1 a :Research .
+:ResearchProject2 a :Research .
+
+:Cooperation1 a :InternationalCooperation .
+:Cooperation2 a :InternationalCooperation .
+
+:Journal1 a :Journal .
+
+:Student1 a :Student .
+:Student2 a :Student .
+
+:Faculty1 a :Faculty .
+:Faculty2 a :Faculty .

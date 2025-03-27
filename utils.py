@@ -35,7 +35,7 @@ def generate_ontology_from_cqs(
         "2. Xác định các thuộc tính (Properties) kèm theo domain và range phù hợp.\n"
         "3. Xác định các mối quan hệ (Relationship) giữa các lớp dựa trên ngữ cảnh của câu hỏi.\n"
         "4. Chỉ sử dụng các thuật ngữ xuất hiện trong danh sách câu hỏi năng lực.\n"
-        "5. Đầu ra phải là mã Turtle thuần túy, khai báo các prefix chuẩn.\n\n"
+        "5. Đầu ra phải là mã Turtle thuần túy, khai báo các prefix chuẩn.\n"
         "Trả ra kết quả là mã Turtle chuẩn, hoàn chỉnh, đúng cú pháp.\n"
     )
 
@@ -225,11 +225,12 @@ def run_test_queries_and_save_results(
 if __name__ == "__main__":
     # Load environment variables
     load_dotenv()
+    generate_ontology_from_cqs()
+    # # Example usage
+    # run_test_queries_and_save_results(
+    #     uri=os.getenv("NEO4J_URI"),
+    #     user=os.getenv("NEO4J_USER"),
+    #     password=os.getenv("NEO4J_PASSWORD"),
+    #     dbname=os.getenv("NEO4J_DATABASE", "neo4j")
+    # )
     
-    # Example usage
-    run_test_queries_and_save_results(
-        uri=os.getenv("NEO4J_URI"),
-        user=os.getenv("NEO4J_USER"),
-        password=os.getenv("NEO4J_PASSWORD"),
-        dbname=os.getenv("NEO4J_DATABASE", "neo4j")
-    )

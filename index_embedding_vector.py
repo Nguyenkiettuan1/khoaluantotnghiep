@@ -4,16 +4,9 @@ import os
 import logging 
 def create_vector_indexes(neo4j):
     """Create vector indexes for all node types"""
-    node_labels = [
-        "University",
-        "Department", 
-        "TrainingProgram",
-        "Campus",
-        "InternationalCooperation",
-        "Scholarship",
-        "ResearchTopic",
-        "Journal"
-    ]
+
+    with open("labels/neo4j_labels.txt", "r") as f:
+        node_labels = f.read().splitlines()
     
     print("Creating vector indexes...")
     for label in node_labels:
@@ -89,63 +82,6 @@ def add_embeddings_to_all_nodes(neo4j):
         print(f"Error in add_embeddings_to_all_nodes: {str(e)}")
         raise
 
-def perform_example_searches(neo4j):
-    """Demonstrate vector similarity search across different node types"""
-    example_searches = [
-        {
-            "description": "Finding content related to computer science and technology",
-            "query": "computer science technology software engineering information systems",
-        },
-        {
-            "description": "Finding content related to international education and cooperation",
-            "query": "international cooperation education exchange programs scholarships",
-        },
-        {
-            "description": "Finding content related to business and management studies",
-            "query": "business management administration entrepreneurship finance",
-        },
-        {
-            "description": "Finding research and academic publications",
-            "query": "research academic publications journals scientific papers",
-        }
-    ]
-    
-    node_labels = [
-        "Department", 
-        "TrainingProgram",
-        "InternationalCooperation",
-        "Scholarship",
-        "ResearchTopic",
-        "Journal"
-    ]
-    
-    try:
-        for search in example_searches:
-            print(f"\n\nSearching for: {search['description']}")
-            print("-" * 50)
-            
-            for label in node_labels:
-                try:
-                    results = neo4j.similarity_search(
-                        query_text=search['query'],
-                        node_label=label,
-                        limit=2,
-                        min_similarity=0.5,
-                        return_properties=["name"]
-                    )
-                    
-                    if results:
-                        print(f"\nRelevant {label}s:")
-                        for idx, result in enumerate(results, 1):
-                            print(f"{idx}. {result['name']} (Similarity: {result['similarity']:.4f})")
-                            
-                except Exception as e:
-                    print(f"Error searching {label}: {str(e)}")
-                    continue
-                    
-    except Exception as e:
-        print(f"Error in perform_example_searches: {str(e)}")
-        raise
 
 def main():
     # Load environment variables
@@ -166,9 +102,7 @@ def main():
             
             # Step 2: Add embeddings to all nodes
             add_embeddings_to_all_nodes(neo4j)
-            
-            # Step 3: Perform example semantic searches across all node types
-            perform_example_searches(neo4j)
+          
             
         except Exception as e:
             print(f"Error during execution: {str(e)}")

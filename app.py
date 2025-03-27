@@ -1,8 +1,10 @@
 import streamlit as st
 import os
+from typing import List, Optional, Dict
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection, Neo4jVectorSearchError
 import logging
+from dataclasses import dataclass
 
 # Load environment variables
 load_dotenv()
@@ -17,6 +19,14 @@ st.set_page_config(
 # Initialize logger
 logger = logging.getLogger('neo4j_vector_search')
 
+@dataclass
+class SearchResult:
+    """Class to represent a search result"""
+    name: str
+    node_type: str
+    similarity: float
+    description: Optional[str] = None
+
 def init_neo4j():
     """Initialize Neo4j connection"""
     try:
@@ -30,12 +40,13 @@ def init_neo4j():
         st.error(f"Failed to connect to Neo4j: {str(e)}")
         return None
 
-def perform_search(neo4j, query, node_types, min_similarity=0.5, limit=5):
-    """Perform vector search across selected node types"""
+def perform_search(neo4j: Neo4jConnection, query: str, node_types: List[str], min_similarity: float = 0.5, limit: int = 5) -> List[Dict]:
+    """Perform vector search across specified node types"""
     all_results = []
     
-    for node_type in node_types:
-        try:
+    try:
+        for node_type in node_types:
+            # Search for each node type
             results = neo4j.similarity_search(
                 query_text=query,
                 node_label=node_type,
@@ -46,23 +57,21 @@ def perform_search(neo4j, query, node_types, min_similarity=0.5, limit=5):
             # Add node type to results
             for result in results:
                 result['node_type'] = node_type
-            all_results.extend(results)
             
-        except Exception as e:
-            logger.error(f"Error searching {node_type}: {str(e)}")
-            st.warning(f"Error searching {node_type}: {str(e)}")
-            continue
+            all_results.extend(results)
+                
+    except Exception as e:
+        logger.error(f"Error performing search: {e}")
+        st.error(f"Error performing search: {str(e)}")
     
-    # Sort combined results by similarity
     return sorted(all_results, key=lambda x: x['similarity'], reverse=True)
 
-def generate_answer(neo4j, query, search_results):
+def generate_answer(neo4j: Neo4jConnection, query: str, search_results: List[Dict]) -> Optional[str]:
     """Generate answer using OpenAI based on search results"""
     try:
-        answer = neo4j.generate_answer(query, search_results)
-        return answer
+        return neo4j.generate_answer(query, search_results)
     except Exception as e:
-        logger.error(f"Error generating answer: {str(e)}")
+        logger.error(f"Error generating answer: {e}")
         st.error(f"Error generating answer: {str(e)}")
         return None
 
@@ -85,13 +94,19 @@ def main():
         min_similarity = st.slider("Độ tương đồng tối thiểu", 0.0, 1.0, 0.5, 0.1)
     with col3:
         max_results = st.slider("Số kết quả tối đa mỗi loại", 1, 10, 5)
+
+    # Load and process node type labels
+    with open("labels/neo4j_labels.txt", "r") as f:
+        type_labels = [label.strip() for label in f.read().splitlines() if label.strip()]
     
     # Node type selection
+    default_types = ["Department"]  # Default selection that we know exists
+    default_types = [t for t in default_types if t in type_labels]  # Validate defaults
+    
     node_types = st.multiselect(
         "Chọn loại nội dung tìm kiếm",
-        ["Department", "TrainingProgram", "InternationalCooperation", 
-         "Scholarship", "ResearchTopic", "Journal"],
-        default=["Department", "TrainingProgram"]
+        type_labels,
+        default=default_types
     )
     
     # Perform search

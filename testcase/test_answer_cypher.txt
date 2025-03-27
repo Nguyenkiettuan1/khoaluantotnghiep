@@ -1,4 +1,4 @@
-# Test Results - 2025-03-23 23:38:13
+# Test Results - 2025-03-26 15:12:59
 
 ## Query 1
 ### Description
@@ -18,31 +18,25 @@ ORDER BY Count DESC;
 [
   {
     "NodeTypes": [
-      "TrainingProgram"
-    ],
-    "Count": 29
-  },
-  {
-    "NodeTypes": [
       "Department"
     ],
     "Count": 19
   },
   {
     "NodeTypes": [
+      "TrainingProgram"
+    ],
+    "Count": 13
+  },
+  {
+    "NodeTypes": [
       "Campus"
     ],
-    "Count": 4
+    "Count": 6
   },
   {
     "NodeTypes": [
-      "InternationalCooperation"
-    ],
-    "Count": 3
-  },
-  {
-    "NodeTypes": [
-      "Scholarship"
+      "Journal"
     ],
     "Count": 2
   },
@@ -54,13 +48,25 @@ ORDER BY Count DESC;
   },
   {
     "NodeTypes": [
-      "ResearchTopic"
+      "QualityAssessment"
     ],
     "Count": 1
   },
   {
     "NodeTypes": [
-      "Journal"
+      "Scholarship"
+    ],
+    "Count": 1
+  },
+  {
+    "NodeTypes": [
+      "InternationalCooperation"
+    ],
+    "Count": 1
+  },
+  {
+    "NodeTypes": [
+      "ResearchTopic"
     ],
     "Count": 1
   }
@@ -89,7 +95,7 @@ RETURN departmentCount as TotalDepartments, programCount as TotalPrograms;
 [
   {
     "TotalDepartments": 19,
-    "TotalPrograms": 29
+    "TotalPrograms": 11
   }
 ]
 ```
@@ -171,7 +177,7 @@ RETURN sum(c.area) as TotalArea, count(c) as TotalCampuses;
 [
   {
     "TotalArea": 72021,
-    "TotalCampuses": 4
+    "TotalCampuses": 6
   }
 ]
 ```
@@ -196,19 +202,7 @@ ORDER BY t.name;
 ```json
 [
   {
-    "TransferPrograms": "Đào tạo Đại học liên thông Công nghệ Thông tin"
-  },
-  {
-    "TransferPrograms": "Đào tạo Đại học liên thông Giáo dục Mầm non"
-  },
-  {
-    "TransferPrograms": "Đào tạo Đại học liên thông Giáo dục Tiểu học"
-  },
-  {
-    "TransferPrograms": "Đào tạo Đại học liên thông Kế toán"
-  },
-  {
-    "TransferPrograms": "Đào tạo Đại học liên thông Quản trị Kinh doanh"
+    "TransferPrograms": "Đào tạo Đại học liên thông"
   }
 ]
 ```
@@ -232,28 +226,8 @@ RETURN i.name as Cooperation, s.name as Scholarship;
 ```json
 [
   {
-    "Cooperation": "Chương trình liên kết đào tạo với Đại học Huddersfield",
-    "Scholarship": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
-  },
-  {
-    "Cooperation": "Chương trình đào tạo tiếng Hoa liên kết với Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt",
-    "Scholarship": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
-  },
-  {
-    "Cooperation": "Chương trình liên kết đào tạo Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử",
-    "Scholarship": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
-  },
-  {
-    "Cooperation": "Chương trình liên kết đào tạo với Đại học Huddersfield",
-    "Scholarship": "Học bổng của Bộ Giáo dục Đài Loan và trường Đại học tại Đài Loan"
-  },
-  {
-    "Cooperation": "Chương trình đào tạo tiếng Hoa liên kết với Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt",
-    "Scholarship": "Học bổng của Bộ Giáo dục Đài Loan và trường Đại học tại Đài Loan"
-  },
-  {
-    "Cooperation": "Chương trình liên kết đào tạo Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử",
-    "Scholarship": "Học bổng của Bộ Giáo dục Đài Loan và trường Đại học tại Đài Loan"
+    "Cooperation": "Hợp tác quốc tế",
+    "Scholarship": "Chứng chỉ Bồi dưỡng nghiệp vụ sư phạm"
   }
 ]
 ```
@@ -384,15 +358,15 @@ ORDER BY Count DESC;
 [
   {
     "type": "Chính quy",
-    "Count": 18
-  },
-  {
-    "type": "VLVH",
-    "Count": 6
+    "Count": 11
   },
   {
     "type": "Liên thông",
-    "Count": 5
+    "Count": 1
+  },
+  {
+    "type": "VLVH",
+    "Count": 1
   }
 ]
 ```
@@ -416,10 +390,17 @@ RETURN j.name, j.issn, j.email, j.website, j.pointRecognition;
 [
   {
     "j.name": "Tạp chí Khoa học Đại học Sài Gòn",
+    "j.issn": null,
+    "j.email": null,
+    "j.website": null,
+    "j.pointRecognition": null
+  },
+  {
+    "j.name": "Tạp chí Khoa học Đại học Sài Gòn",
     "j.issn": "1859-3208",
-    "j.email": "tcdhsg@sgu.edu.vn",
-    "j.website": "http://sj.sgu.edu.vn/",
-    "j.pointRecognition": 20
+    "j.email": null,
+    "j.website": null,
+    "j.pointRecognition": null
   }
 ]
 ```
@@ -442,9 +423,9 @@ RETURN t.schedule, t.classroomCode, t.registrationSystem;
 ```json
 [
   {
-    "t.schedule": "Ca 1: 07g00 đến 07g50, Ca 2: 07g50 đến 08g40, Ca 3: 09g00 đến 09g50, Nghỉ 20 phút",
-    "t.classroomCode": "C: cơ sở chính, 1: cơ sở 1, 2: cơ sở 2",
-    "t.registrationSystem": "daotao.sgu.edu.vn"
+    "t.schedule": null,
+    "t.classroomCode": null,
+    "t.registrationSystem": null
   }
 ]
 ```
@@ -494,6 +475,14 @@ RETURN district, count(*) as CampusCount, collect(c.name) as Campuses;
     "Campuses": [
       "Ký túc xá 99 An Dương Vương, Q.8"
     ]
+  },
+  {
+    "district": null,
+    "CampusCount": 2,
+    "Campuses": [
+      "Trang Phòng Đào tạo",
+      "Trang Thông tin Đào tạo"
+    ]
   }
 ]
 ```
@@ -541,23 +530,23 @@ ORDER BY Count DESC;
 ```json
 [
   {
-    "RelationshipType": "offersTrainingProgram",
-    "Count": 29
-  },
-  {
     "RelationshipType": "hasDepartment",
     "Count": 19
   },
   {
-    "RelationshipType": "hasCampus",
-    "Count": 4
+    "RelationshipType": "offersTrainingProgram",
+    "Count": 11
   },
   {
-    "RelationshipType": "hasInternationalCooperation",
-    "Count": 3
+    "RelationshipType": "hasCampus",
+    "Count": 6
   },
   {
     "RelationshipType": "hasScholarship",
+    "Count": 3
+  },
+  {
+    "RelationshipType": "hasJournal",
     "Count": 2
   },
   {
@@ -565,7 +554,11 @@ ORDER BY Count DESC;
     "Count": 1
   },
   {
-    "RelationshipType": "hasJournal",
+    "RelationshipType": "hasInternationalCooperation",
+    "Count": 1
+  },
+  {
+    "RelationshipType": "hasQualityAssessment",
     "Count": 1
   }
 ]
@@ -650,6 +643,18 @@ RETURN t.name as SpecialPrograms;
   },
   {
     "SpecialPrograms": "Chương trình chất lượng cao: Công nghệ Thông tin"
+  },
+  {
+    "SpecialPrograms": "Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"
+  },
+  {
+    "SpecialPrograms": "Chương trình liên kết đào tạo cấp bằng Cử nhân Quản trị Kinh doanh và Quản lý Thương mại Điện tử"
+  },
+  {
+    "SpecialPrograms": "Chương trình đào tạo tiếng Hoa"
+  },
+  {
+    "SpecialPrograms": "Chương trình chuyển tiếp các ngành Công nghệ thông tin, Ngôn ngữ Anh, Sư phạm Anh, Quản trị kinh doanh, Tài chính - Ngân hàng"
   }
 ]
 ```
@@ -678,7 +683,7 @@ ORDER BY min(c.area);
 
 ### Error
 ```
-{code: Neo.ClientError.Statement.SyntaxError} {message: Variable `c` not defined (line 9, column 49 (offset: 225))
+Query execution failed: {code: Neo.ClientError.Statement.SyntaxError} {message: Variable `c` not defined (line 9, column 49 (offset: 225))
 "RETURN sizeCategory, count(*) as Count, collect(c.name) as Campuses"
                                                  ^}
 ```
@@ -703,16 +708,10 @@ RETURN t.name as DualPrograms;
 ```json
 [
   {
-    "DualPrograms": "Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng"
+    "DualPrograms": "Học bổng toàn phần của Bộ Y tế Singapore - Asian Nursing Scholarship"
   },
   {
-    "DualPrograms": "Khoa học Máy tính - Toán Giải tích"
-  },
-  {
-    "DualPrograms": "Lịch sử Việt Nam - Văn học Việt Nam"
-  },
-  {
-    "DualPrograms": "LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự"
+    "DualPrograms": "Chương trình chuyển tiếp các ngành Công nghệ thông tin, Ngôn ngữ Anh, Sư phạm Anh, Quản trị kinh doanh, Tài chính - Ngân hàng"
   }
 ]
 ```
@@ -736,14 +735,16 @@ RETURN properties(j) as JournalProperties;
 [
   {
     "JournalProperties": {
-      "phone": "(028) 38 321 360",
-      "issn": "1859-3208",
-      "website": "http://sj.sgu.edu.vn/",
-      "email": "tcdhsg@sgu.edu.vn",
-      "description": "Diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn",
       "name": "Tạp chí Khoa học Đại học Sài Gòn",
-      "license": "Số 22/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 23/01/2015",
-      "pointRecognition": 20
+      "purpose": "Công bố các kết quả nghiên cứu và hoạt động khoa học"
+    }
+  },
+  {
+    "JournalProperties": {
+      "licenseDate": "23/01/2015",
+      "issn": "1859-3208",
+      "name": "Tạp chí Khoa học Đại học Sài Gòn",
+      "license": "Số 22/GP-BTTTT"
     }
   }
 ]
@@ -766,13 +767,6 @@ RETURN r.name as ResearchTopic, type(rel) as RelationType, labels(n) as Connecte
 ### Result
 ```json
 [
-  {
-    "ResearchTopic": "Đề tài Nghiên cứu khoa học cấp cơ sở",
-    "RelationType": "hasPublicationType",
-    "ConnectedTo": [
-      "Journal"
-    ]
-  },
   {
     "ResearchTopic": "Đề tài Nghiên cứu khoa học cấp cơ sở",
     "RelationType": "hasResearchTopic",
@@ -804,31 +798,25 @@ ORDER BY count DESC;
 [
   {
     "nodeType": [
-      "TrainingProgram"
-    ],
-    "count": 29
-  },
-  {
-    "nodeType": [
       "Department"
     ],
     "count": 19
   },
   {
     "nodeType": [
+      "TrainingProgram"
+    ],
+    "count": 13
+  },
+  {
+    "nodeType": [
       "Campus"
     ],
-    "count": 4
+    "count": 6
   },
   {
     "nodeType": [
-      "InternationalCooperation"
-    ],
-    "count": 3
-  },
-  {
-    "nodeType": [
-      "Scholarship"
+      "Journal"
     ],
     "count": 2
   },
@@ -840,13 +828,25 @@ ORDER BY count DESC;
   },
   {
     "nodeType": [
-      "ResearchTopic"
+      "QualityAssessment"
     ],
     "count": 1
   },
   {
     "nodeType": [
-      "Journal"
+      "Scholarship"
+    ],
+    "count": 1
+  },
+  {
+    "nodeType": [
+      "InternationalCooperation"
+    ],
+    "count": 1
+  },
+  {
+    "nodeType": [
+      "ResearchTopic"
     ],
     "count": 1
   }
@@ -923,22 +923,18 @@ ORDER BY Count DESC;
 [
   {
     "field": "Khác",
-    "Count": 12
-  },
-  {
-    "field": "Giáo dục",
-    "Count": 8
-  },
-  {
-    "field": "Kinh tế",
-    "Count": 4
-  },
-  {
-    "field": "Luật",
-    "Count": 3
+    "Count": 7
   },
   {
     "field": "Công nghệ",
+    "Count": 2
+  },
+  {
+    "field": "Giáo dục",
+    "Count": 2
+  },
+  {
+    "field": "Kinh tế",
     "Count": 2
   }
 ]
@@ -965,49 +961,55 @@ ORDER BY Count DESC;
 [
   {
     "FromType": "University",
-    "Relationship": "offersTrainingProgram",
-    "ToType": "TrainingProgram",
-    "Count": 29
-  },
-  {
-    "FromType": "University",
     "Relationship": "hasDepartment",
     "ToType": "Department",
     "Count": 19
   },
   {
     "FromType": "University",
-    "Relationship": "hasCampus",
-    "ToType": "Campus",
-    "Count": 4
+    "Relationship": "offersTrainingProgram",
+    "ToType": "TrainingProgram",
+    "Count": 11
   },
   {
     "FromType": "University",
-    "Relationship": "hasInternationalCooperation",
-    "ToType": "InternationalCooperation",
-    "Count": 3
+    "Relationship": "hasCampus",
+    "ToType": "Campus",
+    "Count": 6
   },
   {
     "FromType": "University",
     "Relationship": "hasScholarship",
-    "ToType": "Scholarship",
+    "ToType": "TrainingProgram",
     "Count": 2
-  },
-  {
-    "FromType": "University",
-    "Relationship": "hasResearchTopic",
-    "ToType": "ResearchTopic",
-    "Count": 1
   },
   {
     "FromType": "University",
     "Relationship": "hasJournal",
     "ToType": "Journal",
+    "Count": 2
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasQualityAssessment",
+    "ToType": "QualityAssessment",
     "Count": 1
   },
   {
-    "FromType": "Journal",
-    "Relationship": "hasPublicationType",
+    "FromType": "University",
+    "Relationship": "hasScholarship",
+    "ToType": "Scholarship",
+    "Count": 1
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasInternationalCooperation",
+    "ToType": "InternationalCooperation",
+    "Count": 1
+  },
+  {
+    "FromType": "University",
+    "Relationship": "hasResearchTopic",
     "ToType": "ResearchTopic",
     "Count": 1
   }
@@ -1039,21 +1041,7 @@ LIMIT 5;
       "University"
     ],
     "Name": "Trường Đại học Sài Gòn",
-    "relCount": 59
-  },
-  {
-    "NodeType": [
-      "ResearchTopic"
-    ],
-    "Name": "Đề tài Nghiên cứu khoa học cấp cơ sở",
-    "relCount": 2
-  },
-  {
-    "NodeType": [
-      "Journal"
-    ],
-    "Name": "Tạp chí Khoa học Đại học Sài Gòn",
-    "relCount": 2
+    "relCount": 44
   },
   {
     "NodeType": [
@@ -1066,7 +1054,21 @@ LIMIT 5;
     "NodeType": [
       "Department"
     ],
+    "Name": "Giáo dục Tiểu học - Khoa học Môi trường",
+    "relCount": 1
+  },
+  {
+    "NodeType": [
+      "Department"
+    ],
     "Name": "Sư phạm Âm nhạc - Kinh doanh Quốc tế",
+    "relCount": 1
+  },
+  {
+    "NodeType": [
+      "Department"
+    ],
+    "Name": "Giáo dục Chính trị - Du lịch",
     "relCount": 1
   }
 ]

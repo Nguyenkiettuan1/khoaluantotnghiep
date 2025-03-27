@@ -7,8 +7,6 @@ from utils import validate_cypher_query
 
 load_dotenv()
 
-
-# Hàm tạo Cypher từ dữ liệu và ontology sử dụng conversation memory
 def generate_cypher_from_data_conversation(conversation_messages, client: OpenAI):
     response = client.chat.completions.create(
         messages=conversation_messages,
@@ -19,14 +17,12 @@ def generate_cypher_from_data_conversation(conversation_messages, client: OpenAI
     for keyword in ["```cypher", "```"]:
         cypher_script = cypher_script.replace(keyword, "")
     return cypher_script.strip()
+
 # Đường dẫn thư mục chứa các file .txt
 dataset_dir = "./dataset"
 
 # File ontology (Turtle)
 ontology_file = "./ontology/ontology_generated.ttl"
-
-# File lưu câu lệnh Cypher
-cypher_output_path = "./cypher/populate_ontology.cypher"
 
 # Đọc ontology
 print("Bắt đầu đọc ontology từ:", ontology_file)
@@ -35,32 +31,30 @@ with open(ontology_file, "r", encoding="utf-8") as f:
 print("Đã đọc ontology, độ dài:", len(ontology), "ký tự")
 
 # Thiết lập client OpenAI
-client = OpenAI(api_key=os.getenv("MY_OPENAI_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Xóa file Cypher cũ nếu có
-if os.path.exists(cypher_output_path):
-    os.remove(cypher_output_path)
-    print("Đã xóa file Cypher cũ:", cypher_output_path)
+# Đảm bảo thư mục cypher tồn tại
+os.makedirs("./cypher", exist_ok=True)
 
 # Prompt hệ thống (tiếng Việt)
 conversation_messages = [
     {
         "role": "system",
         "content": (
-            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE tối ưu để đưa dữ liệu vào Neo4j mà không gặp bất cứ lỗi nào khi chạy. "
-            "Đảm bảo rằng mã Cypher sinh ra không gây ra lỗi 'Variable already declared' hay các lỗi cú pháp khác trên Neo4j.\n\n"
+            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE hoặc lệnh tối ưu để đưa dữ liệu vào Neo4j mà không gặp bất cứ lỗi nào khi chạy. "
+            "Đảm bảo rằng mã Cypher sinh ra không gây ra lỗi 'Variable already declared' hoặc 'Variable not defined' hay các lỗi cú pháp khác trên Neo4j.\n\n"
             
             "Yêu cầu về đảm bảo tính đầy đủ và chất lượng của knowledge graph:\n"
             "- Mỗi node phải có ít nhất một mối quan hệ với node khác.\n"
             "- Kiểm tra và tạo mối quan hệ hai chiều khi cần thiết (ví dụ: hasTrainingProgram <-> belongsToUniversity).\n"
             "- Mỗi node phải có đầy đủ các thuộc tính bắt buộc từ ontology.\n"
+            "- Mỗi node phải có mô tả (description) đầy đủ và chi tiết, càng nhiều thông tin liên quan càng tốt.\n"
             "- Sử dụng OPTIONAL MATCH để kiểm tra và thiết lập các mối quan hệ tiềm năng.\n\n"
             
             "Yêu cầu về cú pháp và tối ưu hóa:\n"
             "- Mỗi node bắt buộc phải có thuộc tính 'name' không cho phép trống và mang tính duy nhất trong cùng một loại node.\n"
             "- Mỗi node bắt buộc phải có thuộc tính 'description' không cho phép trống .\n"
             "- Trước khi khai báo một node mới, hãy kiểm tra xem node đó đã được khai báo trước đó hay chưa. Nếu đã có (ví dụ: nếu node University với {name: 'Trường Đại học Sài Gòn', description: 'Cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, đào tạo đa ngành, đa lĩnh vực.'}) đã được gán cho biến `university`), hãy tái sử dụng biến đó cho các câu lệnh sau. Điều này áp dụng cho mọi loại node (Department, TrainingProgram, v.v.).\n"
-            "- Sử dụng WITH để chuỗi các thao tác phức tạp, đảm bảo tính rõ ràng của câu lệnh.\n"
             "- Áp dụng các pattern để match nhiều node và quan hệ trong một câu lệnh, và đảm bảo không khai báo lại biến đã tồn tại.\n\n"
             
             "Yêu cầu về định dạng và kiểu dữ liệu:\n"
@@ -71,24 +65,23 @@ conversation_messages = [
             
             "Hãy duy trì nhất quán các node và quan hệ đã tạo trong toàn bộ cuộc trò chuyện. "
             "Đảm bảo xử lý cả trường hợp node không có dữ liệu hoặc quan hệ bị thiếu, "
+            "Mỗi khi tạo một node mới, hãy kiểm tra xem node đó đã tồn tại chưa, "
+            "Nếu node đó có cùng ý nghĩa với node đã tồn tại, hãy tái sử dụng node đó."
             "và sinh ra các câu lệnh Cypher có thể chạy trên Neo4j mà không gặp bất cứ lỗi nào."
+            "Tên các node và mối quan hệ phải sử dụng tiếng Việt không có dấu. Và được phân cách bằng dấu gạch dưới (_)."
         )
     },
 ]
-
-
 
 # Lấy danh sách file .txt trong thư mục dataset
 txt_files = [f for f in os.listdir(dataset_dir) if f.endswith(".txt")]
 
 # Lọc chỉ những file có tên chứa "PHẦN 1"
 txt_files_phan1 = [f for f in txt_files if "PHẦN 1" in f]
-
-# Có thể sắp xếp để đọc theo thứ tự
 txt_files_phan1.sort()
 
-all_generated_cypher = ""
-
+# Xử lý từng file và lưu vào file riêng
+processed_files = []
 for idx, filename in enumerate(txt_files_phan1, start=1):
     file_path = os.path.join(dataset_dir, filename)
     print(f"\n[+] Đang xử lý file {idx}: {filename}")
@@ -97,67 +90,52 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
     with open(file_path, "r", encoding="utf-8") as f:
         data_text = f.read()
 
-    # Ở đây, ví dụ không chia chunk, mà truyền trực tiếp toàn bộ nội dung
-    chunk = data_text
-
+    # Truyền toàn bộ nội dung
     user_message = f"""Dữ liệu file: {filename}
-    {chunk}
+    {data_text}
 
     Ontology:
     {ontology}
-
     """
     conversation_messages.append({"role": "user", "content": user_message})
 
-    # Gọi hàm sinh Cypher
+    # Sinh Cypher
     generated_cypher = generate_cypher_from_data_conversation(conversation_messages, client)
-
-    # Lưu câu trả lời vào conversation để giữ ngữ cảnh
     conversation_messages.append({
         "role": "assistant",
         "content": generated_cypher
     })
 
-    # # Làm sạch câu lệnh Cypher (nếu có hàm clean_cypher_code)
-    # generated_cypher = clean_cypher_code(generated_cypher, remove_trailing_dot=True)
+    # Lưu vào file riêng
+    cypher_file = f"./cypher/{filename}.cypher"
+    processed_files.append(cypher_file)
+    with open(cypher_file, "w", encoding="utf-8") as f:
+        f.write(generated_cypher)
+    print(f"✅ Đã lưu Cypher vào file: {cypher_file}")
 
-    # # Kiểm tra Cypher (nếu có hàm validate_cypher_query)
-    # check_cypher = validate_cypher_query(generated_cypher)
-
-    # Lưu vào biến tổng
-    all_generated_cypher += f"// Từ file {filename}\n" + generated_cypher + "\n\n"
-
-    # Ghi ngay vào file cypher
-    with open(cypher_output_path, "a", encoding="utf-8") as f:
-        f.write(generated_cypher + "\n")
-
-print(f"\nTất cả các câu lệnh Cypher đã được lưu vào: {cypher_output_path}")
-
-# Làm sạch toàn bộ nội dung Cypher (loại bỏ markdown nếu có)
-with open(cypher_output_path, "r", encoding="utf-8") as f:
-    cypher_script = f.read().strip()
-
-for keyword in ["```cypher", "```"]:
-    cypher_script = cypher_script.replace(keyword, "")
-
-cypher_script = cypher_script.strip()
-with open(cypher_output_path, "w", encoding="utf-8") as f:
-    f.write(cypher_script)
-print(f"✅ Mã Cypher đã được làm sạch và lưu vào: {cypher_output_path}")
-
-# ================================
-# BƯỚC 2: Đẩy dữ liệu lên Neo4j (tuỳ chọn)
-# ================================
+# Thực thi các file Cypher
 print("\nBắt đầu kết nối đến Neo4j...")
 uri = os.getenv("NEO4J_URI")
 neo4j_user = os.getenv("NEO4J_USER")
 neo4j_password = os.getenv("NEO4J_PASSWORD")
 dbname = os.getenv("NEO4J_DATABASE")
 
-conn = Neo4jConnection(uri, neo4j_user, neo4j_password, dbname)
-print("✅ Kết nối đến Neo4j thành công.")
+try:
+    conn = Neo4jConnection(uri, neo4j_user, neo4j_password, dbname)
+    print("✅ Kết nối đến Neo4j thành công.")
 
-result = conn.run_cypher(cypher_script)
-print("✅ Dữ liệu đã được đưa vào Neo4j!")
-conn.close()
-print("✅ Đã đóng kết nối Neo4j.")
+    for cypher_file in processed_files:
+        print(f"\n[+] Đang thực thi file: {cypher_file}")
+        with open(cypher_file, "r", encoding="utf-8") as f:
+            cypher_script = f.read().strip()
+        
+        if cypher_script:
+            result = conn.run_cypher(cypher_script)
+            print(f"✅ Thực thi thành công file: {cypher_file}")
+
+except Exception as e:
+    print(f"❌ Lỗi: {str(e)}")
+finally:
+    if 'conn' in locals():
+        conn.close()
+        print("✅ Đã đóng kết nối Neo4j.")
