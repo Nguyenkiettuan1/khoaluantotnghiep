@@ -7,7 +7,7 @@ from gemini_config import gemini
 
 load_dotenv()
 
-def generate_cypher_from_data_conversation(conversation_messages):
+def generate_cypher_from_data_conversation_gemini(conversation_messages):
     # Format conversation for Gemini
     formatted_messages = "\n".join([
         f"{msg['role']}: {msg['parts']}" 

@@ -2,12 +2,12 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection
-from clearCypher import clean_cypher_code
+
 
 
 load_dotenv()
 
-def generate_cypher_from_data_conversation(conversation_messages, client: OpenAI):
+def generate_cypher_from_data_conversation_openai(conversation_messages, client: OpenAI):
     response = client.chat.completions.create(
         messages=conversation_messages,
         model="gpt-4o-mini",

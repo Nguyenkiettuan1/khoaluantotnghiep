@@ -2,21 +2,11 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection
-from clearCypher import clean_cypher_code
-from utils import validate_cypher_query
+
 
 load_dotenv()
 
-def generate_cypher_from_data_conversation(conversation_messages, client: OpenAI):
-    response = client.chat.completions.create(
-        messages=conversation_messages,
-        model="gpt-4o-mini",
-        temperature=0.1,
-    )
-    cypher_script = response.choices[0].message.content
-    for keyword in ["```cypher", "```"]:
-        cypher_script = cypher_script.replace(keyword, "")
-    return cypher_script.strip()
+
 
 
 def generate_cypher_from_data_conversation_DeepSeek(conversation_messages, client: OpenAI = OpenAI(
