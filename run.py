@@ -56,7 +56,7 @@ conversation_messages = [
     {
         "role": "system",
         "content": (
-            "Bạn là chuyên gia Neo4j. Dựa trên ontology được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE hoặc lệnh tối ưu để đưa dữ liệu vào Neo4j mà không gặp bất cứ lỗi nào khi chạy. "
+            "Bạn là chuyên gia Neo4j. Dựa trên ontology đã được cung cấp, hãy sinh ra các câu lệnh Cypher MERGE hoặc lệnh tối ưu để đưa dữ liệu vào Neo4j mà không gặp bất cứ lỗi nào khi chạy. "
                 "Đảm bảo rằng mã Cypher sinh ra không gây ra lỗi 'Variable already declared' hoặc 'Variable not defined' hay các lỗi cú pháp khác trên Neo4j.\n\n"
                 
                 "Yêu cầu về đảm bảo tính đầy đủ và chất lượng của knowledge graph:\n"
