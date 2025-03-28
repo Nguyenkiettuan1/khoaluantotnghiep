@@ -3,11 +3,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection
 
-
 load_dotenv()
-
-
-
 
 def generate_cypher_from_data_conversation_DeepSeek(conversation_messages, client: OpenAI = OpenAI(
   base_url="https://openrouter.ai/api/v1",

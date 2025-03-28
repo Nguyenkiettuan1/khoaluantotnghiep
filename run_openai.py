@@ -112,29 +112,3 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
         f.write(generated_cypher)
     print(f"✅ Đã lưu Cypher vào file: {cypher_file}")
 
-# Thực thi các file Cypher
-print("\nBắt đầu kết nối đến Neo4j...")
-uri = os.getenv("NEO4J_URI")
-neo4j_user = os.getenv("NEO4J_USER")
-neo4j_password = os.getenv("NEO4J_PASSWORD")
-dbname = os.getenv("NEO4J_DATABASE")
-
-try:
-    conn = Neo4jConnection(uri, neo4j_user, neo4j_password, dbname)
-    print("✅ Kết nối đến Neo4j thành công.")
-
-    for cypher_file in processed_files:
-        print(f"\n[+] Đang thực thi file: {cypher_file}")
-        with open(cypher_file, "r", encoding="utf-8") as f:
-            cypher_script = f.read().strip()
-        
-        if cypher_script:
-            result = conn.run_cypher(cypher_script)
-            print(f"✅ Thực thi thành công file: {cypher_file}")
-
-except Exception as e:
-    print(f"❌ Lỗi: {str(e)}")
-finally:
-    if 'conn' in locals():
-        conn.close()
-        print("✅ Đã đóng kết nối Neo4j.")

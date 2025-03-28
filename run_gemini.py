@@ -20,9 +20,6 @@ def generate_cypher_from_data_conversation_gemini(conversation_messages):
     # Clean up cypher script
     cypher_script = clean_cypher_code(response)
     
-    # Validate cypher script
-    
-        
     return cypher_script
 
 # Đường dẫn thư mục chứa các file .txt
@@ -114,7 +111,7 @@ try:
             })
 
             # Lưu vào file riêng
-            cypher_file = f"./cypher_gemini_sguv2/{filename}.cypher"
+            cypher_file = f"./cypher_gemini/{filename}.cypher"
             processed_files.append(cypher_file)
             with open(cypher_file, "w", encoding="utf-8") as f:
                 f.write(generated_cypher)
