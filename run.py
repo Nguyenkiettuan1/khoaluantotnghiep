@@ -33,6 +33,19 @@ def generate_cypher_from_data_conversation_DeepSeek(conversation_messages, clien
         cypher_script = cypher_script.replace(keyword, "")
     return cypher_script.strip()
 
+def generate_cypher_from_data_conversation_Bytedance(conversation_messages, client: OpenAI = OpenAI(
+  base_url="https://openrouter.ai/api/v1",
+  api_key=os.getenv("OPENROUTER_API_KEY"),
+)):
+    response = client.chat.completions.create(
+        messages=conversation_messages,
+        model="bytedance-research/ui-tars-72b:free",
+        temperature=0.1,
+    )
+    cypher_script = response.choices[0].message.content
+    for keyword in ["```cypher", "```"]:
+        cypher_script = cypher_script.replace(keyword, "")
+    return cypher_script.strip()
 # Đường dẫn thư mục chứa các file .txt
 dataset_dir = "./dataset"
 
@@ -84,7 +97,7 @@ conversation_messages = [
                 "Nếu node đó có cùng ý nghĩa với node đã tồn tại, hãy tái sử dụng node đó."
                 "Phải lấy đủ dữ liệu các node và mối quan hệ đã có trong ontology, "
                 "và sinh ra các câu lệnh Cypher có thể chạy trên Neo4j mà không gặp bất cứ lỗi nào."
-                "Tên các node và mối quan hệ phải sử dụng tiếng Việt không có dấu. Và được phân cách bằng dấu gạch dưới (_)."
+               
         )
     },
 ]
@@ -123,7 +136,7 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
     # generated_cypher = generate_cypher_from_data_conversation(conversation_messages, client)
     
     # # Gọi hàm sinh Cypher from DeepSeek
-    generated_cypher = generate_cypher_from_data_conversation_DeepSeek(conversation_messages)
+    generated_cypher = generate_cypher_from_data_conversation_Bytedance(conversation_messages)
     # Lưu câu trả lời vào conversation để giữ ngữ cảnh
     conversation_messages.append({
         "role": "assistant",
@@ -140,32 +153,3 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
 
 
 print(f"\nTất cả các câu lệnh Cypher đã được lưu vào: {processed_files}")
-
-# ================================
-# BƯỚC 2: Đẩy dữ liệu lên Neo4j (tuỳ chọn)
-# ================================
-print("\nBắt đầu kết nối đến Neo4j...")
-uri = os.getenv("NEO4J_URI")
-neo4j_user = os.getenv("NEO4J_USER")
-neo4j_password = os.getenv("NEO4J_PASSWORD")
-dbname = os.getenv("NEO4J_DATABASE")
-
-try:
-    conn = Neo4jConnection(uri, neo4j_user, neo4j_password, dbname)
-    print("✅ Kết nối đến Neo4j thành công.")
-
-    for cypher_file in processed_files:
-        print(f"\n[+] Đang thực thi file: {cypher_file}")
-        with open(cypher_file, "r", encoding="utf-8") as f:
-            cypher_script = f.read().strip()
-        
-        if cypher_script:
-            result = conn.run_cypher(cypher_script)
-            print(f"✅ Thực thi thành công file: {cypher_file}")
-
-except Exception as e:
-    print(f"❌ Lỗi: {str(e)}")
-finally:
-    if 'conn' in locals():
-        conn.close()
-        print("✅ Đã đóng kết nối Neo4j.")
