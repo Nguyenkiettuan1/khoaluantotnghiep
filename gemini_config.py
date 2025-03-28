@@ -31,6 +31,7 @@ class GeminiConfig:
         Returns:
             str: Generated response
         """
+        
         model = self.get_model(model_name)
         response = model.generate_content(prompt)
         return response.text
