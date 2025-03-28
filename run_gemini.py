@@ -107,7 +107,7 @@ try:
             conversation_messages.append({"role": "user", "parts": [user_message]})
 
             # Sinh Cypher
-            generated_cypher = generate_cypher_from_data_conversation(conversation_messages)
+            generated_cypher = generate_cypher_from_data_conversation_gemini(conversation_messages)
             conversation_messages.append({
                 "role": "assistant",
                 "parts": [generated_cypher]

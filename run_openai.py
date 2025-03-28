@@ -99,7 +99,7 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
     conversation_messages.append({"role": "user", "content": user_message})
 
     # Sinh Cypher
-    generated_cypher = generate_cypher_from_data_conversation(conversation_messages, client)
+    generated_cypher = generate_cypher_from_data_conversation_openai(conversation_messages, client)
     conversation_messages.append({
         "role": "assistant",
         "content": generated_cypher
