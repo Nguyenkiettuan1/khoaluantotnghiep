@@ -1,4 +1,4 @@
-MERGE (university:Truong_Dai_hoc {name: "Trường Đại học Sài Gòn", description: "Trường Đại học Sài Gòn là cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, chịu sự quản lý nhà nước về giáo dục của Bộ Giáo dục và Đào tạo; là trường đại học đào tạo đa ngành, đa lĩnh vực. Trường đào tạo từ trình độ đại học và sau đại học, theo 2 phương thức: chính quy và giáo dục thường xuyên (vừa làm vừa học, văn bằng hai, liên thông). Được kiểm định chất lượng giáo dục năm 2017 và nhận Huân chương Lao động Hạng Ba năm 2018"})
+MERGE (university:Truong_Dai_hoc {name: "Trường Đại học Sài Gòn", description: "Trường Đại học Sài Gòn là cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh"})
 
 MERGE (degree1:Degree {name: "Tiến sĩ", description: "Trình độ đào tạo tiến sĩ với 05 chuyên ngành"})
 MERGE (degree2:Degree {name: "Thạc sĩ", description: "Trình độ đào tạo thạc sĩ với 12 chuyên ngành"})
