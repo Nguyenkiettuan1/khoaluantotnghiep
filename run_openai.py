@@ -34,7 +34,7 @@ print("Đã đọc ontology, độ dài:", len(ontology), "ký tự")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Đảm bảo thư mục cypher tồn tại
-os.makedirs("./cypher", exist_ok=True)
+os.makedirs("./cypher_openai_sguv3", exist_ok=True)
 
 # Prompt hệ thống (tiếng Việt)
 conversation_messages = [
@@ -106,7 +106,7 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
     })
 
     # Lưu vào file riêng
-    cypher_file = f"./cypher/{filename}.cypher"
+    cypher_file = f"./cypher_openai_sguv3/{filename}.cypher"
     processed_files.append(cypher_file)
     with open(cypher_file, "w", encoding="utf-8") as f:
         f.write(generated_cypher)

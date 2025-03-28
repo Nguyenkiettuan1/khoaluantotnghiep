@@ -39,7 +39,7 @@ try:
     print("Đã đọc ontology, độ dài:", len(ontology), "ký tự")
 
     # Đảm bảo thư mục cypher tồn tại
-    os.makedirs("./cypher_gemini", exist_ok=True)
+    os.makedirs("./cypher_gemini_sguv2", exist_ok=True)
 
     # Prompt hệ thống (tiếng Việt)
     conversation_messages = [
@@ -114,7 +114,7 @@ try:
             })
 
             # Lưu vào file riêng
-            cypher_file = f"./cypher_gemini/{filename}.cypher"
+            cypher_file = f"./cypher_gemini_sguv2/{filename}.cypher"
             processed_files.append(cypher_file)
             with open(cypher_file, "w", encoding="utf-8") as f:
                 f.write(generated_cypher)
