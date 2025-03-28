@@ -57,7 +57,6 @@ try:
                 "Yêu cầu về cú pháp và tối ưu hóa:\n"
                 "- Mỗi class nên được tạo riêng biệt, và tránh gốp quá nhiều MERGE vào cùng một câu.\n"
                 "- Sử dụng WITH hợp lý để truyền biến giữa các bước,đảm bảo không bị lỗi 'WITH is required between MERGE and MATCH', sử dụng đúng cú pháp.\n"
-                "- "
                 "- Mỗi node bắt buộc phải có thuộc tính 'name' không cho phép trống và mang tính duy nhất trong cùng một loại node.\n"
                 "- Mỗi node bắt buộc phải có thuộc tính 'description' không cho phép trống .\n"
                 "- Áp dụng các pattern để match nhiều node và quan hệ trong một câu lệnh, và đảm bảo không khai báo lại biến đã tồn tại.\n\n"
