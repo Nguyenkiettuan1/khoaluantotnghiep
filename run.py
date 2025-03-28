@@ -21,7 +21,7 @@ def generate_cypher_from_data_conversation(conversation_messages, client: OpenAI
 
 def generate_cypher_from_data_conversation_DeepSeek(conversation_messages, client: OpenAI = OpenAI(
   base_url="https://openrouter.ai/api/v1",
-  api_key="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",
+  api_key=os.getenv("OPENROUTER_API_KEY"),
 )):
     response = client.chat.completions.create(
         messages=conversation_messages,
@@ -100,10 +100,7 @@ txt_files_phan1.sort()
 # Xử lý từng file và lưu vào file riêng
 processed_files = []
 
-# Xử lý từng file và lưu vào file riêng
-processed_files = []
-all_generated_cypher = ""
-i = 0
+
 for idx, filename in enumerate(txt_files_phan1, start=1):
     file_path = os.path.join(dataset_dir, filename)
     print(f"\n[+] Đang xử lý file {idx}: {filename}")
@@ -121,8 +118,7 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
     """
     conversation_messages.append({"role": "user", "content": user_message})
 
-    # Sinh Cypher
-    generated_cypher = generate_cypher_from_data_conversation(conversation_messages, client)
+
     # # Gọi hàm sinh Cypher from open AI
     # generated_cypher = generate_cypher_from_data_conversation(conversation_messages, client)
     
@@ -141,35 +137,9 @@ for idx, filename in enumerate(txt_files_phan1, start=1):
         f.write(generated_cypher)
     print(f"✅ Đã lưu Cypher vào file: {cypher_file}")
 
-# Thực thi các file Cypher
-    # # Làm sạch câu lệnh Cypher (nếu có hàm clean_cypher_code)
-    # generated_cypher = clean_cypher_code(generated_cypher, remove_trailing_dot=True)
 
-    # # Kiểm tra Cypher (nếu có hàm validate_cypher_query)
-    # check_cypher = validate_cypher_query(generated_cypher)
 
-    # Lưu vào biến tổng
-    all_generated_cypher += f"// Từ file {filename}\n" + generated_cypher + "\n\n"
-
-    # Ghi ngay vào file cypher
-    with open(cypher_output_path+f"{str(i)}", "w", encoding="utf-8") as f:
-        f.write(generated_cypher + "\n")
-        
-    i += 1
-
-print(f"\nTất cả các câu lệnh Cypher đã được lưu vào: {cypher_output_path}")
-
-# Làm sạch toàn bộ nội dung Cypher (loại bỏ markdown nếu có)
-with open(cypher_output_path, "r", encoding="utf-8") as f:
-    cypher_script = f.read().strip()
-
-for keyword in ["```cypher", "```"]:
-    cypher_script = cypher_script.replace(keyword, "")
-
-cypher_script = cypher_script.strip()
-with open(cypher_output_path, "w", encoding="utf-8") as f:
-    f.write(cypher_script)
-print(f"✅ Mã Cypher đã được làm sạch và lưu vào: {cypher_output_path}")
+print(f"\nTất cả các câu lệnh Cypher đã được lưu vào: {processed_files}")
 
 # ================================
 # BƯỚC 2: Đẩy dữ liệu lên Neo4j (tuỳ chọn)
