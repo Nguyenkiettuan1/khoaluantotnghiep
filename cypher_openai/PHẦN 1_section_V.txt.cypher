@@ -1,0 +1,11 @@
+MERGE (university:University {name: 'Trường Đại học Sài Gòn', description: 'Trường Đại học Sài Gòn là cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, chịu sự quản lý nhà nước về giáo dục của Bộ Giáo dục và Đào tạo; là trường đại học đào tạo đa ngành, đa lĩnh vực. Trường Đại học Sài Gòn đào tạo từ trình độ đại học và sau đại học, theo 2 phương thức: chính quy và giáo dục thường xuyên (vừa làm vừa học, văn bằng hai, liên thông). Hiện nay, Trường đang tổ chức đào tạo 05 chuyên ngành tiến sĩ, 12 chuyên ngành cao học và 39 chương trình đào tạo trình độ đại học thuộc các lĩnh vực: Kinh tế - Kỹ thuật - Công nghệ, Văn hóa xã hội, chính trị, Nghệ thuật và Sư phạm. Ngoài việc cấp bằng, Trường Đại học Sài Gòn được Bộ Giáo dục và Đào tạo cho phép đào tạo cấp các chứng chỉ Bồi dưỡng nghiệp vụ sư phạm cho giảng viên đại học, cao đẳng và bồi dưỡng nghiệp vụ sư phạm cho giáo viên Tiếng Anh Tiểu học, chứng chỉ Công nghệ Thông tin và chứng chỉ Tiếng Anh theo khung năng lực Ngoại ngữ 6 bậc dùng cho Việt Nam. Ngày 13/5/2017, Trường Đại học Sài Gòn được Chứng nhận kiểm định chất lượng giáo dục trường đại học. Năm 2018, Trường đón nhận Huân chương Lao động Hạng Ba do Chủ tịch nước Cộng hòa Xã hội Chủ nghĩa Việt Nam trao tặng.'})
+
+MERGE (researchProject:Research {name: 'Đề tài Nghiên cứu khoa học cấp cơ sở', description: 'Sinh viên tham gia thực hiện đề tài NCKH trong thời gian từ 06 – 09 tháng dưới sự hướng dẫn của Giảng viên.'})
+MERGE (studentResearchRights:Research {name: 'Quyền lợi sinh viên NCKH', description: 'Sinh viên có đề tài NCKH đạt yêu cầu sẽ được hỗ trợ kinh phí, cộng điểm rèn luyện và cấp giấy chứng nhận NCKH.'})
+MERGE (scientificPapers:Research {name: 'Bài báo Khoa học và báo cáo tham luận', description: 'Sinh viên có bài báo đăng trên các Tạp chí chuyên ngành hoặc báo cáo khoa học sẽ được xét thưởng kinh phí và cộng điểm rèn luyện.'})
+
+WITH university, researchProject, studentResearchRights, scientificPapers
+
+MERGE (university)-[:conductsResearch]->(researchProject)
+MERGE (university)-[:conductsResearch]->(studentResearchRights)
+MERGE (university)-[:conductsResearch]->(scientificPapers)
