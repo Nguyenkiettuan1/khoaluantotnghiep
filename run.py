@@ -3,7 +3,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection
 from clearCypher import clean_cypher_code
-from utils import validate_cypher_query
+
 
 load_dotenv()
 

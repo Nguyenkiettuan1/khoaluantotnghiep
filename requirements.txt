@@ -6,6 +6,7 @@ charset-normalizer==3.4.1
 colorama==0.4.6
 cryptography==44.0.2
 distro==1.9.0
+google-generativeai==0.8.4
 h11==0.14.0
 httpcore==1.0.7
 httpx==0.28.1
@@ -16,6 +17,7 @@ openai==1.68.2
 pdfminer.six==20231228
 pdfplumber==0.11.5
 pillow>=9.1,<11
+protobuf<5,>=3.20
 pycparser==2.22
 pydantic==2.10.6
 pydantic_core==2.27.2
