@@ -1,0 +1,218 @@
+@prefix : <http://example.org/sgu#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<http://example.org/sgu> a owl:Ontology .
+
+# Classes
+:Trường Đại học Sài Gòn a rdfs:Class .
+:Cử nhân a rdfs:Class .
+:Thạc sĩ a rdfs:Class .
+:Tiến sĩ a rdfs:Class .
+:Chương trình chính quy a rdfs:Class .
+:Chương trình giáo dục thường xuyên a rdfs:Class .
+:Chương trình chất lượng cao a rdfs:Class .
+:Khoa Kinh tế a rdfs:Class .
+:Khoa Kỹ thuật a rdfs:Class .
+:Khoa Nghệ thuật a rdfs:Class .
+:Dự án nghiên cứu 1 a rdfs:Class .
+:Dự án nghiên cứu 2 a rdfs:Class .
+:Hợp tác quốc tế 1 a rdfs:Class .
+:Hợp tác quốc tế 2 a rdfs:Class .
+:Tạp chí Khoa học a rdfs:Class .
+:Sinh viên 1 a rdfs:Class .
+:Sinh viên 2 a rdfs:Class .
+:Giảng viên 1 a rdfs:Class .
+:Giảng viên 2 a rdfs:Class .
+:Ban lãnh đạo a rdfs:Class .
+:Các tổ chức đoàn thể a rdfs:Class .
+:Các phòng ban chức năng a rdfs:Class .
+:Các trung tâm trực thuộc a rdfs:Class .
+:Các khoa chuyên môn a rdfs:Class .
+:Đơn vị trực thuộc a rdfs:Class .
+:Hệ chính quy a rdfs:Class .
+:Trình độ Đại học a rdfs:Class .
+:Trình độ Sau Đại học a rdfs:Class .
+:Trình độ Tiến sĩ a rdfs:Class .
+:Giáo dục thường xuyên a rdfs:Class .
+:Chương trình đại trà a rdfs:Class .
+:Giáo dục Chính trị - Du lịch a rdfs:Class .
+:Giáo dục Mầm non - Kế toán a rdfs:Class .
+:Giáo dục Tiểu học - Khoa học Môi trường a rdfs:Class .
+:Sư phạm Âm nhạc - Kinh doanh Quốc tế a rdfs:Class .
+:Sư phạm Địa lý - Kỹ thuật Điện a rdfs:Class .
+:Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông a rdfs:Class .
+:Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm a rdfs:Class .
+:Sư phạm Lịch sử - Luật a rdfs:Class .
+:Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh a rdfs:Class .
+:Sư phạm Mỹ thuật - Quản lý Giáo dục a rdfs:Class .
+:Sư phạm Ngữ Văn - Quản trị Kinh doanh a rdfs:Class .
+:Sư phạm Sinh học - Quản trị Văn phòng a rdfs:Class .
+:Sư phạm Tiếng Anh - Quốc tế học a rdfs:Class .
+:Sư phạm Toán học - Tài chính - Ngân hàng a rdfs:Class .
+:Sư phạm Vật lý - Tâm lý học a rdfs:Class .
+:CNKT Điện tử - Viễn thông - Thanh nhạc a rdfs:Class .
+:CNKT Điện, Điện tử - Thông tin - Thư viện a rdfs:Class .
+:Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng a rdfs:Class .
+:Công nghệ Thông tin - Việt Nam học a rdfs:Class .
+:Hóa hữu cơ - Quản trị Kinh doanh a rdfs:Class .
+:Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng a rdfs:Class .
+:Khoa học Máy tính - Toán Giải tích a rdfs:Class .
+:Lịch sử Việt Nam - Văn học Việt Nam a rdfs:Class .
+:LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự a rdfs:Class .
+:Ngôn ngữ học a rdfs:Class .
+:Quản lý Giáo dục a rdfs:Class .
+:Hóa hữu cơ a rdfs:Class .
+:Lịch sử Việt Nam a rdfs:Class .
+:Toán Giải tích a rdfs:Class .
+:Quản trị Kinh doanh a rdfs:Class .
+:Đào tạo Đại học liên thông a rdfs:Class .
+:Đào tạo văn bằng thứ hai a rdfs:Class .
+:Đào tạo hệ đại học vừa làm vừa học a rdfs:Class .
+:Hợp tác quốc tế a rdfs:Class .
+:Công tác đối ngoại a rdfs:Class .
+:Các chương trình hợp tác, đào tạo quốc tế a rdfs:Class .
+:Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử a rdfs:Class .
+:Chương trình đào tạo tiếng Hoa a rdfs:Class .
+:Học bổng toàn phần của Bộ Y tế Singapore a rdfs:Class .
+:Học bổng của Bộ Giáo dục Đài Loan a rdfs:Class .
+:Chương trình liên kết đào tạo khác a rdfs:Class .
+:Đề tài Nghiên cứu khoa học cấp cơ sở a rdfs:Class .
+:Quyền lợi sinh viên NCKH a rdfs:Class .
+:Bài báo Khoa học và báo cáo tham luận a rdfs:Class .
+:Tạp chí Khoa học Đại học Sài Gòn a rdfs:Class .
+:Tôn chỉ, mục đích hoạt động a rdfs:Class .
+:Quy định chung về bài báo khoa học a rdfs:Class .
+:Thể lệ gửi bài đăng a rdfs:Class .
+
+# Properties
+:hasDegree a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Cử nhân, :Thạc sĩ, :Tiến sĩ .
+
+:offersProgram a rdf:Property ;
+    rdfs:domain :Chương trình đại trà, :Các chương trình hợp tác, đào tạo quốc tế, :Giáo dục thường xuyên, :Hệ chính quy, :Trình độ Sau Đại học, :Trình độ Tiến sĩ, :Trình độ Đại học, :Trường Đại học Sài Gòn ;
+    rdfs:range :CNKT Điện tử - Viễn thông - Thanh nhạc, :CNKT Điện, Điện tử - Thông tin - Thư viện, :Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử, :Chương trình chính quy, :Chương trình chất lượng cao, :Chương trình giáo dục thường xuyên, :Chương trình liên kết đào tạo khác, :Chương trình đào tạo tiếng Hoa, :Chương trình đại trà, :Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng, :Công nghệ Thông tin - Việt Nam học, :Giáo dục Chính trị - Du lịch, :Giáo dục Mầm non - Kế toán, :Giáo dục Tiểu học - Khoa học Môi trường, :Giáo dục thường xuyên, :Hóa hữu cơ, :Hóa hữu cơ - Quản trị Kinh doanh, :Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng, :Hệ chính quy, :Học bổng của Bộ Giáo dục Đài Loan, :Học bổng toàn phần của Bộ Y tế Singapore, :Khoa học Máy tính - Toán Giải tích, :LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự, :Lịch sử Việt Nam, :Lịch sử Việt Nam - Văn học Việt Nam, :Ngôn ngữ học, :Quản lý Giáo dục, :Quản trị Kinh doanh, :Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông, :Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm, :Sư phạm Lịch sử - Luật, :Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh, :Sư phạm Mỹ thuật - Quản lý Giáo dục, :Sư phạm Ngữ Văn - Quản trị Kinh doanh, :Sư phạm Sinh học - Quản trị Văn phòng, :Sư phạm Tiếng Anh - Quốc tế học, :Sư phạm Toán học - Tài chính - Ngân hàng, :Sư phạm Vật lý - Tâm lý học, :Sư phạm Âm nhạc - Kinh doanh Quốc tế, :Sư phạm Địa lý - Kỹ thuật Điện, :Toán Giải tích, :Trình độ Sau Đại học, :Trình độ Tiến sĩ, :Trình độ Đại học, :Đào tạo hệ đại học vừa làm vừa học, :Đào tạo văn bằng thứ hai, :Đào tạo Đại học liên thông .
+
+:hasDepartment a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Ban lãnh đạo, :Các khoa chuyên môn, :Các phòng ban chức năng, :Các trung tâm trực thuộc, :Các tổ chức đoàn thể, :Khoa Kinh tế, :Khoa Kỹ thuật, :Khoa Nghệ thuật, :Đơn vị trực thuộc .
+
+:conductsResearch a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Bài báo Khoa học và báo cáo tham luận, :Dự án nghiên cứu 1, :Dự án nghiên cứu 2, :Quyền lợi sinh viên NCKH, :Đề tài Nghiên cứu khoa học cấp cơ sở .
+
+:hasInternationalCooperation a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Hợp tác quốc tế, :Hợp tác quốc tế 1, :Hợp tác quốc tế 2 .
+
+:publishesIn a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Tạp chí Khoa học, :Tạp chí Khoa học Đại học Sài Gòn .
+
+:hasStudent a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Sinh viên 1, :Sinh viên 2 .
+
+:hasFaculty a rdf:Property ;
+    rdfs:domain :Trường Đại học Sài Gòn ;
+    rdfs:range :Giảng viên 1, :Giảng viên 2 .
+
+:includes a rdf:Property ;
+    rdfs:domain :Hợp tác quốc tế ;
+    rdfs:range :Các chương trình hợp tác, đào tạo quốc tế, :Công tác đối ngoại .
+
+:hasPurpose a rdf:Property ;
+    rdfs:domain :Tạp chí Khoa học Đại học Sài Gòn ;
+    rdfs:range :Tôn chỉ, mục đích hoạt động .
+
+:hasSubmissionGuidelines a rdf:Property ;
+    rdfs:domain :Tạp chí Khoa học Đại học Sài Gòn ;
+    rdfs:range :Quy định chung về bài báo khoa học .
+
+:hasSubmissionFormat a rdf:Property ;
+    rdfs:domain :Tạp chí Khoa học Đại học Sài Gòn ;
+    rdfs:range :Thể lệ gửi bài đăng .
+
+# Relationships
+:Trường Đại học Sài Gòn :hasDegree :Cử nhân .
+:Trường Đại học Sài Gòn :hasDegree :Thạc sĩ .
+:Trường Đại học Sài Gòn :hasDegree :Tiến sĩ .
+:Trường Đại học Sài Gòn :offersProgram :Chương trình chính quy .
+:Trường Đại học Sài Gòn :offersProgram :Chương trình giáo dục thường xuyên .
+:Trường Đại học Sài Gòn :offersProgram :Chương trình chất lượng cao .
+:Trường Đại học Sài Gòn :hasDepartment :Khoa Kinh tế .
+:Trường Đại học Sài Gòn :hasDepartment :Khoa Kỹ thuật .
+:Trường Đại học Sài Gòn :hasDepartment :Khoa Nghệ thuật .
+:Trường Đại học Sài Gòn :conductsResearch :Dự án nghiên cứu 1 .
+:Trường Đại học Sài Gòn :conductsResearch :Dự án nghiên cứu 2 .
+:Trường Đại học Sài Gòn :hasInternationalCooperation :Hợp tác quốc tế 1 .
+:Trường Đại học Sài Gòn :hasInternationalCooperation :Hợp tác quốc tế 2 .
+:Trường Đại học Sài Gòn :publishesIn :Tạp chí Khoa học .
+:Trường Đại học Sài Gòn :hasStudent :Sinh viên 1 .
+:Trường Đại học Sài Gòn :hasStudent :Sinh viên 2 .
+:Trường Đại học Sài Gòn :hasFaculty :Giảng viên 1 .
+:Trường Đại học Sài Gòn :hasFaculty :Giảng viên 2 .
+:Trường Đại học Sài Gòn :hasDepartment :Ban lãnh đạo .
+:Trường Đại học Sài Gòn :hasDepartment :Các tổ chức đoàn thể .
+:Trường Đại học Sài Gòn :hasDepartment :Các phòng ban chức năng .
+:Trường Đại học Sài Gòn :hasDepartment :Các trung tâm trực thuộc .
+:Trường Đại học Sài Gòn :hasDepartment :Các khoa chuyên môn .
+:Trường Đại học Sài Gòn :hasDepartment :Đơn vị trực thuộc .
+:Trường Đại học Sài Gòn :offersProgram :Hệ chính quy .
+:Hệ chính quy :offersProgram :Trình độ Đại học .
+:Hệ chính quy :offersProgram :Chương trình chất lượng cao .
+:Trường Đại học Sài Gòn :offersProgram :Trình độ Sau Đại học .
+:Trường Đại học Sài Gòn :offersProgram :Trình độ Tiến sĩ .
+:Trường Đại học Sài Gòn :offersProgram :Giáo dục thường xuyên .
+:Trình độ Đại học :offersProgram :Chương trình đại trà .
+:Chương trình đại trà :offersProgram :Giáo dục Chính trị - Du lịch .
+:Chương trình đại trà :offersProgram :Giáo dục Mầm non - Kế toán .
+:Chương trình đại trà :offersProgram :Giáo dục Tiểu học - Khoa học Môi trường .
+:Chương trình đại trà :offersProgram :Sư phạm Âm nhạc - Kinh doanh Quốc tế .
+:Chương trình đại trà :offersProgram :Sư phạm Địa lý - Kỹ thuật Điện .
+:Chương trình đại trà :offersProgram :Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông .
+:Chương trình đại trà :offersProgram :Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm .
+:Chương trình đại trà :offersProgram :Sư phạm Lịch sử - Luật .
+:Chương trình đại trà :offersProgram :Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh .
+:Chương trình đại trà :offersProgram :Sư phạm Mỹ thuật - Quản lý Giáo dục .
+:Chương trình đại trà :offersProgram :Sư phạm Ngữ Văn - Quản trị Kinh doanh .
+:Chương trình đại trà :offersProgram :Sư phạm Sinh học - Quản trị Văn phòng .
+:Chương trình đại trà :offersProgram :Sư phạm Tiếng Anh - Quốc tế học .
+:Chương trình đại trà :offersProgram :Sư phạm Toán học - Tài chính - Ngân hàng .
+:Chương trình đại trà :offersProgram :Sư phạm Vật lý - Tâm lý học .
+:Chương trình đại trà :offersProgram :CNKT Điện tử - Viễn thông - Thanh nhạc .
+:Chương trình đại trà :offersProgram :CNKT Điện, Điện tử - Thông tin - Thư viện .
+:Chương trình đại trà :offersProgram :Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng .
+:Chương trình đại trà :offersProgram :Công nghệ Thông tin - Việt Nam học .
+:Trình độ Sau Đại học :offersProgram :Hóa hữu cơ - Quản trị Kinh doanh .
+:Trình độ Sau Đại học :offersProgram :Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng .
+:Trình độ Sau Đại học :offersProgram :Khoa học Máy tính - Toán Giải tích .
+:Trình độ Sau Đại học :offersProgram :Lịch sử Việt Nam - Văn học Việt Nam .
+:Trình độ Sau Đại học :offersProgram :LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự .
+:Trình độ Sau Đại học :offersProgram :Ngôn ngữ học .
+:Trình độ Sau Đại học :offersProgram :Quản lý Giáo dục .
+:Trình độ Tiến sĩ :offersProgram :Hóa hữu cơ .
+:Trình độ Tiến sĩ :offersProgram :Lịch sử Việt Nam .
+:Trình độ Tiến sĩ :offersProgram :Quản lý Giáo dục .
+:Trình độ Tiến sĩ :offersProgram :Toán Giải tích .
+:Trình độ Tiến sĩ :offersProgram :Quản trị Kinh doanh .
+:Giáo dục thường xuyên :offersProgram :Đào tạo Đại học liên thông .
+:Giáo dục thường xuyên :offersProgram :Đào tạo văn bằng thứ hai .
+:Giáo dục thường xuyên :offersProgram :Đào tạo hệ đại học vừa làm vừa học .
+:Trường Đại học Sài Gòn :hasInternationalCooperation :Hợp tác quốc tế .
+:Hợp tác quốc tế :includes :Công tác đối ngoại .
+:Hợp tác quốc tế :includes :Các chương trình hợp tác, đào tạo quốc tế .
+:Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử .
+:Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Chương trình đào tạo tiếng Hoa .
+:Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Học bổng toàn phần của Bộ Y tế Singapore .
+:Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Học bổng của Bộ Giáo dục Đài Loan .
+:Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Chương trình liên kết đào tạo khác .
+:Trường Đại học Sài Gòn :conductsResearch :Đề tài Nghiên cứu khoa học cấp cơ sở .
+:Trường Đại học Sài Gòn :conductsResearch :Quyền lợi sinh viên NCKH .
+:Trường Đại học Sài Gòn :conductsResearch :Bài báo Khoa học và báo cáo tham luận .
+:Trường Đại học Sài Gòn :publishesIn :Tạp chí Khoa học Đại học Sài Gòn .
+:Tạp chí Khoa học Đại học Sài Gòn :hasPurpose :Tôn chỉ, mục đích hoạt động .
+:Tạp chí Khoa học Đại học Sài Gòn :hasSubmissionGuidelines :Quy định chung về bài báo khoa học .
+:Tạp chí Khoa học Đại học Sài Gòn :hasSubmissionFormat :Thể lệ gửi bài đăng .

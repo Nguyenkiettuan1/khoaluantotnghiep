@@ -1,0 +1,567 @@
+@prefix : <http://example.org/sgu#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:ban_lãnh_đạo a rdfs:Class ;
+    rdfs:label "Ban lãnh đạo"@vi .
+
+:bài_báo_khoa_học_và_báo_cáo_tham_luận a rdfs:Class ;
+    rdfs:label "Bài báo Khoa học và báo cáo tham luận"@vi .
+
+:chương_trình_chính_quy a rdfs:Class ;
+    rdfs:label "Chương trình chính quy"@vi .
+
+:chương_trình_chất_lượng_cao a rdfs:Class ;
+    rdfs:label "Chương trình chất lượng cao"@vi .
+
+:chương_trình_cử_nhân_quốc_tế_quản_trị_kinh_doanh_và_quản_lý_thương_mại_điện_tử a rdfs:Class ;
+    rdfs:label "Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"@vi .
+
+:chương_trình_giáo_dục_thường_xuyên a rdfs:Class ;
+    rdfs:label "Chương trình giáo dục thường xuyên"@vi .
+
+:chương_trình_liên_kết_đào_tạo_khác a rdfs:Class ;
+    rdfs:label "Chương trình liên kết đào tạo khác"@vi .
+
+:chương_trình_đào_tạo_tiếng_hoa a rdfs:Class ;
+    rdfs:label "Chương trình đào tạo tiếng Hoa"@vi .
+
+:chương_trình_đại_trà a rdfs:Class ;
+    rdfs:label "Chương trình đại trà"@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:cnkt_điện,_điện_tử_-_thông_tin_-_thư_viện_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :CNKT Điện, Điện tử - Thông tin - Thư viện ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:cnkt_điện_tử_-_viễn_thông_-_thanh_nhạc_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :CNKT Điện tử - Viễn thông - Thanh nhạc ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:công_nghệ_kỹ_thuật_môi_trường_-_toán_ứng_dụng_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:công_nghệ_thông_tin_-_việt_nam_học_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Công nghệ Thông tin - Việt Nam học ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:giáo_dục_chính_trị_-_du_lịch_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Giáo dục Chính trị - Du lịch ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:giáo_dục_mầm_non_-_kế_toán_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Giáo dục Mầm non - Kế toán ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:giáo_dục_tiểu_học_-_khoa_học_môi_trường_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Giáo dục Tiểu học - Khoa học Môi trường ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_hóa_học_-_kỹ_thuật_điện_tử_-_viễn_thông_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_khoa_học_tự_nhiên_-_kỹ_thuật_phần_mềm_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_lịch_sử_-_luật_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Lịch sử - Luật ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_lịch_sử_-_địa_lý_-_ngôn_ngữ_anh_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_mỹ_thuật_-_quản_lý_giáo_dục_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Mỹ thuật - Quản lý Giáo dục ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_ngữ_văn_-_quản_trị_kinh_doanh_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Ngữ Văn - Quản trị Kinh doanh ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_sinh_học_-_quản_trị_văn_phòng_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Sinh học - Quản trị Văn phòng ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_tiếng_anh_-_quốc_tế_học_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Tiếng Anh - Quốc tế học ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_toán_học_-_tài_chính_-_ngân_hàng_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Toán học - Tài chính - Ngân hàng ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_vật_lý_-_tâm_lý_học_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Vật lý - Tâm lý học ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_âm_nhạc_-_kinh_doanh_quốc_tế_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Âm nhạc - Kinh doanh Quốc tế ."@vi .
+
+<http://example.org/sgu#chương_trình_đại_trà_:offersprogram_:sư_phạm_địa_lý_-_kỹ_thuật_điện_.> a rdfs:Class ;
+    rdfs:label "Chương trình đại trà :offersProgram :Sư phạm Địa lý - Kỹ thuật Điện ."@vi .
+
+<http://example.org/sgu#cnkt_điện,_điện_tử_-_thông_tin_-_thư_viện> a rdfs:Class ;
+    rdfs:label "CNKT Điện, Điện tử - Thông tin - Thư viện"@vi .
+
+:cnkt_điện_tử_-_viễn_thông_-_thanh_nhạc a rdfs:Class ;
+    rdfs:label "CNKT Điện tử - Viễn thông - Thanh nhạc"@vi .
+
+:conductsresearch a rdfs:Class ;
+    rdfs:label "conductsResearch"@vi .
+
+<http://example.org/sgu#các_chương_trình_hợp_tác,_đào_tạo_quốc_tế> a rdfs:Class ;
+    rdfs:label "Các chương trình hợp tác, đào tạo quốc tế"@vi .
+
+<http://example.org/sgu#các_chương_trình_hợp_tác,_đào_tạo_quốc_tế_:offersprogram_:chương_trình_cử_nhân_quốc_tế_quản_trị_kinh_doanh_và_quản_lý_thương_mại_điện_tử_.> a rdfs:Class ;
+    rdfs:label "Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử ."@vi .
+
+<http://example.org/sgu#các_chương_trình_hợp_tác,_đào_tạo_quốc_tế_:offersprogram_:chương_trình_liên_kết_đào_tạo_khác_.> a rdfs:Class ;
+    rdfs:label "Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Chương trình liên kết đào tạo khác ."@vi .
+
+<http://example.org/sgu#các_chương_trình_hợp_tác,_đào_tạo_quốc_tế_:offersprogram_:chương_trình_đào_tạo_tiếng_hoa_.> a rdfs:Class ;
+    rdfs:label "Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Chương trình đào tạo tiếng Hoa ."@vi .
+
+<http://example.org/sgu#các_chương_trình_hợp_tác,_đào_tạo_quốc_tế_:offersprogram_:học_bổng_của_bộ_giáo_dục_đài_loan_.> a rdfs:Class ;
+    rdfs:label "Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Học bổng của Bộ Giáo dục Đài Loan ."@vi .
+
+<http://example.org/sgu#các_chương_trình_hợp_tác,_đào_tạo_quốc_tế_:offersprogram_:học_bổng_toàn_phần_của_bộ_y_tế_singapore_.> a rdfs:Class ;
+    rdfs:label "Các chương trình hợp tác, đào tạo quốc tế :offersProgram :Học bổng toàn phần của Bộ Y tế Singapore ."@vi .
+
+:các_khoa_chuyên_môn a rdfs:Class ;
+    rdfs:label "Các khoa chuyên môn"@vi .
+
+:các_phòng_ban_chức_năng a rdfs:Class ;
+    rdfs:label "Các phòng ban chức năng"@vi .
+
+:các_trung_tâm_trực_thuộc a rdfs:Class ;
+    rdfs:label "Các trung tâm trực thuộc"@vi .
+
+:các_tổ_chức_đoàn_thể a rdfs:Class ;
+    rdfs:label "Các tổ chức đoàn thể"@vi .
+
+:công_nghệ_kỹ_thuật_môi_trường_-_toán_ứng_dụng a rdfs:Class ;
+    rdfs:label "Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng"@vi .
+
+:công_nghệ_thông_tin_-_việt_nam_học a rdfs:Class ;
+    rdfs:label "Công nghệ Thông tin - Việt Nam học"@vi .
+
+:công_tác_đối_ngoại a rdfs:Class ;
+    rdfs:label "Công tác đối ngoại"@vi .
+
+:cử_nhân a rdfs:Class ;
+    rdfs:label "Cử nhân"@vi .
+
+:dự_án_nghiên_cứu_1 a rdfs:Class ;
+    rdfs:label "Dự án nghiên cứu 1"@vi .
+
+:dự_án_nghiên_cứu_2 a rdfs:Class ;
+    rdfs:label "Dự án nghiên cứu 2"@vi .
+
+:giáo_dục_chính_trị_-_du_lịch a rdfs:Class ;
+    rdfs:label "Giáo dục Chính trị - Du lịch"@vi .
+
+:giáo_dục_mầm_non_-_kế_toán a rdfs:Class ;
+    rdfs:label "Giáo dục Mầm non - Kế toán"@vi .
+
+:giáo_dục_thường_xuyên a rdfs:Class ;
+    rdfs:label "Giáo dục thường xuyên"@vi .
+
+<http://example.org/sgu#giáo_dục_thường_xuyên_:offersprogram_:đào_tạo_hệ_đại_học_vừa_làm_vừa_học_.> a rdfs:Class ;
+    rdfs:label "Giáo dục thường xuyên :offersProgram :Đào tạo hệ đại học vừa làm vừa học ."@vi .
+
+<http://example.org/sgu#giáo_dục_thường_xuyên_:offersprogram_:đào_tạo_văn_bằng_thứ_hai_.> a rdfs:Class ;
+    rdfs:label "Giáo dục thường xuyên :offersProgram :Đào tạo văn bằng thứ hai ."@vi .
+
+<http://example.org/sgu#giáo_dục_thường_xuyên_:offersprogram_:đào_tạo_đại_học_liên_thông_.> a rdfs:Class ;
+    rdfs:label "Giáo dục thường xuyên :offersProgram :Đào tạo Đại học liên thông ."@vi .
+
+:giáo_dục_tiểu_học_-_khoa_học_môi_trường a rdfs:Class ;
+    rdfs:label "Giáo dục Tiểu học - Khoa học Môi trường"@vi .
+
+:giảng_viên_1 a rdfs:Class ;
+    rdfs:label "Giảng viên 1"@vi .
+
+:giảng_viên_2 a rdfs:Class ;
+    rdfs:label "Giảng viên 2"@vi .
+
+:hasdegree a rdfs:Class ;
+    rdfs:label "hasDegree"@vi .
+
+:hasdepartment a rdfs:Class ;
+    rdfs:label "hasDepartment"@vi .
+
+:hasfaculty a rdfs:Class ;
+    rdfs:label "hasFaculty"@vi .
+
+:hasinternationalcooperation a rdfs:Class ;
+    rdfs:label "hasInternationalCooperation"@vi .
+
+:haspurpose a rdfs:Class ;
+    rdfs:label "hasPurpose"@vi .
+
+:hasstudent a rdfs:Class ;
+    rdfs:label "hasStudent"@vi .
+
+:hassubmissionformat a rdfs:Class ;
+    rdfs:label "hasSubmissionFormat"@vi .
+
+:hassubmissionguidelines a rdfs:Class ;
+    rdfs:label "hasSubmissionGuidelines"@vi .
+
+:hóa_hữu_cơ a rdfs:Class ;
+    rdfs:label "Hóa hữu cơ"@vi .
+
+:hóa_hữu_cơ_-_quản_trị_kinh_doanh a rdfs:Class ;
+    rdfs:label "Hóa hữu cơ - Quản trị Kinh doanh"@vi .
+
+<http://example.org/sgu#hóa_lý_thuyết_và_hóa_lý_-_tài_chính_–_ngân_hàng> a rdfs:Class ;
+    rdfs:label "Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng"@vi .
+
+:hệ_chính_quy a rdfs:Class ;
+    rdfs:label "Hệ chính quy"@vi .
+
+<http://example.org/sgu#hệ_chính_quy_:offersprogram_:chương_trình_chất_lượng_cao_.> a rdfs:Class ;
+    rdfs:label "Hệ chính quy :offersProgram :Chương trình chất lượng cao ."@vi .
+
+<http://example.org/sgu#hệ_chính_quy_:offersprogram_:trình_độ_đại_học_.> a rdfs:Class ;
+    rdfs:label "Hệ chính quy :offersProgram :Trình độ Đại học ."@vi .
+
+:học_bổng_của_bộ_giáo_dục_đài_loan a rdfs:Class ;
+    rdfs:label "Học bổng của Bộ Giáo dục Đài Loan"@vi .
+
+:học_bổng_toàn_phần_của_bộ_y_tế_singapore a rdfs:Class ;
+    rdfs:label "Học bổng toàn phần của Bộ Y tế Singapore"@vi .
+
+:hợp_tác_quốc_tế a rdfs:Class ;
+    rdfs:label "Hợp tác quốc tế"@vi .
+
+:hợp_tác_quốc_tế_1 a rdfs:Class ;
+    rdfs:label "Hợp tác quốc tế 1"@vi .
+
+:hợp_tác_quốc_tế_2 a rdfs:Class ;
+    rdfs:label "Hợp tác quốc tế 2"@vi .
+
+<http://example.org/sgu#hợp_tác_quốc_tế_:includes_:các_chương_trình_hợp_tác,_đào_tạo_quốc_tế_.> a rdfs:Class ;
+    rdfs:label "Hợp tác quốc tế :includes :Các chương trình hợp tác, đào tạo quốc tế ."@vi .
+
+<http://example.org/sgu#hợp_tác_quốc_tế_:includes_:công_tác_đối_ngoại_.> a rdfs:Class ;
+    rdfs:label "Hợp tác quốc tế :includes :Công tác đối ngoại ."@vi .
+
+:includes a rdfs:Class ;
+    rdfs:label "includes"@vi .
+
+:khoa_học_máy_tính_-_toán_giải_tích a rdfs:Class ;
+    rdfs:label "Khoa học Máy tính - Toán Giải tích"@vi .
+
+:khoa_kinh_tế a rdfs:Class ;
+    rdfs:label "Khoa Kinh tế"@vi .
+
+:khoa_kỹ_thuật a rdfs:Class ;
+    rdfs:label "Khoa Kỹ thuật"@vi .
+
+:khoa_nghệ_thuật a rdfs:Class ;
+    rdfs:label "Khoa Nghệ thuật"@vi .
+
+<http://example.org/sgu#ll_&_ppdh_bộ_môn_toán_-_luật_dân_sự_và_tố_tụng_dân_sự> a rdfs:Class ;
+    rdfs:label "LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự"@vi .
+
+:lịch_sử_việt_nam a rdfs:Class ;
+    rdfs:label "Lịch sử Việt Nam"@vi .
+
+:lịch_sử_việt_nam_-_văn_học_việt_nam a rdfs:Class ;
+    rdfs:label "Lịch sử Việt Nam - Văn học Việt Nam"@vi .
+
+:ngôn_ngữ_học a rdfs:Class ;
+    rdfs:label "Ngôn ngữ học"@vi .
+
+:offersprogram a rdfs:Class ;
+    rdfs:label "offersProgram"@vi .
+
+:publishesin a rdfs:Class ;
+    rdfs:label "publishesIn"@vi .
+
+:quy_định_chung_về_bài_báo_khoa_học a rdfs:Class ;
+    rdfs:label "Quy định chung về bài báo khoa học"@vi .
+
+:quyền_lợi_sinh_viên_nckh a rdfs:Class ;
+    rdfs:label "Quyền lợi sinh viên NCKH"@vi .
+
+:quản_lý_giáo_dục a rdfs:Class ;
+    rdfs:label "Quản lý Giáo dục"@vi .
+
+:quản_trị_kinh_doanh a rdfs:Class ;
+    rdfs:label "Quản trị Kinh doanh"@vi .
+
+<http://example.org/sgu#rdfs:domain_:chương_trình_đại_trà,_:các_chương_trình_hợp_tác,_đào_tạo_quốc_tế,_:giáo_dục_thường_xuyên,_:hệ_chính_quy,_:trình_độ_sau_đại_học,_:trình_độ_tiến_sĩ,_:trình_độ_đại_học,_:trường_đại_học_sài_gòn_;> a rdfs:Class ;
+    rdfs:label "rdfs:domain :Chương trình đại trà, :Các chương trình hợp tác, đào tạo quốc tế, :Giáo dục thường xuyên, :Hệ chính quy, :Trình độ Sau Đại học, :Trình độ Tiến sĩ, :Trình độ Đại học, :Trường Đại học Sài Gòn ;"@vi .
+
+<http://example.org/sgu#rdfs:domain_:hợp_tác_quốc_tế_;> a rdfs:Class ;
+    rdfs:label "rdfs:domain :Hợp tác quốc tế ;"@vi .
+
+<http://example.org/sgu#rdfs:domain_:trường_đại_học_sài_gòn_;> a rdfs:Class ;
+    rdfs:label "rdfs:domain :Trường Đại học Sài Gòn ;"@vi .
+
+<http://example.org/sgu#rdfs:domain_:tạp_chí_khoa_học_đại_học_sài_gòn_;> a rdfs:Class ;
+    rdfs:label "rdfs:domain :Tạp chí Khoa học Đại học Sài Gòn ;"@vi .
+
+<http://example.org/sgu#rdfs:range_:ban_lãnh_đạo,_:các_khoa_chuyên_môn,_:các_phòng_ban_chức_năng,_:các_trung_tâm_trực_thuộc,_:các_tổ_chức_đoàn_thể,_:khoa_kinh_tế,_:khoa_kỹ_thuật,_:khoa_nghệ_thuật,_:đơn_vị_trực_thuộc_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Ban lãnh đạo, :Các khoa chuyên môn, :Các phòng ban chức năng, :Các trung tâm trực thuộc, :Các tổ chức đoàn thể, :Khoa Kinh tế, :Khoa Kỹ thuật, :Khoa Nghệ thuật, :Đơn vị trực thuộc ."@vi .
+
+<http://example.org/sgu#rdfs:range_:bài_báo_khoa_học_và_báo_cáo_tham_luận,_:dự_án_nghiên_cứu_1,_:dự_án_nghiên_cứu_2,_:quyền_lợi_sinh_viên_nckh,_:đề_tài_nghiên_cứu_khoa_học_cấp_cơ_sở_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Bài báo Khoa học và báo cáo tham luận, :Dự án nghiên cứu 1, :Dự án nghiên cứu 2, :Quyền lợi sinh viên NCKH, :Đề tài Nghiên cứu khoa học cấp cơ sở ."@vi .
+
+<http://example.org/sgu#rdfs:range_:cnkt_điện_tử_-_viễn_thông_-_thanh_nhạc,_:cnkt_điện,_điện_tử_-_thông_tin_-_thư_viện,_:chương_trình_cử_nhân_quốc_tế_quản_trị_kinh_doanh_và_quản_lý_thương_mại_điện_tử,_:chương_trình_chính_quy,_:chương_trình_chất_lượng_cao,_:chương_trình_giáo_dục_thường_xuyên,_:chương_trình_liên_kết_đào_tạo_khác,_:chương_trình_đào_tạo_tiếng_hoa,_:chương_trình_đại_trà,_:công_nghệ_kỹ_thuật_môi_trường_-_toán_ứng_dụng,_:công_nghệ_thông_tin_-_việt_nam_học,_:giáo_dục_chính_trị_-_du_lịch,_:giáo_dục_mầm_non_-_kế_toán,_:giáo_dục_tiểu_học_-_khoa_học_môi_trường,_:giáo_dục_thường_xuyên,_:hóa_hữu_cơ,_:hóa_hữu_cơ_-_quản_trị_kinh_doanh,_:hóa_lý_thuyết_và_hóa_lý_-_tài_chính_–_ngân_hàng,_:hệ_chính_quy,_:học_bổng_của_bộ_giáo_dục_đài_loan,_:học_bổng_toàn_phần_của_bộ_y_tế_singapore,_:khoa_học_máy_tính_-_toán_giải_tích,_:ll_&_ppdh_bộ_môn_toán_-_luật_dân_sự_và_tố_tụng_dân_sự,_:lịch_sử_việt_nam,_:lịch_sử_việt_nam_-_văn_học_việt_nam,_:ngôn_ngữ_học,_:quản_lý_giáo_dục,_:quản_trị_kinh_doanh,_:sư_phạm_hóa_học_-_kỹ_thuật_điện_tử_-_viễn_thông,_:sư_phạm_khoa_học_tự_nhiên_-_kỹ_thuật_phần_mềm,_:sư_phạm_lịch_sử_-_luật,_:sư_phạm_lịch_sử_-_địa_lý_-_ngôn_ngữ_anh,_:sư_phạm_mỹ_thuật_-_quản_lý_giáo_dục,_:sư_phạm_ngữ_văn_-_quản_trị_kinh_doanh,_:sư_phạm_sinh_học_-_quản_trị_văn_phòng,_:sư_phạm_tiếng_anh_-_quốc_tế_học,_:sư_phạm_toán_học_-_tài_chính_-_ngân_hàng,_:sư_phạm_vật_lý_-_tâm_lý_học,_:sư_phạm_âm_nhạc_-_kinh_doanh_quốc_tế,_:sư_phạm_địa_lý_-_kỹ_thuật_điện,_:toán_giải_tích,_:trình_độ_sau_đại_học,_:trình_độ_tiến_sĩ,_:trình_độ_đại_học,_:đào_tạo_hệ_đại_học_vừa_làm_vừa_học,_:đào_tạo_văn_bằng_thứ_hai,_:đào_tạo_đại_học_liên_thông_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :CNKT Điện tử - Viễn thông - Thanh nhạc, :CNKT Điện, Điện tử - Thông tin - Thư viện, :Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử, :Chương trình chính quy, :Chương trình chất lượng cao, :Chương trình giáo dục thường xuyên, :Chương trình liên kết đào tạo khác, :Chương trình đào tạo tiếng Hoa, :Chương trình đại trà, :Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng, :Công nghệ Thông tin - Việt Nam học, :Giáo dục Chính trị - Du lịch, :Giáo dục Mầm non - Kế toán, :Giáo dục Tiểu học - Khoa học Môi trường, :Giáo dục thường xuyên, :Hóa hữu cơ, :Hóa hữu cơ - Quản trị Kinh doanh, :Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng, :Hệ chính quy, :Học bổng của Bộ Giáo dục Đài Loan, :Học bổng toàn phần của Bộ Y tế Singapore, :Khoa học Máy tính - Toán Giải tích, :LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự, :Lịch sử Việt Nam, :Lịch sử Việt Nam - Văn học Việt Nam, :Ngôn ngữ học, :Quản lý Giáo dục, :Quản trị Kinh doanh, :Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông, :Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm, :Sư phạm Lịch sử - Luật, :Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh, :Sư phạm Mỹ thuật - Quản lý Giáo dục, :Sư phạm Ngữ Văn - Quản trị Kinh doanh, :Sư phạm Sinh học - Quản trị Văn phòng, :Sư phạm Tiếng Anh - Quốc tế học, :Sư phạm Toán học - Tài chính - Ngân hàng, :Sư phạm Vật lý - Tâm lý học, :Sư phạm Âm nhạc - Kinh doanh Quốc tế, :Sư phạm Địa lý - Kỹ thuật Điện, :Toán Giải tích, :Trình độ Sau Đại học, :Trình độ Tiến sĩ, :Trình độ Đại học, :Đào tạo hệ đại học vừa làm vừa học, :Đào tạo văn bằng thứ hai, :Đào tạo Đại học liên thông ."@vi .
+
+<http://example.org/sgu#rdfs:range_:các_chương_trình_hợp_tác,_đào_tạo_quốc_tế,_:công_tác_đối_ngoại_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Các chương trình hợp tác, đào tạo quốc tế, :Công tác đối ngoại ."@vi .
+
+<http://example.org/sgu#rdfs:range_:cử_nhân,_:thạc_sĩ,_:tiến_sĩ_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Cử nhân, :Thạc sĩ, :Tiến sĩ ."@vi .
+
+<http://example.org/sgu#rdfs:range_:giảng_viên_1,_:giảng_viên_2_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Giảng viên 1, :Giảng viên 2 ."@vi .
+
+<http://example.org/sgu#rdfs:range_:hợp_tác_quốc_tế,_:hợp_tác_quốc_tế_1,_:hợp_tác_quốc_tế_2_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Hợp tác quốc tế, :Hợp tác quốc tế 1, :Hợp tác quốc tế 2 ."@vi .
+
+<http://example.org/sgu#rdfs:range_:quy_định_chung_về_bài_báo_khoa_học_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Quy định chung về bài báo khoa học ."@vi .
+
+<http://example.org/sgu#rdfs:range_:sinh_viên_1,_:sinh_viên_2_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Sinh viên 1, :Sinh viên 2 ."@vi .
+
+<http://example.org/sgu#rdfs:range_:thể_lệ_gửi_bài_đăng_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Thể lệ gửi bài đăng ."@vi .
+
+<http://example.org/sgu#rdfs:range_:tôn_chỉ,_mục_đích_hoạt_động_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Tôn chỉ, mục đích hoạt động ."@vi .
+
+<http://example.org/sgu#rdfs:range_:tạp_chí_khoa_học,_:tạp_chí_khoa_học_đại_học_sài_gòn_.> a rdfs:Class ;
+    rdfs:label "rdfs:range :Tạp chí Khoa học, :Tạp chí Khoa học Đại học Sài Gòn ."@vi .
+
+:sinh_viên_1 a rdfs:Class ;
+    rdfs:label "Sinh viên 1"@vi .
+
+:sinh_viên_2 a rdfs:Class ;
+    rdfs:label "Sinh viên 2"@vi .
+
+:sư_phạm_hóa_học_-_kỹ_thuật_điện_tử_-_viễn_thông a rdfs:Class ;
+    rdfs:label "Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông"@vi .
+
+:sư_phạm_khoa_học_tự_nhiên_-_kỹ_thuật_phần_mềm a rdfs:Class ;
+    rdfs:label "Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm"@vi .
+
+:sư_phạm_lịch_sử_-_luật a rdfs:Class ;
+    rdfs:label "Sư phạm Lịch sử - Luật"@vi .
+
+:sư_phạm_lịch_sử_-_địa_lý_-_ngôn_ngữ_anh a rdfs:Class ;
+    rdfs:label "Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh"@vi .
+
+:sư_phạm_mỹ_thuật_-_quản_lý_giáo_dục a rdfs:Class ;
+    rdfs:label "Sư phạm Mỹ thuật - Quản lý Giáo dục"@vi .
+
+:sư_phạm_ngữ_văn_-_quản_trị_kinh_doanh a rdfs:Class ;
+    rdfs:label "Sư phạm Ngữ Văn - Quản trị Kinh doanh"@vi .
+
+:sư_phạm_sinh_học_-_quản_trị_văn_phòng a rdfs:Class ;
+    rdfs:label "Sư phạm Sinh học - Quản trị Văn phòng"@vi .
+
+:sư_phạm_tiếng_anh_-_quốc_tế_học a rdfs:Class ;
+    rdfs:label "Sư phạm Tiếng Anh - Quốc tế học"@vi .
+
+:sư_phạm_toán_học_-_tài_chính_-_ngân_hàng a rdfs:Class ;
+    rdfs:label "Sư phạm Toán học - Tài chính - Ngân hàng"@vi .
+
+:sư_phạm_vật_lý_-_tâm_lý_học a rdfs:Class ;
+    rdfs:label "Sư phạm Vật lý - Tâm lý học"@vi .
+
+:sư_phạm_âm_nhạc_-_kinh_doanh_quốc_tế a rdfs:Class ;
+    rdfs:label "Sư phạm Âm nhạc - Kinh doanh Quốc tế"@vi .
+
+:sư_phạm_địa_lý_-_kỹ_thuật_điện a rdfs:Class ;
+    rdfs:label "Sư phạm Địa lý - Kỹ thuật Điện"@vi .
+
+:thạc_sĩ a rdfs:Class ;
+    rdfs:label "Thạc sĩ"@vi .
+
+:thể_lệ_gửi_bài_đăng a rdfs:Class ;
+    rdfs:label "Thể lệ gửi bài đăng"@vi .
+
+:tiến_sĩ a rdfs:Class ;
+    rdfs:label "Tiến sĩ"@vi .
+
+:toán_giải_tích a rdfs:Class ;
+    rdfs:label "Toán Giải tích"@vi .
+
+:trình_độ_sau_đại_học a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học"@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:hóa_hữu_cơ_-_quản_trị_kinh_doanh_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :Hóa hữu cơ - Quản trị Kinh doanh ."@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:hóa_lý_thuyết_và_hóa_lý_-_tài_chính_–_ngân_hàng_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng ."@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:khoa_học_máy_tính_-_toán_giải_tích_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :Khoa học Máy tính - Toán Giải tích ."@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:ll_&_ppdh_bộ_môn_toán_-_luật_dân_sự_và_tố_tụng_dân_sự_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự ."@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:lịch_sử_việt_nam_-_văn_học_việt_nam_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :Lịch sử Việt Nam - Văn học Việt Nam ."@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:ngôn_ngữ_học_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :Ngôn ngữ học ."@vi .
+
+<http://example.org/sgu#trình_độ_sau_đại_học_:offersprogram_:quản_lý_giáo_dục_.> a rdfs:Class ;
+    rdfs:label "Trình độ Sau Đại học :offersProgram :Quản lý Giáo dục ."@vi .
+
+:trình_độ_tiến_sĩ a rdfs:Class ;
+    rdfs:label "Trình độ Tiến sĩ"@vi .
+
+<http://example.org/sgu#trình_độ_tiến_sĩ_:offersprogram_:hóa_hữu_cơ_.> a rdfs:Class ;
+    rdfs:label "Trình độ Tiến sĩ :offersProgram :Hóa hữu cơ ."@vi .
+
+<http://example.org/sgu#trình_độ_tiến_sĩ_:offersprogram_:lịch_sử_việt_nam_.> a rdfs:Class ;
+    rdfs:label "Trình độ Tiến sĩ :offersProgram :Lịch sử Việt Nam ."@vi .
+
+<http://example.org/sgu#trình_độ_tiến_sĩ_:offersprogram_:quản_lý_giáo_dục_.> a rdfs:Class ;
+    rdfs:label "Trình độ Tiến sĩ :offersProgram :Quản lý Giáo dục ."@vi .
+
+<http://example.org/sgu#trình_độ_tiến_sĩ_:offersprogram_:quản_trị_kinh_doanh_.> a rdfs:Class ;
+    rdfs:label "Trình độ Tiến sĩ :offersProgram :Quản trị Kinh doanh ."@vi .
+
+<http://example.org/sgu#trình_độ_tiến_sĩ_:offersprogram_:toán_giải_tích_.> a rdfs:Class ;
+    rdfs:label "Trình độ Tiến sĩ :offersProgram :Toán Giải tích ."@vi .
+
+:trình_độ_đại_học a rdfs:Class ;
+    rdfs:label "Trình độ Đại học"@vi .
+
+<http://example.org/sgu#trình_độ_đại_học_:offersprogram_:chương_trình_đại_trà_.> a rdfs:Class ;
+    rdfs:label "Trình độ Đại học :offersProgram :Chương trình đại trà ."@vi .
+
+:trường_đại_học_sài_gòn a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn"@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:conductsresearch_:bài_báo_khoa_học_và_báo_cáo_tham_luận_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :conductsResearch :Bài báo Khoa học và báo cáo tham luận ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:conductsresearch_:dự_án_nghiên_cứu_1_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :conductsResearch :Dự án nghiên cứu 1 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:conductsresearch_:dự_án_nghiên_cứu_2_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :conductsResearch :Dự án nghiên cứu 2 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:conductsresearch_:quyền_lợi_sinh_viên_nckh_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :conductsResearch :Quyền lợi sinh viên NCKH ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:conductsresearch_:đề_tài_nghiên_cứu_khoa_học_cấp_cơ_sở_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :conductsResearch :Đề tài Nghiên cứu khoa học cấp cơ sở ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdegree_:cử_nhân_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDegree :Cử nhân ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdegree_:thạc_sĩ_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDegree :Thạc sĩ ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdegree_:tiến_sĩ_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDegree :Tiến sĩ ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:ban_lãnh_đạo_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Ban lãnh đạo ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:các_khoa_chuyên_môn_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Các khoa chuyên môn ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:các_phòng_ban_chức_năng_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Các phòng ban chức năng ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:các_trung_tâm_trực_thuộc_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Các trung tâm trực thuộc ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:các_tổ_chức_đoàn_thể_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Các tổ chức đoàn thể ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:khoa_kinh_tế_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Khoa Kinh tế ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:khoa_kỹ_thuật_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Khoa Kỹ thuật ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:khoa_nghệ_thuật_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Khoa Nghệ thuật ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasdepartment_:đơn_vị_trực_thuộc_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasDepartment :Đơn vị trực thuộc ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasfaculty_:giảng_viên_1_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasFaculty :Giảng viên 1 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasfaculty_:giảng_viên_2_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasFaculty :Giảng viên 2 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasinternationalcooperation_:hợp_tác_quốc_tế_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasInternationalCooperation :Hợp tác quốc tế ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasinternationalcooperation_:hợp_tác_quốc_tế_1_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasInternationalCooperation :Hợp tác quốc tế 1 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasinternationalcooperation_:hợp_tác_quốc_tế_2_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasInternationalCooperation :Hợp tác quốc tế 2 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasstudent_:sinh_viên_1_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasStudent :Sinh viên 1 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:hasstudent_:sinh_viên_2_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :hasStudent :Sinh viên 2 ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:chương_trình_chính_quy_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Chương trình chính quy ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:chương_trình_chất_lượng_cao_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Chương trình chất lượng cao ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:chương_trình_giáo_dục_thường_xuyên_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Chương trình giáo dục thường xuyên ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:giáo_dục_thường_xuyên_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Giáo dục thường xuyên ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:hệ_chính_quy_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Hệ chính quy ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:trình_độ_sau_đại_học_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Trình độ Sau Đại học ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:offersprogram_:trình_độ_tiến_sĩ_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :offersProgram :Trình độ Tiến sĩ ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:publishesin_:tạp_chí_khoa_học_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :publishesIn :Tạp chí Khoa học ."@vi .
+
+<http://example.org/sgu#trường_đại_học_sài_gòn_:publishesin_:tạp_chí_khoa_học_đại_học_sài_gòn_.> a rdfs:Class ;
+    rdfs:label "Trường Đại học Sài Gòn :publishesIn :Tạp chí Khoa học Đại học Sài Gòn ."@vi .
+
+<http://example.org/sgu#tôn_chỉ,_mục_đích_hoạt_động> a rdfs:Class ;
+    rdfs:label "Tôn chỉ, mục đích hoạt động"@vi .
+
+:tạp_chí_khoa_học a rdfs:Class ;
+    rdfs:label "Tạp chí Khoa học"@vi .
+
+:tạp_chí_khoa_học_đại_học_sài_gòn a rdfs:Class ;
+    rdfs:label "Tạp chí Khoa học Đại học Sài Gòn"@vi .
+
+<http://example.org/sgu#tạp_chí_khoa_học_đại_học_sài_gòn_:haspurpose_:tôn_chỉ,_mục_đích_hoạt_động_.> a rdfs:Class ;
+    rdfs:label "Tạp chí Khoa học Đại học Sài Gòn :hasPurpose :Tôn chỉ, mục đích hoạt động ."@vi .
+
+<http://example.org/sgu#tạp_chí_khoa_học_đại_học_sài_gòn_:hassubmissionformat_:thể_lệ_gửi_bài_đăng_.> a rdfs:Class ;
+    rdfs:label "Tạp chí Khoa học Đại học Sài Gòn :hasSubmissionFormat :Thể lệ gửi bài đăng ."@vi .
+
+<http://example.org/sgu#tạp_chí_khoa_học_đại_học_sài_gòn_:hassubmissionguidelines_:quy_định_chung_về_bài_báo_khoa_học_.> a rdfs:Class ;
+    rdfs:label "Tạp chí Khoa học Đại học Sài Gòn :hasSubmissionGuidelines :Quy định chung về bài báo khoa học ."@vi .
+
+:đào_tạo_hệ_đại_học_vừa_làm_vừa_học a rdfs:Class ;
+    rdfs:label "Đào tạo hệ đại học vừa làm vừa học"@vi .
+
+:đào_tạo_văn_bằng_thứ_hai a rdfs:Class ;
+    rdfs:label "Đào tạo văn bằng thứ hai"@vi .
+
+:đào_tạo_đại_học_liên_thông a rdfs:Class ;
+    rdfs:label "Đào tạo Đại học liên thông"@vi .
+
+:đơn_vị_trực_thuộc a rdfs:Class ;
+    rdfs:label "Đơn vị trực thuộc"@vi .
+
+:đề_tài_nghiên_cứu_khoa_học_cấp_cơ_sở a rdfs:Class ;
+    rdfs:label "Đề tài Nghiên cứu khoa học cấp cơ sở"@vi .
+
+<http://example.org/sgu> a owl:Ontology .
+
