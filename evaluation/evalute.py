@@ -257,7 +257,7 @@ def compute_metrics(y_pred):
     }
 
 # ===== Thực thi tính toán =====
-threshold = 0.6
+threshold = 0.7
 
 # Match True/False
 y_ds = evaluate_semantic_match_nx(ds, answers_split, threshold=threshold)
@@ -306,5 +306,5 @@ df_semantic_metrics.to_csv("semantic_evaluation_summary.csv", encoding="utf-8-si
 df_detail.to_csv("semantic_literal_comparison.csv", encoding="utf-8-sig", index=False)
 
 # Vẽ ROC
-plot_detailed_roc(scores_dict, y_true)
+# plot_detailed_roc(scores_dict, y_true)
 
