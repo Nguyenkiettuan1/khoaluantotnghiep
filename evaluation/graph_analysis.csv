@@ -1,0 +1,14 @@
+﻿,SGU - DeepSeek,SGU - Gemini,SGU - OpenAI
+Số đỉnh,170,148,81
+Số cạnh,195,147,80
+Bậc trung bình,2.29,1.99,1.98
+Top 5 trung tâm,"[('Trường Đại học Sài Gòn', 0.959), ('Tạp chí Khoa học Đại học Sài Gòn', 0.053), ('Đề tài NCKH cấp cơ sở', 0.03), ('Quyền li NCKH', 0.03), ('Phòng Quản lý Khoa học', 0.03)]","[('Trường Đại học Sài Gòn', 1.0), ('Tiến sĩ', 0.007), ('Cao học', 0.007), ('Đại học', 0.007), ('Chương trình đào tạo Tiến sĩ', 0.007)]","[('Trường Đại học Sài Gòn', 0.413), ('Chương trình đại trà', 0.25), ('Trình độ Sau Đại học', 0.1), ('Trình độ Tiến sĩ', 0.075), ('Các chương trình hợp tác', 0.075)]"
+Số quan hệ is-a,5,3,3
+Số quan hệ part-of,66,57,11
+Đường kính SCC lớn nhất,Không tính được,Không tính được,Không tính được
+Clustering coefficient,0.113,0.0,0.0
+Mật độ (Density),0.007,0.007,0.012
+Số thành phần liên thông mạnh,170,148,81
+In-degree trung bình,1.15,0.99,0.99
+Out-degree trung bình,1.15,0.99,0.99
+Tỷ lệ gián tiếp/trực tiếp,1.0,1.0,1.0
