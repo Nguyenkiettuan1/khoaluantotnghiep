@@ -2,10 +2,10 @@ from neo4jconnector import Neo4jConnection
 from dotenv import load_dotenv
 import os
 import logging 
-def create_vector_indexes(neo4j):
+def create_vector_indexes(neo4j : Neo4jConnection):
     """Create vector indexes for all node types"""
 
-    with open("labels/neo4j_labels.txt", "r") as f:
+    with open("labels/neo4j_labels_openai.txt", "r") as f:
         node_labels = f.read().splitlines()
     
     print("Creating vector indexes...")
@@ -93,7 +93,8 @@ def main():
             uri=os.getenv('NEO4J_URI', 'bolt://localhost:7687'),
             user=os.getenv('NEO4J_USER', 'neo4j'),
             password=os.getenv('NEO4J_PASSWORD'),
-            dbname=os.getenv('NEO4J_DATABASE', 'neo4j')
+            # dbname=os.getenv('NEO4J_DATABASE', 'neo4j')
+            dbname="openai"
         )
         
         try:

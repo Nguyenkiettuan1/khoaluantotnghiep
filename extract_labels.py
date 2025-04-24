@@ -19,7 +19,8 @@ def extract_labels_to_file(output_file: str = "labels/neo4j_labels.txt"):
     uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
     user = os.getenv("NEO4J_USER", "neo4j")
     password = os.getenv("NEO4J_PASSWORD", "password")
-    database = os.getenv("NEO4J_DATABASE", "neo4j")
+    # database = os.getenv("NEO4J_DATABASE", "neo4j")
+    database = "openai"
     
     # Initialize connection
     neo4j_connection = Neo4jConnection(uri, user, password, database)
@@ -44,4 +45,4 @@ def extract_labels_to_file(output_file: str = "labels/neo4j_labels.txt"):
         neo4j_connection.close()
 
 if __name__ == "__main__":
-    extract_labels_to_file()
+    extract_labels_to_file('labels/neo4j_labels_openai.txt')

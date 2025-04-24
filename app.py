@@ -40,7 +40,7 @@ def init_neo4j():
         st.error(f"Failed to connect to Neo4j: {str(e)}")
         return None
 
-def perform_search(neo4j: Neo4jConnection, query: str, node_types: List[str], min_similarity: float = 0.5, limit: int = 5) -> List[Dict]:
+def perform_search(neo4j: Neo4jConnection, query: str, node_types: List[str], min_similarity: float = 0.5, limit: int = 20) -> List[Dict]:
     """Perform vector search across specified node types"""
     all_results = []
     
@@ -74,6 +74,35 @@ def generate_answer(neo4j: Neo4jConnection, query: str, search_results: List[Dic
         logger.error(f"Error generating answer: {e}")
         st.error(f"Error generating answer: {str(e)}")
         return None
+def extract_labels_from_file(file_path: str) -> List[str]:
+    """Extract labels from a file and return as a list"""
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            labels = [label.strip() for label in f.read().splitlines() if label.strip()]
+        return labels
+    except Exception as e:
+        logger.error(f"Error reading labels from file: {e}")
+        st.error(f"Error reading labels from file: {str(e)}")
+        return []
+def get_answer_from_search_results(neo4j: Neo4jConnection, userQuery: str, labels: List[str]) -> Optional[str]:
+    """Get answer from search results using OpenAI API"""
+    try:
+        # Perform search
+        search_results = perform_search(neo4j, userQuery, labels, min_similarity=0.6, limit=10)
+        
+        if search_results:
+            # Generate answer
+            answer = generate_answer(neo4j, userQuery, search_results)
+            return answer
+        else:
+            st.info("Không tìm thấy kết quả phù hợp với tiêu chí của bạn")
+            return None
+    except Exception as e:
+        logger.error(f"Error getting answer: {e}")
+        st.error(f"Error getting answer: {str(e)}")
+        return None
+
+
 
 def main():
     st.title("SGU Vector Search 🔍")
@@ -96,7 +125,7 @@ def main():
         max_results = st.slider("Số kết quả tối đa mỗi loại", 1, 10, 5)
 
     # Load and process node type labels
-    with open("labels/neo4j_labels.txt", "r") as f:
+    with open("labels/neo4j_labels_deepseek.txt", "r") as f:
         type_labels = [label.strip() for label in f.read().splitlines() if label.strip()]
     
     # Node type selection

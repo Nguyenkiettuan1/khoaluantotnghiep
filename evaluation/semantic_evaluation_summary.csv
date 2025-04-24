@@ -1,4 +1,0 @@
-﻿,Accuracy,Precision,Recall,F1 Score
-DeepSeek,0.9,1.0,0.9,0.947
-Gemini,0.767,1.0,0.767,0.868
-OpenAI,0.7,1.0,0.7,0.824

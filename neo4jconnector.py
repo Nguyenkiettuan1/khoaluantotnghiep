@@ -183,52 +183,81 @@ class Neo4jConnection:
             logger.error(f"Failed to generate embedding: {str(e)}")
             raise Neo4jVectorSearchError(f"Failed to generate embedding: {str(e)}")
 
-    def similarity_search(self,
-                        query_text: str,
-                        node_label: str,
-                        limit: int = 5,
-                        min_similarity: float = 0.0,
-                        embedding_property: str = "embedding") -> List[Dict]:
-        """
-        Perform similarity search
+    # def similarity_search(self,
+    #                     query_text: str,
+    #                     node_label: str,
+    #                     limit: int = 5,
+    #                     min_similarity: float = 0.0,
+    #                     embedding_property: str = "embedding") -> List[Dict]:
+    #     """
+    #     Perform similarity search
         
-        Args:
-            query_text: Search query text
-            node_label: Label of nodes to search
-            limit: Maximum number of results
-            min_similarity: Minimum similarity threshold
-            embedding_property: Name of the embedding property
+    #     Args:
+    #         query_text: Search query text
+    #         node_label: Label of nodes to search
+    #         limit: Maximum number of results
+    #         min_similarity: Minimum similarity threshold
+    #         embedding_property: Name of the embedding property
             
-        Returns:
-            List of similar documents with their properties and similarity scores
-        """
+    #     Returns:
+    #         List of similar documents with their properties and similarity scores
+    #     """
+    #     try:
+    #         logger.info(f"Performing similarity search for query: {query_text}")
+            
+    #         # Generate query embedding
+    #         query_embedding = self.generate_embedding(query_text)
+            
+    #         # Perform similarity search
+    #         search_query = f"""
+    #         CALL {{
+    #             WITH $embedding AS query
+    #             MATCH (n:{node_label})
+    #             WHERE n.{embedding_property} IS NOT NULL
+    #             WITH n, gds.similarity.cosine(query, n.{embedding_property}) AS similarity
+    #             WHERE similarity >= $min_similarity
+    #             RETURN n, similarity
+    #             ORDER BY similarity DESC
+    #             LIMIT $limit
+    #         }}
+    #         RETURN n.name AS name, n.description as description, similarity
+    #         """
+            
+    #         params = {
+    #             "embedding": query_embedding,
+    #             "min_similarity": min_similarity,
+    #             "limit": limit
+    #         }
+            
+    #         results = self.run_cypher(search_query, params)
+    #         logger.info(f"Found {len(results)} results")
+    #         return results
+    #     except Exception as e:
+    #         logger.error(f"Similarity search failed: {str(e)}")
+    #         raise Neo4jVectorSearchError(f"Similarity search failed: {str(e)}")
+    def similarity_search(self,
+                      query_text: str,
+                      node_label: str,
+                      limit: int = 5,
+                      min_similarity: float = 0.0,
+                      embedding_property: str = "embedding") -> List[Dict]:
         try:
             logger.info(f"Performing similarity search for query: {query_text}")
-            
-            # Generate query embedding
             query_embedding = self.generate_embedding(query_text)
-            
-            # Perform similarity search
+
             search_query = f"""
-            CALL {{
-                WITH $embedding AS query
-                MATCH (n:{node_label})
-                WHERE n.{embedding_property} IS NOT NULL
-                WITH n, gds.similarity.cosine(query, n.{embedding_property}) AS similarity
-                WHERE similarity >= $min_similarity
-                RETURN n, similarity
-                ORDER BY similarity DESC
-                LIMIT $limit
-            }}
-            RETURN n.name AS name, n.description as description, similarity
+            CALL db.index.vector.queryNodes('{node_label.lower()}_embedding_index', $limit, $embedding)
+            YIELD node, score AS similarity
+            WHERE similarity >= $min_similarity
+            RETURN node.name AS name, node.description AS description, similarity
             """
-            
+
             params = {
                 "embedding": query_embedding,
                 "min_similarity": min_similarity,
                 "limit": limit
             }
-            
+
             results = self.run_cypher(search_query, params)
             logger.info(f"Found {len(results)} results")
             return results
@@ -271,7 +300,7 @@ class Neo4jConnection:
                 6. Nếu câu hỏi yêu cầu thông tin cụ thể (như số lượng, địa điểm, thời gian) mà không tìm thấy trong kết quả, hãy nói rõ là không có thông tin này
                 7. Khi đề cập đến học bổng hoặc thông tin quan trọng, hãy cung cấp thông tin chi tiết từ kết quả tìm kiếm, không đưa ra giả định
                 8. Hãy phân tích độ tin cậy của thông tin dựa trên độ tương đồng trước khi đưa ra câu trả lời
-
+                
                 Luôn bắt đầu câu trả lời bằng cách đánh giá mức độ tin cậy của thông tin dựa trên độ tương đồng và độ phù hợp với câu hỏi.
                 """},
                 {"role": "user", "content": f"""
@@ -280,7 +309,7 @@ class Neo4jConnection:
                 Kết quả tìm kiếm:
                 {context}
                 
-                Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này.
+                Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại.
                 """}
             ]
             
@@ -290,7 +319,76 @@ class Neo4jConnection:
                 model=self.CHAT_MODEL,
                 messages=messages,
                 temperature=0.7,
-                max_tokens=1000
+            )
+            
+            answer = response.choices[0].message.content.strip()
+            logger.info("Successfully generated answer")
+            return answer
+            
+        except Exception as e:
+            logger.error(f"Failed to generate answer: {str(e)}")
+            raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
+
+
+    def generate_answer_chatbot(self, query: str, search_results: List[Dict]) -> str:
+        """
+        Generate an answer using OpenAI based on search results
+        
+        Args:
+            query: User's question
+            search_results: List of search results with name and description
+            
+        Returns:
+            Generated answer
+        """
+        try:
+            # Format context from search results
+            context = "\n\n".join([
+                f"Thông tin {result['node_type']}:\n"
+                f"Tên: {result['name']}\n"
+                f"Mô tả: {result.get('description', 'Không có mô tả')}\n"
+                f"Độ tương đồng: {result['similarity']:.4f}"
+                for result in sorted(search_results, key=lambda x: x['similarity'], reverse=True)
+            ])
+            
+            # Prepare the prompt
+            messages = [
+                {
+                    "role": "system",
+                    "content": """
+            Bạn là trợ lý AI của Trường Đại học Sài Gòn (SGU). Bạn chỉ được phép trả lời câu hỏi dựa trên các đoạn văn bản được trích xuất từ cơ sở dữ liệu nội bộ.
+
+            Yêu cầu:
+            - Chỉ trả lời nếu có thông tin rõ ràng, chính xác trong kết quả tìm kiếm.
+            - Tránh suy đoán. Nếu không đủ dữ liệu, hãy trả lời rằng thông tin chưa đủ.
+            - Nếu có nhiều đoạn phù hợp, hãy tổng hợp lại thông tin một cách ngắn gọn và chính xác.
+            - Độ tương đồng càng cao thì mức độ tin cậy càng cao. Nếu < 0.6 thì nên nói rõ là không đủ cơ sở để trả lời.
+            - Nếu có mâu thuẫn giữa các kết quả, hãy nêu rõ thay vì chọn một phía.
+            - Ưu tiên thông tin có độ tương đồng cao nhất.
+
+            Luôn bắt đầu câu trả lời bằng đánh giá ngắn gọn về độ tin cậy dựa trên độ tương đồng và mức độ khớp với câu hỏi.
+            """
+                },
+                {
+                    "role": "user",
+                    "content": f"""
+            [Câu hỏi]: {query}
+
+            [Dữ liệu kết quả tìm kiếm]:
+            {context}
+
+            👉 Hãy trả lời câu hỏi một cách trung thực, rõ ràng, và dựa **100% trên thông tin đã cho**. Nếu không đủ dữ liệu, hãy nói rõ.
+            """
+                }
+            ]
+
+            
+            # Generate answer
+            logger.info("Generating answer using OpenAI")
+            response = self._openai_client.chat.completions.create(
+                model=self.CHAT_MODEL,
+                messages=messages,
+                temperature=0.7,
             )
             
             answer = response.choices[0].message.content.strip()

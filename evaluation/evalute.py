@@ -175,23 +175,23 @@ gm = build_and_visualize_graph("SGU - Gemini", "./node_egdes/gemini_thinking/nod
 op = build_and_visualize_graph("SGU - OpenAI", "./node_egdes/openai_4o-mini/node.csv", "./node_egdes/openai_4o-mini/relationship.csv")
 
 
-# analyze_deepseek = analyze_graph(ds, "SGU - DeepSeek")
-# analyze_gemini = analyze_graph(gm, "SGU - Gemini") 
-# analyze_openai = analyze_graph(op, "SGU - OpenAI")
+analyze_deepseek = analyze_graph(ds, "SGU - DeepSeek")
+analyze_gemini = analyze_graph(gm, "SGU - Gemini") 
+analyze_openai = analyze_graph(op, "SGU - OpenAI")
 
 
-# # Tạo DataFrame từ kết quả phân tích
-# df_analysis = pd.DataFrame([analyze_deepseek, analyze_gemini, analyze_openai])
-# df_analysis.set_index("Tên đồ thị", inplace=True)
-# df_analysis = df_analysis.T
-# df_analysis.columns = ["SGU - DeepSeek", "SGU - Gemini", "SGU - OpenAI"]
-# df_analysis = df_analysis.fillna("Không liên thông")
-# df_analysis = df_analysis.astype(str)
+# Tạo DataFrame từ kết quả phân tích
+df_analysis = pd.DataFrame([analyze_deepseek, analyze_gemini, analyze_openai])
+df_analysis.set_index("Tên đồ thị", inplace=True)
+df_analysis = df_analysis.T
+df_analysis.columns = ["SGU - DeepSeek", "SGU - Gemini", "SGU - OpenAI"]
+df_analysis = df_analysis.fillna("Không liên thông")
+df_analysis = df_analysis.astype(str)
 
-# # Xuất DataFrame ra file csv
-# df_analysis.to_csv("graph_analysis.csv", encoding="utf-8-sig")
-# print("\n--- Kết quả phân tích đồ thị ---")
-# print(df_analysis)
+# Xuất DataFrame ra file csv
+df_analysis.to_csv("graph_analysis.csv", encoding="utf-8-sig")
+print("\n--- Kết quả phân tích đồ thị ---")
+print(df_analysis)
 
 
 def get_best_literal_and_score(G, answer):
@@ -308,3 +308,23 @@ df_detail.to_csv("semantic_literal_comparison.csv", encoding="utf-8-sig", index=
 # Vẽ ROC
 # plot_detailed_roc(scores_dict, y_true)
 
+df = pd.read_csv("semantic_literal_comparison.csv")
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+def compare_answers(row, model_name):
+    reference = row["Đáp án chuẩn"]
+    answer = row.get(f"{model_name} trả lời", "")
+    if pd.isna(answer):
+        return pd.Series({"semantic_score": None, "literal_match": None})
+    
+    ref_embedding = model.encode(reference, convert_to_tensor=True)
+    ans_embedding = model.encode(answer, convert_to_tensor=True)
+    semantic_score = float(util.pytorch_cos_sim(ref_embedding, ans_embedding)[0])
+    literal_match = reference.lower() in answer.lower()
+    
+    return pd.Series({"semantic_score": semantic_score, "literal_match": literal_match})
+
+for model_name in ["DeepSeek", "Gemini", "OpenAI"]:
+    df[[f"{model_name}_semantic", f"{model_name}_literal"]] = df.apply(compare_answers, model_name=model_name, axis=1)
+
+df.to_csv("semantic_comparison_result.csv", index=False)
