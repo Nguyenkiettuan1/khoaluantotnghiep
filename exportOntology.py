@@ -34,7 +34,7 @@ def get_all_relationships(tx):
     return [dict(r) for r in tx.run(q)]
 
 # Đọc dữ liệu
-with driver.session(database="deepseek") as sess:
+with driver.session(database="gemini") as sess:
     raw_nodes = sess.read_transaction(get_all_nodes)
     raw_rels  = sess.read_transaction(get_all_relationships)
 driver.close()
@@ -53,7 +53,7 @@ for r in raw_rels:
     props[p]['ranges'].add(t)
 
 # Viết file TTL
-with open("extracted_ontology.ttl", "w", encoding="utf-8") as f:
+with open("gemini_ontology.ttl", "w", encoding="utf-8") as f:
     # Prefix
     f.write("@prefix :    <http://example.org/sgu#> .\n")
     f.write("@prefix owl:  <http://www.w3.org/2002/07/owl#> .\n")
