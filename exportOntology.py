@@ -1,97 +1,97 @@
 from neo4j import GraphDatabase
 import re
-
-# Hàm sanitize_unicode:
-# - Thay mọi ký tự không phải chữ/ số/ gạch dưới thành '_'
-# - Nhưng vẫn giữ nguyên các ký tự Unicode (kể cả tiếng Việt có dấu)
-# - Nếu kết quả bắt đầu bằng số thì thêm '_' vào trước
+database = 'openai'
 def sanitize_unicode(name: str) -> str:
-    # \w trong Python RE theo default đã bao gồm Unicode letters & digits
+    # Giữ Unicode letters & digits, thay ký tự khác thành '_'
     s = re.sub(r'[^\w]', '_', name)
     if re.match(r'^\d', s):
         s = '_' + s
     return s
 
-# Kết nối đến Neo4j
-uri    = "bolt://localhost:7687"
-driver = GraphDatabase.driver(uri, auth=("neo4j", "123456789"))
+# Kết nối Neo4j
+driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j","123456789"))
 
-def get_all_nodes(tx):
-    q = """
-    MATCH (n)
-    RETURN DISTINCT coalesce(n.name, toString(id(n))) AS name
-    """
-    return [r["name"] for r in tx.run(q)]
+def get_nodes(tx):
+    return [
+        {"name": r["name"], "desc": r["description"]}
+        for r in tx.run(
+            """
+            MATCH (n)
+            WHERE n.name IS NOT NULL
+            RETURN DISTINCT
+              n.name        AS name,
+              coalesce(n.description, '') AS description
+            """
+        )
+    ]
 
-def get_all_relationships(tx):
-    q = """
-    MATCH (n)-[r]->(m)
-    RETURN
-      coalesce(n.name, toString(id(n))) AS source,
-      type(r)                         AS rel,
-      coalesce(m.name, toString(id(m))) AS target
-    """
-    return [dict(r) for r in tx.run(q)]
+def get_rels(tx):
+    return [
+        {"s": r["source"], "p": r["rel"], "o": r["target"]}
+        for r in tx.run(
+            """
+            MATCH (n)-[r]->(m)
+            WHERE n.name IS NOT NULL AND m.name IS NOT NULL
+            RETURN
+              n.name    AS source,
+              type(r)   AS rel,
+              m.name    AS target
+            """
+        )
+    ]
 
-# Đọc dữ liệu
-with driver.session(database="gemini") as sess:
-    raw_nodes = sess.read_transaction(get_all_nodes)
-    raw_rels  = sess.read_transaction(get_all_relationships)
+with driver.session(database=database) as sess:
+    raw_nodes = sess.execute_read(get_nodes)
+    raw_rels  = sess.execute_read(get_rels)
 driver.close()
 
-# Ánh xạ tên gốc -> tên sanitize (giữ dấu Tiếng Việt)
-nodes_map = {orig: sanitize_unicode(orig) for orig in raw_nodes}
-
-# Gom domains & ranges cho mỗi loại quan hệ
+# Map và props
+nodes = { item["name"]: sanitize_unicode(item["name"]) for item in raw_nodes }
+descs = { item["name"]: item["desc"].replace('"','\\"') for item in raw_nodes }
 props = {}
 for r in raw_rels:
-    p   = sanitize_unicode(r['rel'])
-    s   = sanitize_unicode(r['source'])
-    t   = sanitize_unicode(r['target'])
-    props.setdefault(p, {'orig': r['rel'], 'domains': set(), 'ranges': set()})
-    props[p]['domains'].add(s)
-    props[p]['ranges'].add(t)
+    p = sanitize_unicode(r["p"])
+    props.setdefault(p, {"orig": r["p"], "domains": set(), "ranges": set()})
+    props[p]["domains"].add(sanitize_unicode(r["s"]))
+    props[p]["ranges"].add(sanitize_unicode(r["o"]))
 
-# Viết file TTL
-with open("gemini_ontology.ttl", "w", encoding="utf-8") as f:
-    # Prefix
+with open(f"{database}.ttl","w",encoding="utf-8") as f:
+    # Prefixes
     f.write("@prefix :    <http://example.org/sgu#> .\n")
-    f.write("@prefix owl:  <http://www.w3.org/2002/07/owl#> .\n")
     f.write("@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
+    f.write("@prefix owl:  <http://www.w3.org/2002/07/owl#> .\n")
     f.write("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n")
 
     # Ontology header
-    f.write(":SGU a owl:Ontology ;\n")
-    f.write("    rdfs:label   \"SGU Ontology\"@en ;\n")
-    f.write("    rdfs:comment \"Ontology trích xuất từ Neo4j\"@en .\n\n")
+    f.write(":SGU rdf:type owl:Ontology .\n")
+    f.write(f":SGU rdfs:label \"DeepSeek Ontology\"@en .\n")
+    f.write(f":SGU rdfs:comment \"Ontology trích xuất từ Neo4j\"@en .\n\n")
 
-    # Classes với rdfs:label giữ nguyên tên Tiếng Việt
+    # Classes
     f.write("# Classes\n")
-    for orig, clean in sorted(nodes_map.items(), key=lambda x: x[1]):
-        f.write(f":{clean} a owl:Class ;\n")
-        f.write(f"    rdfs:label \"{orig}\"@vi .\n")
+    for orig, clean in sorted(nodes.items(), key=lambda x: x[1]):
+        f.write(f":{clean} rdf:type owl:Class .\n")
+        f.write(f":{clean} rdfs:label \"{orig}\"@vi .\n")
+        f.write(f":{clean} rdfs:comment \"{descs[orig]}\"@vi .\n")
     f.write("\n")
 
-    # Object Properties với rdfs:label giữ nguyên rel type
+    # Object Properties
     f.write("# Object Properties\n")
-    for clean, dr in sorted(props.items()):
-        f.write(f":{clean} a owl:ObjectProperty ;\n")
-        f.write(f"    rdfs:label \"{dr['orig']}\"@en ;\n")
-        # mỗi domain / range là một triple riêng
-        for d in sorted(dr['domains']):
-            f.write(f"    rdfs:domain :{d} ;\n")
-        for r_ in sorted(dr['ranges']):
-            f.write(f"    rdfs:range  :{r_} ;\n")
-        # xóa dấu ';' cuối và thêm '.'
-        f.seek(f.tell() - 2)
-        f.write(".\n\n")
+    for clean, info in sorted(props.items()):
+        f.write(f":{clean} rdf:type owl:ObjectProperty .\n")
+        f.write(f":{clean} rdfs:label \"{info['orig']}\"@en .\n")
+        for d in sorted(info["domains"]):
+            f.write(f":{clean} rdfs:domain :{d} .\n")
+        for r_ in sorted(info["ranges"]):
+            f.write(f":{clean} rdfs:range :{r_} .\n")
+    f.write("\n")
 
-    # Instance data (giữ nguyên label đã sanitize_unicode)
-    f.write("# Relationships (instance data)\n")
+    # Instance data
+    f.write("# Relationships\n")
     for r in raw_rels:
-        s = sanitize_unicode(r['source'])
-        p = sanitize_unicode(r['rel'])
-        t = sanitize_unicode(r['target'])
-        f.write(f":{s} :{p} :{t} .\n")
+        s = sanitize_unicode(r["s"])
+        p = sanitize_unicode(r["p"])
+        o = sanitize_unicode(r["o"])
+        f.write(f":{s} :{p} :{o} .\n")
 
-print("Đã tạo xong extracted_ontology.ttl — import vào Protégé sẽ hiển thị đúng Tiếng Việt.") 
+print(f"Đã tạo {database}.ttl – bạn hãy import file này vào Protégé.")

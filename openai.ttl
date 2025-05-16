@@ -1,0 +1,452 @@
+@prefix :    <http://example.org/sgu#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:SGU rdf:type owl:Ontology .
+:SGU rdfs:label "DeepSeek Ontology"@en .
+:SGU rdfs:comment "Ontology trích xuất từ Neo4j"@en .
+
+# Classes
+:Ban_lãnh_đạo rdf:type owl:Class .
+:Ban_lãnh_đạo rdfs:label "Ban lãnh đạo"@vi .
+:Ban_lãnh_đạo rdfs:comment "Ban lãnh đạo của Trường Đại học Sài Gòn bao gồm Đảng ủy, Hiệu trưởng, Các Phó Hiệu trưởng và Hội đồng trường."@vi .
+:Bài_báo_Khoa_học_và_báo_cáo_tham_luận rdf:type owl:Class .
+:Bài_báo_Khoa_học_và_báo_cáo_tham_luận rdfs:label "Bài báo Khoa học và báo cáo tham luận"@vi .
+:Bài_báo_Khoa_học_và_báo_cáo_tham_luận rdfs:comment "Sinh viên có bài báo đăng trên các Tạp chí chuyên ngành hoặc báo cáo khoa học sẽ được xét thưởng kinh phí và cộng điểm rèn luyện."@vi .
+:CNKT_Điện__Điện_tử___Thông_tin___Thư_viện rdf:type owl:Class .
+:CNKT_Điện__Điện_tử___Thông_tin___Thư_viện rdfs:label "CNKT Điện, Điện tử - Thông tin - Thư viện"@vi .
+:CNKT_Điện__Điện_tử___Thông_tin___Thư_viện rdfs:comment "Chương trình đào tạo ngành CNKT Điện, Điện tử - Thông tin - Thư viện."@vi .
+:CNKT_Điện_tử___Viễn_thông___Thanh_nhạc rdf:type owl:Class .
+:CNKT_Điện_tử___Viễn_thông___Thanh_nhạc rdfs:label "CNKT Điện tử - Viễn thông - Thanh nhạc"@vi .
+:CNKT_Điện_tử___Viễn_thông___Thanh_nhạc rdfs:comment "Chương trình đào tạo ngành CNKT Điện tử - Viễn thông - Thanh nhạc."@vi .
+:Chương_trình_Cử_nhân_Quốc_tế_Quản_trị_Kinh_doanh_và_Quản_lý_Thương_mại_Điện_tử rdf:type owl:Class .
+:Chương_trình_Cử_nhân_Quốc_tế_Quản_trị_Kinh_doanh_và_Quản_lý_Thương_mại_Điện_tử rdfs:label "Chương trình Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"@vi .
+:Chương_trình_Cử_nhân_Quốc_tế_Quản_trị_Kinh_doanh_và_Quản_lý_Thương_mại_Điện_tử rdfs:comment "Chương trình liên kết đào tạo giữa trường Đại học Sài Gòn và trường Đại học Khoa học Ứng dụng IMC Krems (Cộng hòa Áo)."@vi .
+:Chương_trình_chính_quy rdf:type owl:Class .
+:Chương_trình_chính_quy rdfs:label "Chương trình chính quy"@vi .
+:Chương_trình_chính_quy rdfs:comment "Chương trình đào tạo chính quy dành cho sinh viên học tập toàn thời gian."@vi .
+:Chương_trình_chất_lượng_cao rdf:type owl:Class .
+:Chương_trình_chất_lượng_cao rdfs:label "Chương trình chất lượng cao"@vi .
+:Chương_trình_chất_lượng_cao rdfs:comment "Chương trình đào tạo chất lượng cao tại Trường Đại học Sài Gòn."@vi .
+:Chương_trình_giáo_dục_thường_xuyên rdf:type owl:Class .
+:Chương_trình_giáo_dục_thường_xuyên rdfs:label "Chương trình giáo dục thường xuyên"@vi .
+:Chương_trình_giáo_dục_thường_xuyên rdfs:comment "Chương trình đào tạo dành cho người học vừa làm vừa học."@vi .
+:Chương_trình_liên_kết_đào_tạo_khác rdf:type owl:Class .
+:Chương_trình_liên_kết_đào_tạo_khác rdfs:label "Chương trình liên kết đào tạo khác"@vi .
+:Chương_trình_liên_kết_đào_tạo_khác rdfs:comment "Ký kết hợp tác và xây dựng chương trình chuyển tiếp các ngành Công nghệ thông tin, Ngôn ngữ Anh, Sư phạm Anh, Quản trị kinh doanh, Tài chính - Ngân hàng thuộc Đại học Huddersfiled."@vi .
+:Chương_trình_đào_tạo_tiếng_Hoa rdf:type owl:Class .
+:Chương_trình_đào_tạo_tiếng_Hoa rdfs:label "Chương trình đào tạo tiếng Hoa"@vi .
+:Chương_trình_đào_tạo_tiếng_Hoa rdfs:comment "Chương trình liên kết với Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt."@vi .
+:Chương_trình_đại_trà rdf:type owl:Class .
+:Chương_trình_đại_trà rdfs:label "Chương trình đại trà"@vi .
+:Chương_trình_đại_trà rdfs:comment "Chương trình đại trà cho các ngành đào tạo đại học."@vi .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế rdf:type owl:Class .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế rdfs:label "Các chương trình hợp tác, đào tạo quốc tế"@vi .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế rdfs:comment "Các chương trình hợp tác quốc tế của Trường Đại học Sài Gòn tạo điều kiện cho cán bộ, giảng viên và sinh viên học tập, nghiên cứu, trao đổi khoa học với nước ngoài."@vi .
+:Các_khoa_chuyên_môn rdf:type owl:Class .
+:Các_khoa_chuyên_môn rdfs:label "Các khoa chuyên môn"@vi .
+:Các_khoa_chuyên_môn rdfs:comment "Các khoa chuyên môn bao gồm Giáo dục Mầm non, Giáo dục Tiểu học, Sư phạm Khoa học Xã hội, Sư phạm Khoa học Tự nhiên, Giáo dục, Nghệ thuật, Ngoại ngữ, Thư viện - Văn phòng, Khoa học Môi trường, Công nghệ Thông tin, Quản trị Kinh doanh, Tài chính - Kế toán, Văn hóa và Du lịch, Khoa học Chính trị, Toán - Ứng dụng, Điện tử - Viễn thông, Giáo dục Quốc phòng & An ninh - Giáo dục Thể chất."@vi .
+:Các_phòng_ban_chức_năng rdf:type owl:Class .
+:Các_phòng_ban_chức_năng rdfs:label "Các phòng ban chức năng"@vi .
+:Các_phòng_ban_chức_năng rdfs:comment "Các phòng ban chức năng bao gồm Đào tạo, Tổ chức - Cán bộ, Văn phòng, Kế hoạch - Tài chính, Công tác sinh viên, Quản lý khoa học, Đào tạo sau đại học, Thanh tra - Pháp chế, Khảo thí & Đảm bảo chất lượng, Ban Quản lý Dự án & Xây dựng, Hợp tác quốc tế & Doanh nghiệp, Thiết bị, Giáo dục thường xuyên."@vi .
+:Các_trung_tâm_trực_thuộc rdf:type owl:Class .
+:Các_trung_tâm_trực_thuộc rdfs:label "Các trung tâm trực thuộc"@vi .
+:Các_trung_tâm_trực_thuộc rdfs:comment "Các trung tâm trực thuộc bao gồm Khảo thí, Đào tạo quốc tế, Hỗ trợ sinh viên, Học liệu, Công nghệ thông tin, Ngoại ngữ, Trung tâm Tuyển sinh & Truyền thông, Trung tâm Ký túc xá, Trạm Y tế."@vi .
+:Các_tổ_chức_đoàn_thể rdf:type owl:Class .
+:Các_tổ_chức_đoàn_thể rdfs:label "Các tổ chức đoàn thể"@vi .
+:Các_tổ_chức_đoàn_thể rdfs:comment "Các tổ chức đoàn thể trong Trường Đại học Sài Gòn bao gồm Công đoàn, Đoàn Thanh niên và Hội Sinh viên."@vi .
+:Công_nghệ_Kỹ_thuật_Môi_trường___Toán_Ứng_dụng rdf:type owl:Class .
+:Công_nghệ_Kỹ_thuật_Môi_trường___Toán_Ứng_dụng rdfs:label "Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng"@vi .
+:Công_nghệ_Kỹ_thuật_Môi_trường___Toán_Ứng_dụng rdfs:comment "Chương trình đào tạo ngành Công nghệ Kỹ thuật Môi trường - Toán Ứng dụng."@vi .
+:Công_nghệ_Thông_tin___Việt_Nam_học rdf:type owl:Class .
+:Công_nghệ_Thông_tin___Việt_Nam_học rdfs:label "Công nghệ Thông tin - Việt Nam học"@vi .
+:Công_nghệ_Thông_tin___Việt_Nam_học rdfs:comment "Chương trình đào tạo ngành Công nghệ Thông tin - Việt Nam học."@vi .
+:Công_tác_đối_ngoại rdf:type owl:Class .
+:Công_tác_đối_ngoại rdfs:label "Công tác đối ngoại"@vi .
+:Công_tác_đối_ngoại rdfs:comment "Công tác đối ngoại của Trường Đại học Sài Gòn nhằm duy trì và thiết lập mối quan hệ hợp tác với các trường Đại học nước ngoài và các tổ chức quốc tế."@vi .
+:Cử_nhân rdf:type owl:Class .
+:Cử_nhân rdfs:label "Cử nhân"@vi .
+:Cử_nhân rdfs:comment "Bằng cử nhân là bằng cấp được cấp cho sinh viên hoàn thành chương trình đào tạo đại học."@vi .
+:Dự_án_nghiên_cứu_1 rdf:type owl:Class .
+:Dự_án_nghiên_cứu_1 rdfs:label "Dự án nghiên cứu 1"@vi .
+:Dự_án_nghiên_cứu_1 rdfs:comment "Dự án nghiên cứu về phát triển bền vững."@vi .
+:Dự_án_nghiên_cứu_2 rdf:type owl:Class .
+:Dự_án_nghiên_cứu_2 rdfs:label "Dự án nghiên cứu 2"@vi .
+:Dự_án_nghiên_cứu_2 rdfs:comment "Dự án nghiên cứu về công nghệ thông tin."@vi .
+:Giáo_dục_Chính_trị___Du_lịch rdf:type owl:Class .
+:Giáo_dục_Chính_trị___Du_lịch rdfs:label "Giáo dục Chính trị - Du lịch"@vi .
+:Giáo_dục_Chính_trị___Du_lịch rdfs:comment "Chương trình đào tạo ngành Giáo dục Chính trị - Du lịch."@vi .
+:Giáo_dục_Mầm_non___Kế_toán rdf:type owl:Class .
+:Giáo_dục_Mầm_non___Kế_toán rdfs:label "Giáo dục Mầm non - Kế toán"@vi .
+:Giáo_dục_Mầm_non___Kế_toán rdfs:comment "Chương trình đào tạo ngành Giáo dục Mầm non - Kế toán."@vi .
+:Giáo_dục_Tiểu_học___Khoa_học_Môi_trường rdf:type owl:Class .
+:Giáo_dục_Tiểu_học___Khoa_học_Môi_trường rdfs:label "Giáo dục Tiểu học - Khoa học Môi trường"@vi .
+:Giáo_dục_Tiểu_học___Khoa_học_Môi_trường rdfs:comment "Chương trình đào tạo ngành Giáo dục Tiểu học - Khoa học Môi trường."@vi .
+:Giáo_dục_thường_xuyên rdf:type owl:Class .
+:Giáo_dục_thường_xuyên rdfs:label "Giáo dục thường xuyên"@vi .
+:Giáo_dục_thường_xuyên rdfs:comment "Chương trình giáo dục thường xuyên dành cho người học vừa làm vừa học."@vi .
+:Giảng_viên_1 rdf:type owl:Class .
+:Giảng_viên_1 rdfs:label "Giảng viên 1"@vi .
+:Giảng_viên_1 rdfs:comment "Giảng viên có nhiều năm kinh nghiệm trong lĩnh vực giảng dạy."@vi .
+:Giảng_viên_2 rdf:type owl:Class .
+:Giảng_viên_2 rdfs:label "Giảng viên 2"@vi .
+:Giảng_viên_2 rdfs:comment "Giảng viên chuyên ngành Kỹ thuật với nhiều nghiên cứu nổi bật."@vi .
+:Hóa_hữu_cơ rdf:type owl:Class .
+:Hóa_hữu_cơ rdfs:label "Hóa hữu cơ"@vi .
+:Hóa_hữu_cơ rdfs:comment "Chương trình đào tạo ngành Hóa hữu cơ."@vi .
+:Hóa_hữu_cơ___Quản_trị_Kinh_doanh rdf:type owl:Class .
+:Hóa_hữu_cơ___Quản_trị_Kinh_doanh rdfs:label "Hóa hữu cơ - Quản trị Kinh doanh"@vi .
+:Hóa_hữu_cơ___Quản_trị_Kinh_doanh rdfs:comment "Chương trình đào tạo ngành Hóa hữu cơ - Quản trị Kinh doanh."@vi .
+:Hóa_lý_thuyết_và_Hóa_lý___Tài_chính___Ngân_hàng rdf:type owl:Class .
+:Hóa_lý_thuyết_và_Hóa_lý___Tài_chính___Ngân_hàng rdfs:label "Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng"@vi .
+:Hóa_lý_thuyết_và_Hóa_lý___Tài_chính___Ngân_hàng rdfs:comment "Chương trình đào tạo ngành Hóa lý thuyết và Hóa lý - Tài chính – Ngân hàng."@vi .
+:Hệ_chính_quy rdf:type owl:Class .
+:Hệ_chính_quy rdfs:label "Hệ chính quy"@vi .
+:Hệ_chính_quy rdfs:comment "Chương trình đào tạo chính quy tại Trường Đại học Sài Gòn."@vi .
+:Học_bổng_của_Bộ_Giáo_dục_Đài_Loan rdf:type owl:Class .
+:Học_bổng_của_Bộ_Giáo_dục_Đài_Loan rdfs:label "Học bổng của Bộ Giáo dục Đài Loan"@vi .
+:Học_bổng_của_Bộ_Giáo_dục_Đài_Loan rdfs:comment "Học bổng Cử nhân hệ chính quy, vừa học vừa làm đối với các Khối ngành Kinh tế, Thương mại, Thực phẩm, Dịch vụ, Công nghệ Thông tin, Kỹ thuật."@vi .
+:Học_bổng_toàn_phần_của_Bộ_Y_tế_Singapore rdf:type owl:Class .
+:Học_bổng_toàn_phần_của_Bộ_Y_tế_Singapore rdfs:label "Học bổng toàn phần của Bộ Y tế Singapore"@vi .
+:Học_bổng_toàn_phần_của_Bộ_Y_tế_Singapore rdfs:comment "Học bổng toàn phần chương trình đào tạo Trợ lý bác sĩ với trị giá SGD 120,000 từ Tập đoàn Y tế Quốc gia (MOHH)."@vi .
+:Hợp_tác_quốc_tế rdf:type owl:Class .
+:Hợp_tác_quốc_tế rdfs:label "Hợp tác quốc tế"@vi .
+:Hợp_tác_quốc_tế rdfs:comment "Hoạt động hợp tác quốc tế tại Trường Đại học Sài Gòn bao gồm các chương trình đối ngoại và hợp tác với các trường đại học nước ngoài."@vi .
+:Hợp_tác_quốc_tế_1 rdf:type owl:Class .
+:Hợp_tác_quốc_tế_1 rdfs:label "Hợp tác quốc tế 1"@vi .
+:Hợp_tác_quốc_tế_1 rdfs:comment "Hợp tác với các trường đại học quốc tế trong lĩnh vực giáo dục."@vi .
+:Hợp_tác_quốc_tế_2 rdf:type owl:Class .
+:Hợp_tác_quốc_tế_2 rdfs:label "Hợp tác quốc tế 2"@vi .
+:Hợp_tác_quốc_tế_2 rdfs:comment "Hợp tác nghiên cứu với các tổ chức quốc tế."@vi .
+:Khoa_Kinh_tế rdf:type owl:Class .
+:Khoa_Kinh_tế rdfs:label "Khoa Kinh tế"@vi .
+:Khoa_Kinh_tế rdfs:comment "Khoa Kinh tế đào tạo các chuyên ngành liên quan đến kinh tế và quản trị."@vi .
+:Khoa_Kỹ_thuật rdf:type owl:Class .
+:Khoa_Kỹ_thuật rdfs:label "Khoa Kỹ thuật"@vi .
+:Khoa_Kỹ_thuật rdfs:comment "Khoa Kỹ thuật đào tạo các chuyên ngành kỹ thuật và công nghệ."@vi .
+:Khoa_Nghệ_thuật rdf:type owl:Class .
+:Khoa_Nghệ_thuật rdfs:label "Khoa Nghệ thuật"@vi .
+:Khoa_Nghệ_thuật rdfs:comment "Khoa Nghệ thuật đào tạo các chuyên ngành nghệ thuật và thiết kế."@vi .
+:Khoa_học_Máy_tính___Toán_Giải_tích rdf:type owl:Class .
+:Khoa_học_Máy_tính___Toán_Giải_tích rdfs:label "Khoa học Máy tính - Toán Giải tích"@vi .
+:Khoa_học_Máy_tính___Toán_Giải_tích rdfs:comment "Chương trình đào tạo ngành Khoa học Máy tính - Toán Giải tích."@vi .
+:LL___PPDH_bộ_môn_Toán___Luật_dân_sự_và_tố_tụng_dân_sự rdf:type owl:Class .
+:LL___PPDH_bộ_môn_Toán___Luật_dân_sự_và_tố_tụng_dân_sự rdfs:label "LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự"@vi .
+:LL___PPDH_bộ_môn_Toán___Luật_dân_sự_và_tố_tụng_dân_sự rdfs:comment "Chương trình đào tạo ngành LL & PPDH bộ môn Toán - Luật dân sự và tố tụng dân sự."@vi .
+:Lịch_sử_Việt_Nam rdf:type owl:Class .
+:Lịch_sử_Việt_Nam rdfs:label "Lịch sử Việt Nam"@vi .
+:Lịch_sử_Việt_Nam rdfs:comment "Chương trình đào tạo ngành Lịch sử Việt Nam."@vi .
+:Lịch_sử_Việt_Nam___Văn_học_Việt_Nam rdf:type owl:Class .
+:Lịch_sử_Việt_Nam___Văn_học_Việt_Nam rdfs:label "Lịch sử Việt Nam - Văn học Việt Nam"@vi .
+:Lịch_sử_Việt_Nam___Văn_học_Việt_Nam rdfs:comment "Chương trình đào tạo ngành Lịch sử Việt Nam - Văn học Việt Nam."@vi .
+:Ngôn_ngữ_học rdf:type owl:Class .
+:Ngôn_ngữ_học rdfs:label "Ngôn ngữ học"@vi .
+:Ngôn_ngữ_học rdfs:comment "Chương trình đào tạo ngành Ngôn ngữ học."@vi .
+:Quy_định_chung_về_bài_báo_khoa_học rdf:type owl:Class .
+:Quy_định_chung_về_bài_báo_khoa_học rdfs:label "Quy định chung về bài báo khoa học"@vi .
+:Quy_định_chung_về_bài_báo_khoa_học rdfs:comment "Các bài báo phải nêu rõ mục tiêu nghiên cứu, có kết quả mới, được phản biện và có danh mục chú thích và tài liệu tham khảo."@vi .
+:Quyền_lợi_sinh_viên_NCKH rdf:type owl:Class .
+:Quyền_lợi_sinh_viên_NCKH rdfs:label "Quyền lợi sinh viên NCKH"@vi .
+:Quyền_lợi_sinh_viên_NCKH rdfs:comment "Sinh viên có đề tài NCKH đạt yêu cầu sẽ được hỗ trợ kinh phí, cộng điểm rèn luyện và cấp giấy chứng nhận NCKH."@vi .
+:Quản_lý_Giáo_dục rdf:type owl:Class .
+:Quản_lý_Giáo_dục rdfs:label "Quản lý Giáo dục"@vi .
+:Quản_lý_Giáo_dục rdfs:comment "Chương trình đào tạo ngành Quản lý Giáo dục."@vi .
+:Quản_trị_Kinh_doanh rdf:type owl:Class .
+:Quản_trị_Kinh_doanh rdfs:label "Quản trị Kinh doanh"@vi .
+:Quản_trị_Kinh_doanh rdfs:comment "Chương trình đào tạo ngành Quản trị Kinh doanh."@vi .
+:Sinh_viên_1 rdf:type owl:Class .
+:Sinh_viên_1 rdfs:label "Sinh viên 1"@vi .
+:Sinh_viên_1 rdfs:comment "Sinh viên đang theo học tại Trường Đại học Sài Gòn."@vi .
+:Sinh_viên_2 rdf:type owl:Class .
+:Sinh_viên_2 rdfs:label "Sinh viên 2"@vi .
+:Sinh_viên_2 rdfs:comment "Sinh viên đang theo học tại Trường Đại học Sài Gòn."@vi .
+:Sư_phạm_Hóa_học___Kỹ_thuật_Điện_tử___Viễn_thông rdf:type owl:Class .
+:Sư_phạm_Hóa_học___Kỹ_thuật_Điện_tử___Viễn_thông rdfs:label "Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông"@vi .
+:Sư_phạm_Hóa_học___Kỹ_thuật_Điện_tử___Viễn_thông rdfs:comment "Chương trình đào tạo ngành Sư phạm Hóa học - Kỹ thuật Điện tử - Viễn thông."@vi .
+:Sư_phạm_Khoa_học_Tự_nhiên___Kỹ_thuật_Phần_mềm rdf:type owl:Class .
+:Sư_phạm_Khoa_học_Tự_nhiên___Kỹ_thuật_Phần_mềm rdfs:label "Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm"@vi .
+:Sư_phạm_Khoa_học_Tự_nhiên___Kỹ_thuật_Phần_mềm rdfs:comment "Chương trình đào tạo ngành Sư phạm Khoa học Tự nhiên - Kỹ thuật Phần mềm."@vi .
+:Sư_phạm_Lịch_sử___Luật rdf:type owl:Class .
+:Sư_phạm_Lịch_sử___Luật rdfs:label "Sư phạm Lịch sử - Luật"@vi .
+:Sư_phạm_Lịch_sử___Luật rdfs:comment "Chương trình đào tạo ngành Sư phạm Lịch sử - Luật."@vi .
+:Sư_phạm_Lịch_sử___Địa_lý___Ngôn_ngữ_Anh rdf:type owl:Class .
+:Sư_phạm_Lịch_sử___Địa_lý___Ngôn_ngữ_Anh rdfs:label "Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh"@vi .
+:Sư_phạm_Lịch_sử___Địa_lý___Ngôn_ngữ_Anh rdfs:comment "Chương trình đào tạo ngành Sư phạm Lịch sử - Địa lý - Ngôn ngữ Anh."@vi .
+:Sư_phạm_Mỹ_thuật___Quản_lý_Giáo_dục rdf:type owl:Class .
+:Sư_phạm_Mỹ_thuật___Quản_lý_Giáo_dục rdfs:label "Sư phạm Mỹ thuật - Quản lý Giáo dục"@vi .
+:Sư_phạm_Mỹ_thuật___Quản_lý_Giáo_dục rdfs:comment "Chương trình đào tạo ngành Sư phạm Mỹ thuật - Quản lý Giáo dục."@vi .
+:Sư_phạm_Ngữ_Văn___Quản_trị_Kinh_doanh rdf:type owl:Class .
+:Sư_phạm_Ngữ_Văn___Quản_trị_Kinh_doanh rdfs:label "Sư phạm Ngữ Văn - Quản trị Kinh doanh"@vi .
+:Sư_phạm_Ngữ_Văn___Quản_trị_Kinh_doanh rdfs:comment "Chương trình đào tạo ngành Sư phạm Ngữ Văn - Quản trị Kinh doanh."@vi .
+:Sư_phạm_Sinh_học___Quản_trị_Văn_phòng rdf:type owl:Class .
+:Sư_phạm_Sinh_học___Quản_trị_Văn_phòng rdfs:label "Sư phạm Sinh học - Quản trị Văn phòng"@vi .
+:Sư_phạm_Sinh_học___Quản_trị_Văn_phòng rdfs:comment "Chương trình đào tạo ngành Sư phạm Sinh học - Quản trị Văn phòng."@vi .
+:Sư_phạm_Tiếng_Anh___Quốc_tế_học rdf:type owl:Class .
+:Sư_phạm_Tiếng_Anh___Quốc_tế_học rdfs:label "Sư phạm Tiếng Anh - Quốc tế học"@vi .
+:Sư_phạm_Tiếng_Anh___Quốc_tế_học rdfs:comment "Chương trình đào tạo ngành Sư phạm Tiếng Anh - Quốc tế học."@vi .
+:Sư_phạm_Toán_học___Tài_chính___Ngân_hàng rdf:type owl:Class .
+:Sư_phạm_Toán_học___Tài_chính___Ngân_hàng rdfs:label "Sư phạm Toán học - Tài chính - Ngân hàng"@vi .
+:Sư_phạm_Toán_học___Tài_chính___Ngân_hàng rdfs:comment "Chương trình đào tạo ngành Sư phạm Toán học - Tài chính - Ngân hàng."@vi .
+:Sư_phạm_Vật_lý___Tâm_lý_học rdf:type owl:Class .
+:Sư_phạm_Vật_lý___Tâm_lý_học rdfs:label "Sư phạm Vật lý - Tâm lý học"@vi .
+:Sư_phạm_Vật_lý___Tâm_lý_học rdfs:comment "Chương trình đào tạo ngành Sư phạm Vật lý - Tâm lý học."@vi .
+:Sư_phạm_Âm_nhạc___Kinh_doanh_Quốc_tế rdf:type owl:Class .
+:Sư_phạm_Âm_nhạc___Kinh_doanh_Quốc_tế rdfs:label "Sư phạm Âm nhạc - Kinh doanh Quốc tế"@vi .
+:Sư_phạm_Âm_nhạc___Kinh_doanh_Quốc_tế rdfs:comment "Chương trình đào tạo ngành Sư phạm Âm nhạc - Kinh doanh Quốc tế."@vi .
+:Sư_phạm_Địa_lý___Kỹ_thuật_Điện rdf:type owl:Class .
+:Sư_phạm_Địa_lý___Kỹ_thuật_Điện rdfs:label "Sư phạm Địa lý - Kỹ thuật Điện"@vi .
+:Sư_phạm_Địa_lý___Kỹ_thuật_Điện rdfs:comment "Chương trình đào tạo ngành Sư phạm Địa lý - Kỹ thuật Điện."@vi .
+:Thạc_sĩ rdf:type owl:Class .
+:Thạc_sĩ rdfs:label "Thạc sĩ"@vi .
+:Thạc_sĩ rdfs:comment "Bằng thạc sĩ là bằng cấp được cấp cho sinh viên hoàn thành chương trình đào tạo sau đại học."@vi .
+:Thể_lệ_gửi_bài_đăng rdf:type owl:Class .
+:Thể_lệ_gửi_bài_đăng rdfs:label "Thể lệ gửi bài đăng"@vi .
+:Thể_lệ_gửi_bài_đăng rdfs:comment "Bài gửi đăng phải là công trình khoa học, chưa từng công bố trong ấn phẩm khác, được viết bằng tiếng Việt hoặc tiếng Anh."@vi .
+:Tiến_sĩ rdf:type owl:Class .
+:Tiến_sĩ rdfs:label "Tiến sĩ"@vi .
+:Tiến_sĩ rdfs:comment "Bằng tiến sĩ là bằng cấp cao nhất trong hệ thống giáo dục đại học."@vi .
+:Toán_Giải_tích rdf:type owl:Class .
+:Toán_Giải_tích rdfs:label "Toán Giải tích"@vi .
+:Toán_Giải_tích rdfs:comment "Chương trình đào tạo ngành Toán Giải tích."@vi .
+:Trình_độ_Sau_Đại_học rdf:type owl:Class .
+:Trình_độ_Sau_Đại_học rdfs:label "Trình độ Sau Đại học"@vi .
+:Trình_độ_Sau_Đại_học rdfs:comment "Chương trình đào tạo trình độ sau đại học."@vi .
+:Trình_độ_Tiến_sĩ rdf:type owl:Class .
+:Trình_độ_Tiến_sĩ rdfs:label "Trình độ Tiến sĩ"@vi .
+:Trình_độ_Tiến_sĩ rdfs:comment "Chương trình đào tạo trình độ tiến sĩ."@vi .
+:Trình_độ_Đại_học rdf:type owl:Class .
+:Trình_độ_Đại_học rdfs:label "Trình độ Đại học"@vi .
+:Trình_độ_Đại_học rdfs:comment "Chương trình đào tạo trình độ đại học."@vi .
+:Trường_Đại_học_Sài_Gòn rdf:type owl:Class .
+:Trường_Đại_học_Sài_Gòn rdfs:label "Trường Đại học Sài Gòn"@vi .
+:Trường_Đại_học_Sài_Gòn rdfs:comment "Trường Đại học Sài Gòn là cơ sở giáo dục Đại học công lập trực thuộc UBND TP. Hồ Chí Minh, chịu sự quản lý nhà nước về giáo dục của Bộ Giáo dục và Đào tạo; là trường đại học đào tạo đa ngành, đa lĩnh vực. Trường Đại học Sài Gòn đào tạo từ trình độ đại học và sau đại học, theo 2 phương thức: chính quy và giáo dục thường xuyên (vừa làm vừa học, văn bằng hai, liên thông). Hiện nay, Trường đang tổ chức đào tạo 05 chuyên ngành tiến sĩ, 12 chuyên ngành cao học và 39 chương trình đào tạo trình độ đại học thuộc các lĩnh vực: Kinh tế - Kỹ thuật - Công nghệ, Văn hóa xã hội, chính trị, Nghệ thuật và Sư phạm. Ngoài việc cấp bằng, Trường Đại học Sài Gòn được Bộ Giáo dục và Đào tạo cho phép đào tạo cấp các chứng chỉ Bồi dưỡng nghiệp vụ sư phạm cho giảng viên đại học, cao đẳng và bồi dưỡng nghiệp vụ sư phạm cho giáo viên Tiếng Anh Tiểu học, chứng chỉ Công nghệ Thông tin và chứng chỉ Tiếng Anh theo khung năng lực Ngoại ngữ 6 bậc dùng cho Việt Nam. Ngày 13/5/2017, Trường Đại học Sài Gòn được Chứng nhận kiểm định chất lượng giáo dục trường đại học. Năm 2018, Trường đón nhận Huân chương Lao động Hạng Ba do Chủ tịch nước Cộng hòa Xã hội Chủ nghĩa Việt Nam trao tặng."@vi .
+:Tôn_chỉ__mục_đích_hoạt_động rdf:type owl:Class .
+:Tôn_chỉ__mục_đích_hoạt_động rdfs:label "Tôn chỉ, mục đích hoạt động"@vi .
+:Tôn_chỉ__mục_đích_hoạt_động rdfs:comment "Là diễn đàn khoa học công bố các kết quả nghiên cứu và hoạt động khoa học của cán bộ, giảng viên trường Đại học Sài Gòn."@vi .
+:Tạp_chí_Khoa_học rdf:type owl:Class .
+:Tạp_chí_Khoa_học rdfs:label "Tạp chí Khoa học"@vi .
+:Tạp_chí_Khoa_học rdfs:comment "Tạp chí khoa học công bố các nghiên cứu và bài viết trong lĩnh vực giáo dục và nghiên cứu."@vi .
+:Tạp_chí_Khoa_học_Đại_học_Sài_Gòn rdf:type owl:Class .
+:Tạp_chí_Khoa_học_Đại_học_Sài_Gòn rdfs:label "Tạp chí Khoa học Đại học Sài Gòn"@vi .
+:Tạp_chí_Khoa_học_Đại_học_Sài_Gòn rdfs:comment "Tạp chí Khoa học Đại học Sài Gòn phục vụ cán bộ giảng dạy, nghiên cứu, quản lý, sinh viên các trường đại học, cao đẳng, các viện, học viện, các trung tâm nghiên cứu."@vi .
+:Đào_tạo_hệ_đại_học_vừa_làm_vừa_học rdf:type owl:Class .
+:Đào_tạo_hệ_đại_học_vừa_làm_vừa_học rdfs:label "Đào tạo hệ đại học vừa làm vừa học"@vi .
+:Đào_tạo_hệ_đại_học_vừa_làm_vừa_học rdfs:comment "Đào tạo hệ đại học vừa làm vừa học (VLVH) các ngành Quản trị Kinh doanh, Tài chính - Ngân hàng, Tài chính - Kế toán, Luật, Giáo dục Tiểu học, Giáo dục Mầm non."@vi .
+:Đào_tạo_văn_bằng_thứ_hai rdf:type owl:Class .
+:Đào_tạo_văn_bằng_thứ_hai rdfs:label "Đào tạo văn bằng thứ hai"@vi .
+:Đào_tạo_văn_bằng_thứ_hai rdfs:comment "Đào tạo văn bằng thứ hai trình độ đại học các ngành: Ngôn ngữ Anh, Kế toán, Luật, Quản trị Kinh doanh, Ngôn ngữ Anh, Giáo dục Tiểu học và Quản lý Giáo dục."@vi .
+:Đào_tạo_Đại_học_liên_thông rdf:type owl:Class .
+:Đào_tạo_Đại_học_liên_thông rdfs:label "Đào tạo Đại học liên thông"@vi .
+:Đào_tạo_Đại_học_liên_thông rdfs:comment "Đào tạo liên thông các ngành Công nghệ Thông tin, Kế toán, Quản trị Kinh doanh, Giáo dục Mầm non và Giáo dục Tiểu học."@vi .
+:Đơn_vị_trực_thuộc rdf:type owl:Class .
+:Đơn_vị_trực_thuộc rdfs:label "Đơn vị trực thuộc"@vi .
+:Đơn_vị_trực_thuộc rdfs:comment "Các đơn vị trực thuộc bao gồm Viện Khoa học Dữ liệu và Trí tuệ nhân tạo, Viện Nghiên cứu Môi trường - Sức khỏe, Trung tâm Thực hành Sư phạm, Trung học Thực hành Sài Gòn, Tiểu học Thực hành Sài Gòn."@vi .
+:Đề_tài_Nghiên_cứu_khoa_học_cấp_cơ_sở rdf:type owl:Class .
+:Đề_tài_Nghiên_cứu_khoa_học_cấp_cơ_sở rdfs:label "Đề tài Nghiên cứu khoa học cấp cơ sở"@vi .
+:Đề_tài_Nghiên_cứu_khoa_học_cấp_cơ_sở rdfs:comment "Sinh viên tham gia thực hiện đề tài NCKH trong thời gian từ 06 – 09 tháng dưới sự hướng dẫn của Giảng viên."@vi .
+
+# Object Properties
+:conductsResearch rdf:type owl:ObjectProperty .
+:conductsResearch rdfs:label "conductsResearch"@en .
+:conductsResearch rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:conductsResearch rdfs:range :Bài_báo_Khoa_học_và_báo_cáo_tham_luận .
+:conductsResearch rdfs:range :Dự_án_nghiên_cứu_1 .
+:conductsResearch rdfs:range :Dự_án_nghiên_cứu_2 .
+:conductsResearch rdfs:range :Quyền_lợi_sinh_viên_NCKH .
+:conductsResearch rdfs:range :Đề_tài_Nghiên_cứu_khoa_học_cấp_cơ_sở .
+:hasDegree rdf:type owl:ObjectProperty .
+:hasDegree rdfs:label "hasDegree"@en .
+:hasDegree rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:hasDegree rdfs:range :Cử_nhân .
+:hasDegree rdfs:range :Thạc_sĩ .
+:hasDegree rdfs:range :Tiến_sĩ .
+:hasDepartment rdf:type owl:ObjectProperty .
+:hasDepartment rdfs:label "hasDepartment"@en .
+:hasDepartment rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:hasDepartment rdfs:range :Ban_lãnh_đạo .
+:hasDepartment rdfs:range :Các_khoa_chuyên_môn .
+:hasDepartment rdfs:range :Các_phòng_ban_chức_năng .
+:hasDepartment rdfs:range :Các_trung_tâm_trực_thuộc .
+:hasDepartment rdfs:range :Các_tổ_chức_đoàn_thể .
+:hasDepartment rdfs:range :Khoa_Kinh_tế .
+:hasDepartment rdfs:range :Khoa_Kỹ_thuật .
+:hasDepartment rdfs:range :Khoa_Nghệ_thuật .
+:hasDepartment rdfs:range :Đơn_vị_trực_thuộc .
+:hasFaculty rdf:type owl:ObjectProperty .
+:hasFaculty rdfs:label "hasFaculty"@en .
+:hasFaculty rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:hasFaculty rdfs:range :Giảng_viên_1 .
+:hasFaculty rdfs:range :Giảng_viên_2 .
+:hasInternationalCooperation rdf:type owl:ObjectProperty .
+:hasInternationalCooperation rdfs:label "hasInternationalCooperation"@en .
+:hasInternationalCooperation rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:hasInternationalCooperation rdfs:range :Hợp_tác_quốc_tế .
+:hasInternationalCooperation rdfs:range :Hợp_tác_quốc_tế_1 .
+:hasInternationalCooperation rdfs:range :Hợp_tác_quốc_tế_2 .
+:hasPurpose rdf:type owl:ObjectProperty .
+:hasPurpose rdfs:label "hasPurpose"@en .
+:hasPurpose rdfs:domain :Tạp_chí_Khoa_học_Đại_học_Sài_Gòn .
+:hasPurpose rdfs:range :Tôn_chỉ__mục_đích_hoạt_động .
+:hasStudent rdf:type owl:ObjectProperty .
+:hasStudent rdfs:label "hasStudent"@en .
+:hasStudent rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:hasStudent rdfs:range :Sinh_viên_1 .
+:hasStudent rdfs:range :Sinh_viên_2 .
+:hasSubmissionFormat rdf:type owl:ObjectProperty .
+:hasSubmissionFormat rdfs:label "hasSubmissionFormat"@en .
+:hasSubmissionFormat rdfs:domain :Tạp_chí_Khoa_học_Đại_học_Sài_Gòn .
+:hasSubmissionFormat rdfs:range :Thể_lệ_gửi_bài_đăng .
+:hasSubmissionGuidelines rdf:type owl:ObjectProperty .
+:hasSubmissionGuidelines rdfs:label "hasSubmissionGuidelines"@en .
+:hasSubmissionGuidelines rdfs:domain :Tạp_chí_Khoa_học_Đại_học_Sài_Gòn .
+:hasSubmissionGuidelines rdfs:range :Quy_định_chung_về_bài_báo_khoa_học .
+:includes rdf:type owl:ObjectProperty .
+:includes rdfs:label "includes"@en .
+:includes rdfs:domain :Hợp_tác_quốc_tế .
+:includes rdfs:range :Các_chương_trình_hợp_tác__đào_tạo_quốc_tế .
+:includes rdfs:range :Công_tác_đối_ngoại .
+:offersProgram rdf:type owl:ObjectProperty .
+:offersProgram rdfs:label "offersProgram"@en .
+:offersProgram rdfs:domain :Chương_trình_đại_trà .
+:offersProgram rdfs:domain :Các_chương_trình_hợp_tác__đào_tạo_quốc_tế .
+:offersProgram rdfs:domain :Giáo_dục_thường_xuyên .
+:offersProgram rdfs:domain :Hệ_chính_quy .
+:offersProgram rdfs:domain :Trình_độ_Sau_Đại_học .
+:offersProgram rdfs:domain :Trình_độ_Tiến_sĩ .
+:offersProgram rdfs:domain :Trình_độ_Đại_học .
+:offersProgram rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:offersProgram rdfs:range :CNKT_Điện__Điện_tử___Thông_tin___Thư_viện .
+:offersProgram rdfs:range :CNKT_Điện_tử___Viễn_thông___Thanh_nhạc .
+:offersProgram rdfs:range :Chương_trình_Cử_nhân_Quốc_tế_Quản_trị_Kinh_doanh_và_Quản_lý_Thương_mại_Điện_tử .
+:offersProgram rdfs:range :Chương_trình_chính_quy .
+:offersProgram rdfs:range :Chương_trình_chất_lượng_cao .
+:offersProgram rdfs:range :Chương_trình_giáo_dục_thường_xuyên .
+:offersProgram rdfs:range :Chương_trình_liên_kết_đào_tạo_khác .
+:offersProgram rdfs:range :Chương_trình_đào_tạo_tiếng_Hoa .
+:offersProgram rdfs:range :Chương_trình_đại_trà .
+:offersProgram rdfs:range :Công_nghệ_Kỹ_thuật_Môi_trường___Toán_Ứng_dụng .
+:offersProgram rdfs:range :Công_nghệ_Thông_tin___Việt_Nam_học .
+:offersProgram rdfs:range :Giáo_dục_Chính_trị___Du_lịch .
+:offersProgram rdfs:range :Giáo_dục_Mầm_non___Kế_toán .
+:offersProgram rdfs:range :Giáo_dục_Tiểu_học___Khoa_học_Môi_trường .
+:offersProgram rdfs:range :Giáo_dục_thường_xuyên .
+:offersProgram rdfs:range :Hóa_hữu_cơ .
+:offersProgram rdfs:range :Hóa_hữu_cơ___Quản_trị_Kinh_doanh .
+:offersProgram rdfs:range :Hóa_lý_thuyết_và_Hóa_lý___Tài_chính___Ngân_hàng .
+:offersProgram rdfs:range :Hệ_chính_quy .
+:offersProgram rdfs:range :Học_bổng_của_Bộ_Giáo_dục_Đài_Loan .
+:offersProgram rdfs:range :Học_bổng_toàn_phần_của_Bộ_Y_tế_Singapore .
+:offersProgram rdfs:range :Khoa_học_Máy_tính___Toán_Giải_tích .
+:offersProgram rdfs:range :LL___PPDH_bộ_môn_Toán___Luật_dân_sự_và_tố_tụng_dân_sự .
+:offersProgram rdfs:range :Lịch_sử_Việt_Nam .
+:offersProgram rdfs:range :Lịch_sử_Việt_Nam___Văn_học_Việt_Nam .
+:offersProgram rdfs:range :Ngôn_ngữ_học .
+:offersProgram rdfs:range :Quản_lý_Giáo_dục .
+:offersProgram rdfs:range :Quản_trị_Kinh_doanh .
+:offersProgram rdfs:range :Sư_phạm_Hóa_học___Kỹ_thuật_Điện_tử___Viễn_thông .
+:offersProgram rdfs:range :Sư_phạm_Khoa_học_Tự_nhiên___Kỹ_thuật_Phần_mềm .
+:offersProgram rdfs:range :Sư_phạm_Lịch_sử___Luật .
+:offersProgram rdfs:range :Sư_phạm_Lịch_sử___Địa_lý___Ngôn_ngữ_Anh .
+:offersProgram rdfs:range :Sư_phạm_Mỹ_thuật___Quản_lý_Giáo_dục .
+:offersProgram rdfs:range :Sư_phạm_Ngữ_Văn___Quản_trị_Kinh_doanh .
+:offersProgram rdfs:range :Sư_phạm_Sinh_học___Quản_trị_Văn_phòng .
+:offersProgram rdfs:range :Sư_phạm_Tiếng_Anh___Quốc_tế_học .
+:offersProgram rdfs:range :Sư_phạm_Toán_học___Tài_chính___Ngân_hàng .
+:offersProgram rdfs:range :Sư_phạm_Vật_lý___Tâm_lý_học .
+:offersProgram rdfs:range :Sư_phạm_Âm_nhạc___Kinh_doanh_Quốc_tế .
+:offersProgram rdfs:range :Sư_phạm_Địa_lý___Kỹ_thuật_Điện .
+:offersProgram rdfs:range :Toán_Giải_tích .
+:offersProgram rdfs:range :Trình_độ_Sau_Đại_học .
+:offersProgram rdfs:range :Trình_độ_Tiến_sĩ .
+:offersProgram rdfs:range :Trình_độ_Đại_học .
+:offersProgram rdfs:range :Đào_tạo_hệ_đại_học_vừa_làm_vừa_học .
+:offersProgram rdfs:range :Đào_tạo_văn_bằng_thứ_hai .
+:offersProgram rdfs:range :Đào_tạo_Đại_học_liên_thông .
+:publishesIn rdf:type owl:ObjectProperty .
+:publishesIn rdfs:label "publishesIn"@en .
+:publishesIn rdfs:domain :Trường_Đại_học_Sài_Gòn .
+:publishesIn rdfs:range :Tạp_chí_Khoa_học .
+:publishesIn rdfs:range :Tạp_chí_Khoa_học_Đại_học_Sài_Gòn .
+
+# Relationships
+:Trường_Đại_học_Sài_Gòn :hasDegree :Cử_nhân .
+:Trường_Đại_học_Sài_Gòn :hasDegree :Thạc_sĩ .
+:Trường_Đại_học_Sài_Gòn :hasDegree :Tiến_sĩ .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Chương_trình_chính_quy .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Chương_trình_giáo_dục_thường_xuyên .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Chương_trình_chất_lượng_cao .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Hệ_chính_quy .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Trình_độ_Sau_Đại_học .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Trình_độ_Tiến_sĩ .
+:Trường_Đại_học_Sài_Gòn :offersProgram :Giáo_dục_thường_xuyên .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Khoa_Kinh_tế .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Khoa_Kỹ_thuật .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Khoa_Nghệ_thuật .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Ban_lãnh_đạo .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Các_tổ_chức_đoàn_thể .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Các_phòng_ban_chức_năng .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Các_trung_tâm_trực_thuộc .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Các_khoa_chuyên_môn .
+:Trường_Đại_học_Sài_Gòn :hasDepartment :Đơn_vị_trực_thuộc .
+:Trường_Đại_học_Sài_Gòn :conductsResearch :Dự_án_nghiên_cứu_1 .
+:Trường_Đại_học_Sài_Gòn :conductsResearch :Dự_án_nghiên_cứu_2 .
+:Trường_Đại_học_Sài_Gòn :conductsResearch :Đề_tài_Nghiên_cứu_khoa_học_cấp_cơ_sở .
+:Trường_Đại_học_Sài_Gòn :conductsResearch :Quyền_lợi_sinh_viên_NCKH .
+:Trường_Đại_học_Sài_Gòn :conductsResearch :Bài_báo_Khoa_học_và_báo_cáo_tham_luận .
+:Trường_Đại_học_Sài_Gòn :hasInternationalCooperation :Hợp_tác_quốc_tế_1 .
+:Trường_Đại_học_Sài_Gòn :hasInternationalCooperation :Hợp_tác_quốc_tế_2 .
+:Trường_Đại_học_Sài_Gòn :hasInternationalCooperation :Hợp_tác_quốc_tế .
+:Trường_Đại_học_Sài_Gòn :publishesIn :Tạp_chí_Khoa_học .
+:Trường_Đại_học_Sài_Gòn :publishesIn :Tạp_chí_Khoa_học_Đại_học_Sài_Gòn .
+:Trường_Đại_học_Sài_Gòn :hasStudent :Sinh_viên_1 .
+:Trường_Đại_học_Sài_Gòn :hasStudent :Sinh_viên_2 .
+:Trường_Đại_học_Sài_Gòn :hasFaculty :Giảng_viên_1 .
+:Trường_Đại_học_Sài_Gòn :hasFaculty :Giảng_viên_2 .
+:Hệ_chính_quy :offersProgram :Trình_độ_Đại_học .
+:Hệ_chính_quy :offersProgram :Chương_trình_chất_lượng_cao .
+:Trình_độ_Đại_học :offersProgram :Chương_trình_đại_trà .
+:Trình_độ_Sau_Đại_học :offersProgram :Hóa_hữu_cơ___Quản_trị_Kinh_doanh .
+:Trình_độ_Sau_Đại_học :offersProgram :Hóa_lý_thuyết_và_Hóa_lý___Tài_chính___Ngân_hàng .
+:Trình_độ_Sau_Đại_học :offersProgram :Khoa_học_Máy_tính___Toán_Giải_tích .
+:Trình_độ_Sau_Đại_học :offersProgram :Lịch_sử_Việt_Nam___Văn_học_Việt_Nam .
+:Trình_độ_Sau_Đại_học :offersProgram :LL___PPDH_bộ_môn_Toán___Luật_dân_sự_và_tố_tụng_dân_sự .
+:Trình_độ_Sau_Đại_học :offersProgram :Ngôn_ngữ_học .
+:Trình_độ_Sau_Đại_học :offersProgram :Quản_lý_Giáo_dục .
+:Trình_độ_Tiến_sĩ :offersProgram :Hóa_hữu_cơ .
+:Trình_độ_Tiến_sĩ :offersProgram :Lịch_sử_Việt_Nam .
+:Trình_độ_Tiến_sĩ :offersProgram :Quản_lý_Giáo_dục .
+:Trình_độ_Tiến_sĩ :offersProgram :Toán_Giải_tích .
+:Trình_độ_Tiến_sĩ :offersProgram :Quản_trị_Kinh_doanh .
+:Giáo_dục_thường_xuyên :offersProgram :Đào_tạo_Đại_học_liên_thông .
+:Giáo_dục_thường_xuyên :offersProgram :Đào_tạo_văn_bằng_thứ_hai .
+:Giáo_dục_thường_xuyên :offersProgram :Đào_tạo_hệ_đại_học_vừa_làm_vừa_học .
+:Chương_trình_đại_trà :offersProgram :Giáo_dục_Chính_trị___Du_lịch .
+:Chương_trình_đại_trà :offersProgram :Giáo_dục_Mầm_non___Kế_toán .
+:Chương_trình_đại_trà :offersProgram :Giáo_dục_Tiểu_học___Khoa_học_Môi_trường .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Âm_nhạc___Kinh_doanh_Quốc_tế .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Địa_lý___Kỹ_thuật_Điện .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Hóa_học___Kỹ_thuật_Điện_tử___Viễn_thông .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Khoa_học_Tự_nhiên___Kỹ_thuật_Phần_mềm .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Lịch_sử___Luật .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Lịch_sử___Địa_lý___Ngôn_ngữ_Anh .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Mỹ_thuật___Quản_lý_Giáo_dục .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Ngữ_Văn___Quản_trị_Kinh_doanh .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Sinh_học___Quản_trị_Văn_phòng .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Tiếng_Anh___Quốc_tế_học .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Toán_học___Tài_chính___Ngân_hàng .
+:Chương_trình_đại_trà :offersProgram :Sư_phạm_Vật_lý___Tâm_lý_học .
+:Chương_trình_đại_trà :offersProgram :CNKT_Điện_tử___Viễn_thông___Thanh_nhạc .
+:Chương_trình_đại_trà :offersProgram :CNKT_Điện__Điện_tử___Thông_tin___Thư_viện .
+:Chương_trình_đại_trà :offersProgram :Công_nghệ_Kỹ_thuật_Môi_trường___Toán_Ứng_dụng .
+:Chương_trình_đại_trà :offersProgram :Công_nghệ_Thông_tin___Việt_Nam_học .
+:Hợp_tác_quốc_tế :includes :Công_tác_đối_ngoại .
+:Hợp_tác_quốc_tế :includes :Các_chương_trình_hợp_tác__đào_tạo_quốc_tế .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế :offersProgram :Chương_trình_Cử_nhân_Quốc_tế_Quản_trị_Kinh_doanh_và_Quản_lý_Thương_mại_Điện_tử .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế :offersProgram :Chương_trình_đào_tạo_tiếng_Hoa .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế :offersProgram :Học_bổng_toàn_phần_của_Bộ_Y_tế_Singapore .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế :offersProgram :Học_bổng_của_Bộ_Giáo_dục_Đài_Loan .
+:Các_chương_trình_hợp_tác__đào_tạo_quốc_tế :offersProgram :Chương_trình_liên_kết_đào_tạo_khác .
+:Tạp_chí_Khoa_học_Đại_học_Sài_Gòn :hasPurpose :Tôn_chỉ__mục_đích_hoạt_động .
+:Tạp_chí_Khoa_học_Đại_học_Sài_Gòn :hasSubmissionGuidelines :Quy_định_chung_về_bài_báo_khoa_học .
+:Tạp_chí_Khoa_học_Đại_học_Sài_Gòn :hasSubmissionFormat :Thể_lệ_gửi_bài_đăng .
