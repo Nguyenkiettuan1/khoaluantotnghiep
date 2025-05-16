@@ -1,81 +1,97 @@
 from neo4j import GraphDatabase
+import re
+
+# Hàm sanitize_unicode:
+# - Thay mọi ký tự không phải chữ/ số/ gạch dưới thành '_'
+# - Nhưng vẫn giữ nguyên các ký tự Unicode (kể cả tiếng Việt có dấu)
+# - Nếu kết quả bắt đầu bằng số thì thêm '_' vào trước
+def sanitize_unicode(name: str) -> str:
+    # \w trong Python RE theo default đã bao gồm Unicode letters & digits
+    s = re.sub(r'[^\w]', '_', name)
+    if re.match(r'^\d', s):
+        s = '_' + s
+    return s
 
 # Kết nối đến Neo4j
-uri = "bolt://localhost:7687"
+uri    = "bolt://localhost:7687"
 driver = GraphDatabase.driver(uri, auth=("neo4j", "123456789"))
 
 def get_all_nodes(tx):
-    # Sử dụng coalesce để lấy giá trị của thuộc tính "name" nếu tồn tại, nếu không sử dụng id(n)
-    query = """
+    q = """
     MATCH (n)
-    RETURN DISTINCT coalesce(n['name'], toString(id(n))) AS name, labels(n) AS labels
+    RETURN DISTINCT coalesce(n.name, toString(id(n))) AS name
     """
-    result = tx.run(query)
-    # Trả về dict: tên node -> danh sách labels
-    return {record["name"]: record["labels"] for record in result if record["name"]}
+    return [r["name"] for r in tx.run(q)]
 
 def get_all_relationships(tx):
-    # Tương tự, sử dụng coalesce cho các node nguồn và đích
-    query = """
+    q = """
     MATCH (n)-[r]->(m)
-    RETURN coalesce(n['name'], toString(id(n))) AS source, 
-           type(r) AS rel, 
-           coalesce(m['name'], toString(id(m))) AS target
+    RETURN
+      coalesce(n.name, toString(id(n))) AS source,
+      type(r)                         AS rel,
+      coalesce(m.name, toString(id(m))) AS target
     """
-    result = tx.run(query)
-    return [{"source": record["source"], "rel": record["rel"], "target": record["target"]}
-            for record in result if record["source"] and record["target"]]
+    return [dict(r) for r in tx.run(q)]
 
-with driver.session(database="sgugemini") as session:
-    nodes = session.execute_read(get_all_nodes)
-    relationships = session.execute_read(get_all_relationships)
-
+# Đọc dữ liệu
+with driver.session(database="deepseek") as sess:
+    raw_nodes = sess.read_transaction(get_all_nodes)
+    raw_rels  = sess.read_transaction(get_all_relationships)
 driver.close()
 
-# Tạo dictionary cho properties: key = relationship type, value = (set(domain), set(range))
-properties = {}
-for rel in relationships:
-    rel_type = rel['rel']
-    src = rel['source']
-    tgt = rel['target']
-    if rel_type not in properties:
-        properties[rel_type] = (set(), set())
-    properties[rel_type][0].add(src)
-    properties[rel_type][1].add(tgt)
+# Ánh xạ tên gốc -> tên sanitize (giữ dấu Tiếng Việt)
+nodes_map = {orig: sanitize_unicode(orig) for orig in raw_nodes}
 
-# Xuất dữ liệu ra file TTL theo chuẩn với cấu trúc:
-# - Các prefix theo yêu cầu
-# - # Classes: liệt kê các node dưới dạng rdfs:Class
-# - # Properties: liệt kê các quan hệ dưới dạng rdf:Property với domain và range
-# - # Relationships: liệt kê các triple (instance) quan hệ
-with open("./ontology/sgugemini.ttl", "w", encoding="utf-8") as f:
-    # Ghi các prefix theo yêu cầu
-    f.write("@prefix : <http://example.org/sgu#> .\n")
-    f.write("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
-    f.write("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n")
-    f.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n\n")
-    
-    # Định nghĩa ontology chung
-    f.write("<http://example.org/sgu> a owl:Ontology .\n\n")
-    
-    # # Classes
+# Gom domains & ranges cho mỗi loại quan hệ
+props = {}
+for r in raw_rels:
+    p   = sanitize_unicode(r['rel'])
+    s   = sanitize_unicode(r['source'])
+    t   = sanitize_unicode(r['target'])
+    props.setdefault(p, {'orig': r['rel'], 'domains': set(), 'ranges': set()})
+    props[p]['domains'].add(s)
+    props[p]['ranges'].add(t)
+
+# Viết file TTL
+with open("extracted_ontology.ttl", "w", encoding="utf-8") as f:
+    # Prefix
+    f.write("@prefix :    <http://example.org/sgu#> .\n")
+    f.write("@prefix owl:  <http://www.w3.org/2002/07/owl#> .\n")
+    f.write("@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
+    f.write("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n")
+
+    # Ontology header
+    f.write(":SGU a owl:Ontology ;\n")
+    f.write("    rdfs:label   \"SGU Ontology\"@en ;\n")
+    f.write("    rdfs:comment \"Ontology trích xuất từ Neo4j\"@en .\n\n")
+
+    # Classes với rdfs:label giữ nguyên tên Tiếng Việt
     f.write("# Classes\n")
-    for name, lbls in nodes.items():
-        f.write(f":{name} a rdfs:Class .\n")
+    for orig, clean in sorted(nodes_map.items(), key=lambda x: x[1]):
+        f.write(f":{clean} a owl:Class ;\n")
+        f.write(f"    rdfs:label \"{orig}\"@vi .\n")
     f.write("\n")
-    
-    # # Properties
-    f.write("# Properties\n")
-    for prop, (domains, ranges) in properties.items():
-        domain_str = ", ".join(f":{d}" for d in sorted(domains))
-        range_str = ", ".join(f":{r}" for r in sorted(ranges))
-        f.write(f":{prop} a rdf:Property ;\n")
-        f.write(f"    rdfs:domain {domain_str} ;\n")
-        f.write(f"    rdfs:range {range_str} .\n\n")
-    
-    # # Relationships (instance data)
-    f.write("# Relationships\n")
-    for rel in relationships:
-        f.write(f":{rel['source']} :{rel['rel']} :{rel['target']} .\n")
 
-print("Ontology đã được trích xuất và lưu vào file extracted_ontology.ttl")
+    # Object Properties với rdfs:label giữ nguyên rel type
+    f.write("# Object Properties\n")
+    for clean, dr in sorted(props.items()):
+        f.write(f":{clean} a owl:ObjectProperty ;\n")
+        f.write(f"    rdfs:label \"{dr['orig']}\"@en ;\n")
+        # mỗi domain / range là một triple riêng
+        for d in sorted(dr['domains']):
+            f.write(f"    rdfs:domain :{d} ;\n")
+        for r_ in sorted(dr['ranges']):
+            f.write(f"    rdfs:range  :{r_} ;\n")
+        # xóa dấu ';' cuối và thêm '.'
+        f.seek(f.tell() - 2)
+        f.write(".\n\n")
+
+    # Instance data (giữ nguyên label đã sanitize_unicode)
+    f.write("# Relationships (instance data)\n")
+    for r in raw_rels:
+        s = sanitize_unicode(r['source'])
+        p = sanitize_unicode(r['rel'])
+        t = sanitize_unicode(r['target'])
+        f.write(f":{s} :{p} :{t} .\n")
+
+print("Đã tạo xong extracted_ontology.ttl — import vào Protégé sẽ hiển thị đúng Tiếng Việt.") 
