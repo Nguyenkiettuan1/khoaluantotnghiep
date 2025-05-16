@@ -88,7 +88,7 @@ def get_answer_from_search_results(neo4j: Neo4jConnection, userQuery: str, label
     """Get answer from search results using OpenAI API"""
     try:
         # Perform search
-        search_results = perform_search(neo4j, userQuery, labels, min_similarity=0.6, limit=10)
+        search_results = perform_search(neo4j, userQuery, labels, min_similarity=0.6, limit=30)
         
         if search_results:
             # Generate answer

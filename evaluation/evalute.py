@@ -152,21 +152,21 @@ def analyze_graph(G: nx.DiGraph, name="Graph"):
     indirect_to_direct_ratio = round(avg_in / avg_out, 3) if avg_out > 0 else "Không xác định"
 
     return {
-        "Tên đồ thị": name,
-        "Số đỉnh": num_nodes,
-        "Số cạnh": num_edges,
-        "Bậc trung bình": round(avg_degree, 2),
-        "Top 5 trung tâm": [(G.nodes[n]["name"], round(score, 3)) for n, score in top_5],
-        "Số quan hệ is-a": is_a_count,
-        "Số quan hệ part-of": part_of_count,
-        "Đường kính SCC lớn nhất": diameter,
-        "Clustering coefficient": clustering,
-        "Mật độ (Density)": density,
-        "Số thành phần liên thông mạnh": scc_count,
-        "In-degree trung bình": round(avg_in, 2),
-        "Out-degree trung bình": round(avg_out, 2),
-        "Tỷ lệ gián tiếp/trực tiếp": indirect_to_direct_ratio,
-    }
+    "Graph Name": name,
+    "Number of Nodes": num_nodes,
+    "Number of Edges": num_edges,
+    "Average Degree": round(avg_degree, 2),
+    "Top 5 Central Nodes": [(G.nodes[n]["name"], round(score, 3)) for n, score in top_5],
+    "Number of 'is-a' Relationships": is_a_count,
+    "Number of 'part-of' Relationships": part_of_count,
+    "Diameter of Largest SCC": diameter,
+    "Clustering Coefficient": clustering,
+    "Density": density,
+    "Number of Strongly Connected Components": scc_count,
+    "Average In-Degree": round(avg_in, 2),
+    "Average Out-Degree": round(avg_out, 2),
+    "Indirect-to-Direct Ratio": indirect_to_direct_ratio,
+}
 
 
 # Đọc và xử lý dữ liệu
@@ -182,7 +182,7 @@ analyze_openai = analyze_graph(op, "SGU - OpenAI")
 
 # Tạo DataFrame từ kết quả phân tích
 df_analysis = pd.DataFrame([analyze_deepseek, analyze_gemini, analyze_openai])
-df_analysis.set_index("Tên đồ thị", inplace=True)
+df_analysis.set_index("Graph Name", inplace=True)
 df_analysis = df_analysis.T
 df_analysis.columns = ["SGU - DeepSeek", "SGU - Gemini", "SGU - OpenAI"]
 df_analysis = df_analysis.fillna("Không liên thông")
@@ -194,137 +194,43 @@ print("\n--- Kết quả phân tích đồ thị ---")
 print(df_analysis)
 
 
-def get_best_literal_and_score(G, answer):
-    emb_ans = model.encode(answer, convert_to_tensor=True)
-    best_score = 0.0
-    best_literal = ""
-    for _, data in G.nodes(data=True):
-        name = data.get("name", "")
-        desc = data.get("description", "")
-        literal = f"{name}. {desc}".strip()
-        if literal:
-            emb_literal = model.encode(literal, convert_to_tensor=True)
-            score = float(util.cos_sim(emb_ans, emb_literal)[0][0])
-            if score > best_score:
-                best_score = score
-                best_literal = literal
-    return best_literal, best_score
 
+df_numeric = df_analysis.drop(index=[
+    "Top 5 Central Nodes",
+    "Diameter of Largest SCC",
+    "Indirect-to-Direct Ratio"
+], errors="ignore").astype(float)
 
-def evaluate_semantic_scores_nx(G, answers):
-    return [get_best_literal_and_score(G, ans)[1] for ans in answers]
+# --- VẼ CÁC BIỂU ĐỒ SO SÁNH --- #
 
-def evaluate_semantic_output_nx(G, answers, threshold=0.6):
-    results = []
-    for answer in answers:
-        literal, score = get_best_literal_and_score(G, answer)
-        results.append(literal if score >= threshold else "")
-    return results
+import matplotlib.pyplot as plt
 
-def evaluate_semantic_match_nx(G, answers, threshold=0.6):
-    return [get_best_literal_and_score(G, ans)[1] >= threshold for ans in answers]
+# Section A: Basic Structure
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 8))
+axes = axes.flatten()
+basic_metrics = ["Number of Nodes", "Number of Edges", "Average Degree", "Density"]
 
+for i, metric in enumerate(basic_metrics):
+    df_numeric.loc[metric].plot(kind='bar', ax=axes[i], color=['skyblue', 'lightgreen', 'salmon'])
+    axes[i].set_title(metric)
+    axes[i].set_ylabel("Value")
+    axes[i].set_xticklabels(df_numeric.columns, rotation=0)
 
-def plot_detailed_roc(scores_dict, y_true):
-    plt.figure(figsize=(9, 6))
-    for label, scores in scores_dict.items():
-        fpr, tpr, thresholds = roc_curve(y_true, scores)
-        roc_auc = auc(fpr, tpr)
-        plt.plot(fpr, tpr, label=f'{label} (AUC = {roc_auc:.2f})')
+plt.tight_layout()
+plt.savefig("graph_section_A_basic_structure.png")
+plt.close()
 
-        # Annotate threshold điểm chính
-        for i in range(0, len(thresholds), max(1, len(thresholds)//10)):
-            x, y_ = fpr[i], tpr[i]
-            thres = round(thresholds[i], 2)
-            plt.text(x, y_, str(thres), fontsize=7, alpha=0.6)
+# Section B: Extended Structure & Semantics
+fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(12, 12))
+axes = axes.flatten()
+extended_metrics = ["Clustering Coefficient","Number of Strongly Connected Components", "Average In-Degree", "Average Out-Degree", "Number of 'is-a' Relationships","Number of 'part-of' Relationships"]
 
-    plt.plot([0, 1], [0, 1], linestyle='--', color='gray')
-    plt.title("Biểu đồ ROC với điểm đánh dấu Threshold")
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.legend()
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
+for i, metric in enumerate(extended_metrics):
+    df_numeric.loc[metric].plot(kind='bar', ax=axes[i], color=['skyblue', 'lightgreen', 'salmon', 'orange', 'plum', 'lightgray'])
+    axes[i].set_title(metric)
+    axes[i].set_ylabel("Value")
+    axes[i].set_xticklabels(df_numeric.columns, rotation=0)
 
-def compute_metrics(y_pred):
-    y_true = [True] * len(y_pred)
-    return {
-        "Accuracy": round(accuracy_score(y_true, y_pred), 3),
-        "Precision": round(precision_score(y_true, y_pred, zero_division=0), 3),
-        "Recall": round(recall_score(y_true, y_pred, zero_division=0), 3),
-        "F1 Score": round(f1_score(y_true, y_pred, zero_division=0), 3)
-    }
-
-# ===== Thực thi tính toán =====
-threshold = 0.7
-
-# Match True/False
-y_ds = evaluate_semantic_match_nx(ds, answers_split, threshold=threshold)
-y_gm = evaluate_semantic_match_nx(gm, answers_split, threshold=threshold)
-y_op = evaluate_semantic_match_nx(op, answers_split, threshold=threshold)
-
-# Literal gần đúng
-out_ds = evaluate_semantic_output_nx(ds, answers_split, threshold=threshold)
-out_gm = evaluate_semantic_output_nx(gm, answers_split, threshold=threshold)
-out_op = evaluate_semantic_output_nx(op, answers_split, threshold=threshold)
-
-# Điểm cosine
-scores_dict = {
-    "DeepSeek": evaluate_semantic_scores_nx(ds, answers_split),
-    "Gemini": evaluate_semantic_scores_nx(gm, answers_split),
-    "OpenAI": evaluate_semantic_scores_nx(op, answers_split)
-}
-y_true = [1] * len(answers_split)
-# Đảm bảo y_true có cả 0 và 1 để ROC hoạt động đúng
-if len(set(y_true)) == 1:
-    y_true.append(0)  # thêm 1 mẫu âm giả
-    for label in scores_dict:
-        scores_dict[label].append(0.0)  # điểm thấp tương ứng
-
-# Chỉ số tổng hợp
-df_semantic_metrics = pd.DataFrame({
-    "DeepSeek": compute_metrics(y_ds),
-    "Gemini": compute_metrics(y_gm),
-    "OpenAI": compute_metrics(y_op)
-}).T
-
-# Chi tiết literal
-df_detail = pd.DataFrame({
-    "Câu hỏi": questions,
-    "Đáp án chuẩn": answers_split,
-    "DeepSeek trả lời": out_ds,
-    "Gemini trả lời": out_gm,
-    "OpenAI trả lời": out_op,
-    "DeepSeek True/False": y_ds,
-    "Gemini True/False": y_gm,
-    "OpenAI True/False": y_op
-})
-
-# Lưu file
-df_semantic_metrics.to_csv("semantic_evaluation_summary.csv", encoding="utf-8-sig")
-df_detail.to_csv("semantic_literal_comparison.csv", encoding="utf-8-sig", index=False)
-
-# Vẽ ROC
-# plot_detailed_roc(scores_dict, y_true)
-
-df = pd.read_csv("semantic_literal_comparison.csv")
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
-def compare_answers(row, model_name):
-    reference = row["Đáp án chuẩn"]
-    answer = row.get(f"{model_name} trả lời", "")
-    if pd.isna(answer):
-        return pd.Series({"semantic_score": None, "literal_match": None})
-    
-    ref_embedding = model.encode(reference, convert_to_tensor=True)
-    ans_embedding = model.encode(answer, convert_to_tensor=True)
-    semantic_score = float(util.pytorch_cos_sim(ref_embedding, ans_embedding)[0])
-    literal_match = reference.lower() in answer.lower()
-    
-    return pd.Series({"semantic_score": semantic_score, "literal_match": literal_match})
-
-for model_name in ["DeepSeek", "Gemini", "OpenAI"]:
-    df[[f"{model_name}_semantic", f"{model_name}_literal"]] = df.apply(compare_answers, model_name=model_name, axis=1)
-
-df.to_csv("semantic_comparison_result.csv", index=False)
+plt.tight_layout()
+plt.savefig("graph_section_B_extended_structure.png")
+plt.close()
