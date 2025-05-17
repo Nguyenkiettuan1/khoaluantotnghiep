@@ -1,0 +1,11 @@
+{
+  "relation": "publishesIn",
+  "timestamp": "20250516_153943",
+  "rules": [
+    "1. publishesIn(X, Y) :- researchesTopic(X, Z), publishesIn(Z, Y)",
+    "2. publishesIn(X, Y) :- collaboratesWith(X, Z), publishesIn(Z, Y)",
+    "3. publishesIn(X, Y) :- attendsConference(X, Z), publishesIn(Z, Y)",
+    "4. publishesIn(X, Y) :- hasResearchGrant(X, Z), publishesIn(Z, Y)",
+    "5. publishesIn(X, Y) :- isAdvisedBy(X, Z), publishesIn(Z, Y)"
+  ]
+}

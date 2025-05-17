@@ -1,0 +1,13 @@
+{
+  "relation": "belongsToUniversity",
+  "timestamp": "20250516_153950",
+  "rules": [
+    "belongsToUniversity(X, Y) :- offersProgram(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- hasDepartment(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- hasDegree(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- conductsResearch(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- hasInternationalCooperation(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- hasFaculty(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- publishesIn(X, Z), belongsToUniversity(Z, Y)"
+  ]
+}

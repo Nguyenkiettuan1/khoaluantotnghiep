@@ -1,5 +1,4 @@
 import os
-import random
 import json
 from datetime import datetime
 from typing import List, Dict
@@ -7,8 +6,8 @@ from neo4j import GraphDatabase
 from openai import OpenAI
 from dotenv import load_dotenv
 
+# ====== Cấu hình ======
 load_dotenv()
-
 OPENAI_KEY = os.getenv('OPENAI_API_KEY')
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USER = os.getenv("NEO4J_USER")
@@ -18,69 +17,43 @@ os.makedirs(RULES_DIR, exist_ok=True)
 
 client = OpenAI(api_key=OPENAI_KEY)
 
+# ====== Khai phá luật ======
 class EfficientRuleMiner:
-    def __init__(self, uri, user, password, max_path_len=3, rules_dir="rules"):
+    def __init__(self, uri, user, password, rules_dir="rules"):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
-        self.max_path_len = max_path_len
         self.rules_dir = rules_dir
 
     def close(self):
         self.driver.close()
 
-    def get_all_relations(self) -> list:
-        with self.driver.session() as session:
-            result = session.run("CALL db.relationshipTypes() YIELD relationshipType RETURN relationshipType")
-            return [r['relationshipType'] for r in result]
-
-    def get_sample_triples(self, rel: str, k=10) -> List[Dict]:
-        # Dùng elementId thay vì id
-        query = f"""
-        MATCH (x)-[r:`{rel}`]->(y)
-        RETURN elementId(x) AS xid, elementId(y) AS yid
-        LIMIT {k*5}
+    def extract_2hop_patterns(self, min_support=3):
+        """
+        Lấy mọi pattern 2-hop phổ biến (theo support) trong KG.
+        Trả về list rule và group theo head relation.
+        """
+        cypher = """
+        MATCH (x)-[r1]->(z)-[r2]->(y)
+        RETURN type(r1) as r1, type(r2) as r2, type(r2) as head, count(*) as support
+        ORDER BY support DESC
         """
         with self.driver.session() as session:
-            result = session.run(query)
-            edges = [dict(r) for r in result]
-            return random.sample(edges, min(k, len(edges)))
-
-    def get_2hop_paths(self, rel: str, triples: List[Dict], per_pair=3) -> List[str]:
-        """Tìm luật thô (2-hop path) từ cặp triple."""
-        rules = []
-        with self.driver.session() as session:
-            for pair in triples:
-                query = f"""
-                MATCH (x)-[p1]->(z)-[p2]->(y)
-                WHERE elementId(x) = $xid AND elementId(y) = $yid
-                  AND type(p1) <> $rel AND type(p2) <> $rel
-                  AND x <> y AND x <> z AND y <> z
-                RETURN DISTINCT type(p1) AS r1, type(p2) AS r2
-                LIMIT {per_pair}
-                """
-                result = session.run(query, xid=pair['xid'], yid=pair['yid'], rel=rel)
-                for rec in result:
-                    rule = f"{rel}(X,Y) :- {rec['r1']}(X,Z), {rec['r2']}(Z,Y)"
-                    rules.append(rule)
+            result = session.run(cypher)
+            rules = []
+            for record in result:
+                if record["support"] >= min_support:
+                    rule = f"{record['head']}(X, Y) :- {record['r1']}(X, Z), {record['r2']}(Z, Y)"
+                    rules.append({
+                        "rule": rule,
+                        "head": record['head'],
+                        "support": record['support']
+                    })
         return rules
 
-    # Optionally: thử cả 3-hop nếu 2-hop quá ít luật
-    def get_3hop_paths(self, rel: str, triples: List[Dict], per_pair=2) -> List[str]:
-        rules = []
-        with self.driver.session() as session:
-            for pair in triples:
-                query = f"""
-                MATCH (x)-[p1]->(a)-[p2]->(b)-[p3]->(y)
-                WHERE elementId(x) = $xid AND elementId(y) = $yid
-                  AND ALL(t IN [type(p1), type(p2), type(p3)] WHERE t <> $rel)
-                  AND x <> y AND x <> a AND x <> b AND y <> a AND y <> b AND a <> b
-                RETURN DISTINCT type(p1) AS r1, type(p2) AS r2, type(p3) AS r3
-                LIMIT {per_pair}
-                """
-                result = session.run(query, xid=pair['xid'], yid=pair['yid'], rel=rel)
-                for rec in result:
-                    rule = f"{rel}(X,Y) :- {rec['r1']}(X,A), {rec['r2']}(A,B), {rec['r3']}(B,Y)"
-                    rules.append(rule)
-        return rules
+    def group_rules_by_head(self, rules):
+        grouped = {}
+        for r in rules:
+            grouped.setdefault(r["head"], []).append(r)
+        return grouped
 
     def llm_generate_rules(self, rules: List[str], rel: str, n_new=5) -> List[str]:
         prompt = f"""You are an expert in logical reasoning and knowledge graphs.
@@ -104,19 +77,12 @@ Please generate {n_new} new logical rules for the relation "{rel}" in the same s
             head, body = rule.split(":-")
             head_pred, _ = head.strip().split("(")
             body_parts = [b.strip() for b in body.strip().split(",")]
-            # Hỗ trợ cả 2-hop và 3-hop rule
-            p_rels = [b.split("(")[0] for b in body_parts]
-            var_list = ['Z', 'A', 'B']
-            match_str = ""
-            # Tạo pattern Cypher theo số hop
-            if len(p_rels) == 2:
-                match_str = f"(x)-[:{p_rels[0]}]->(z)-[:{p_rels[1]}]->(y)"
-            elif len(p_rels) == 3:
-                match_str = f"(x)-[:{p_rels[0]}]->(a)-[:{p_rels[1]}]->(b)-[:{p_rels[2]}]->(y)"
-            else:
+            # Chỉ hỗ trợ rule 2-hop cho nhanh (nâng cấp sau)
+            if len(body_parts) != 2:
                 return {'support': 0, 'confidence': 0, 'pca_confidence': 0}
+            p1, p2 = [b.split("(")[0] for b in body_parts]
             cypher = f"""
-            MATCH {match_str}
+            MATCH (x)-[:{p1}]->(z)-[:{p2}]->(y)
             OPTIONAL MATCH (x)-[r:{head_pred}]->(y)
             WITH x, y, COUNT(r) AS head_exists
             RETURN count(*) AS body_total, sum(CASE WHEN head_exists > 0 THEN 1 ELSE 0 END) AS support
@@ -192,31 +158,33 @@ Please generate {n_new} new logical rules for the relation "{rel}" in the same s
         print(f"- Final rules: {final_file}")
         print(f"- Summary: {summary_file}")
 
-    def run(self, rel: str, k_samples=10, n_llm=5, top_k=5):
-        triples = self.get_sample_triples(rel, k_samples)
-        raw_rules = self.get_2hop_paths(rel, triples)
-        # Nếu 2-hop quá ít, thử sinh 3-hop rule
-        if len(raw_rules) < 3:
-            raw_rules += self.get_3hop_paths(rel, triples)
-        if not raw_rules:
-            print(f"No path-based rules found for {rel}")
-            return []
-        new_rules = self.llm_generate_rules(raw_rules, rel, n_new=n_llm)
-        all_rules = list(set(raw_rules + new_rules))
-        final = self.rank_and_filter_rules(all_rules, top_k)
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.save_results(rel, raw_rules, new_rules, final, timestamp)
-        print(f"\nTop-{top_k} rules for {rel}:")
-        for x in final:
-            print(x)
-        return final
+    def run_pipeline(self, min_support=3, n_llm=5, top_k=5):
+        # 1. Trích xuất rule 2-hop
+        rules_2hop = self.extract_2hop_patterns(min_support)
+        grouped = self.group_rules_by_head(rules_2hop)
+        print(f"Tìm được {sum(len(v) for v in grouped.values())} rule 2-hop từ KG.")
 
+        # 2. Chạy cho từng head relation
+        for rel, rule_list in grouped.items():
+            raw_rules = [r["rule"] for r in rule_list]
+            print(f"\n==== {rel} ====")
+            for r in raw_rules:
+                print("Raw:", r)
+
+            # 3. LLM sinh thêm rule
+            if len(raw_rules) == 0:
+                continue
+            new_rules = self.llm_generate_rules(raw_rules, rel, n_new=n_llm)
+            all_rules = list(set(raw_rules + new_rules))
+            final = self.rank_and_filter_rules(all_rules, top_k=top_k)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            self.save_results(rel, raw_rules, new_rules, final, timestamp)
+            print(f"\nTop-{top_k} rules for {rel}:")
+            for x in final:
+                print(x)
+
+# ====== MAIN ======
 if __name__ == "__main__":
     miner = EfficientRuleMiner(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
-    all_rels = miner.get_all_relations()
-    print(f"\nAll relations in KG: {all_rels}")
-    skip_rels = ['owl__sameAs', 'rdfs__subClassOf', 'rdf__type']
-    filtered_rels = [r for r in all_rels if r not in skip_rels]
-    for rel in filtered_rels:
-        miner.run(rel, k_samples=10, n_llm=5, top_k=5)
+    miner.run_pipeline(min_support=3, n_llm=5, top_k=5)
     miner.close()

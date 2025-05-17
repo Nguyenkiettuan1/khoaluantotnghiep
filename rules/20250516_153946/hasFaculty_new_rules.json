@@ -1,0 +1,11 @@
+{
+  "relation": "hasFaculty",
+  "timestamp": "20250516_153946",
+  "rules": [
+    "1. hasFaculty(X, Y) :- partOfCollege(X, Z), hasFaculty(Z, Y)",
+    "2. hasFaculty(X, Y) :- associatedWithDepartment(X, Z), hasFaculty(Z, Y)",
+    "3. hasFaculty(X, Y) :- collaboratesWithInstitute(X, Z), hasFaculty(Z, Y)",
+    "4. hasFaculty(X, Y) :- offersProgram(X, Z), hasFaculty(Z, Y)",
+    "5. hasFaculty(X, Y) :- linkedWithResearchCenter(X, Z), hasFaculty(Z, Y)"
+  ]
+}

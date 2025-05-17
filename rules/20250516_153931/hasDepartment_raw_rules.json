@@ -1,0 +1,7 @@
+{
+  "relation": "hasDepartment",
+  "timestamp": "20250516_153931",
+  "rules": [
+    "hasDepartment(X, Y) :- belongsToUniversity(X, Z), hasDepartment(Z, Y)"
+  ]
+}

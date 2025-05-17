@@ -1,0 +1,7 @@
+{
+  "relation": "publishesIn",
+  "timestamp": "20250516_153943",
+  "rules": [
+    "publishesIn(X, Y) :- belongsToUniversity(X, Z), publishesIn(Z, Y)"
+  ]
+}

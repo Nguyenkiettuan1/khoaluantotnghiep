@@ -1,0 +1,11 @@
+{
+  "relation": "belongsToUniversity",
+  "timestamp": "20250516_153950",
+  "rules": [
+    "belongsToUniversity(X, Y) :- affiliatedWith(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- partOfConsortium(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- collaboratesWith(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- participatesInProject(X, Z), belongsToUniversity(Z, Y)",
+    "belongsToUniversity(X, Y) :- offersScholarship(X, Z), belongsToUniversity(Z, Y)"
+  ]
+}

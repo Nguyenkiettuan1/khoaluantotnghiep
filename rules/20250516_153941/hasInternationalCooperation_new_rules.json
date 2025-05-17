@@ -1,0 +1,11 @@
+{
+  "relation": "hasInternationalCooperation",
+  "timestamp": "20250516_153941",
+  "rules": [
+    "1. hasInternationalCooperation(X, Y) :- isPartnerOf(X, Z), hasInternationalCooperation(Z, Y)",
+    "2. hasInternationalCooperation(X, Y) :- participatesInProject(X, Z), hasInternationalCooperation(Z, Y)",
+    "3. hasInternationalCooperation(X, Y) :- memberOfConsortium(X, Z), hasInternationalCooperation(Z, Y)",
+    "4. hasInternationalCooperation(X, Y) :- collaboratesWith(X, Z), hasInternationalCooperation(Z, Y)",
+    "5. hasInternationalCooperation(X, Y) :- affiliatedWith(X, Z), hasInternationalCooperation(Z, Y)"
+  ]
+}

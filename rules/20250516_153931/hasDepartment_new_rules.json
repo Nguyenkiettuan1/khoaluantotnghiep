@@ -1,0 +1,11 @@
+{
+  "relation": "hasDepartment",
+  "timestamp": "20250516_153931",
+  "rules": [
+    "1. hasDepartment(X, Y) :- collaboratesWith(X, Z), hasDepartment(Z, Y)",
+    "2. hasDepartment(X, Y) :- locatedIn(X, Z), hasDepartment(Z, Y)",
+    "3. hasDepartment(X, Y) :- hasFaculty(X, Z), departmentWithin(Z, Y)",
+    "4. hasDepartment(X, Y) :- partOfOrganization(X, Z), hasDepartment(Z, Y)",
+    "5. hasDepartment(X, Y) :- managesCampus(X, Z), hasDepartment(Z, Y)"
+  ]
+}

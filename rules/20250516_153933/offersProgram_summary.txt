@@ -1,0 +1,8 @@
+Rule Mining Summary for relation: offersProgram
+Timestamp: 20250516_153933
+
+Raw Rules: 2
+New Rules from LLM: 5
+Final Rules: 0
+
+Top Rules:

@@ -1,0 +1,11 @@
+{
+  "relation": "conductsResearch",
+  "timestamp": "20250516_153937",
+  "rules": [
+    "1. conductsResearch(X, Y) :- advisesStudent(X, Z), conductsResearch(Z, Y)",
+    "2. conductsResearch(X, Y) :- isColleagueOf(X, Z), conductsResearch(Z, Y)",
+    "3. conductsResearch(X, Y) :- hasCollaborationWith(X, Z), conductsResearch(Z, Y)",
+    "4. conductsResearch(X, Y) :- worksAtInstitute(X, Z), conductsResearch(Z, Y)",
+    "5. conductsResearch(X, Y) :- receivedGrant(X, Z), focusesOnResearch(Z, Y)"
+  ]
+}

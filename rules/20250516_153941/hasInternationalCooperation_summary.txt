@@ -1,0 +1,8 @@
+Rule Mining Summary for relation: hasInternationalCooperation
+Timestamp: 20250516_153941
+
+Raw Rules: 1
+New Rules from LLM: 5
+Final Rules: 0
+
+Top Rules:

@@ -1,0 +1,11 @@
+{
+  "relation": "hasDegree",
+  "timestamp": "20250516_153935",
+  "rules": [
+    "1. hasDegree(X, Y) :- graduatedFrom(X, Z), offersDegree(Z, Y)",
+    "2. hasDegree(X, Y) :- studiedAt(X, Z), providesDegree(Z, Y)",
+    "3. hasDegree(X, Y) :- hasMajor(X, Z), correspondsToDegree(Z, Y)",
+    "4. hasDegree(X, Y) :- completedProgram(X, Z), awardsDegree(Z, Y)",
+    "5. hasDegree(X, Y) :- enrolledIn(X, Z), confersDegree(Z, Y)"
+  ]
+}

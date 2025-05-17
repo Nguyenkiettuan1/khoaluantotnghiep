@@ -1,0 +1,8 @@
+{
+  "relation": "offersProgram",
+  "timestamp": "20250516_153933",
+  "rules": [
+    "offersProgram(X, Y) :- belongsToUniversity(X, Z), offersProgram(Z, Y)",
+    "offersProgram(X, Y) :- hasInternationalCooperation(X, Z), offersProgram(Z, Y)"
+  ]
+}

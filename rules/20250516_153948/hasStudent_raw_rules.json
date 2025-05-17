@@ -1,0 +1,7 @@
+{
+  "relation": "hasStudent",
+  "timestamp": "20250516_153948",
+  "rules": [
+    "hasStudent(X, Y) :- belongsToUniversity(X, Z), hasStudent(Z, Y)"
+  ]
+}

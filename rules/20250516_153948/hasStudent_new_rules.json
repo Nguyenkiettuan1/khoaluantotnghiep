@@ -1,0 +1,11 @@
+{
+  "relation": "hasStudent",
+  "timestamp": "20250516_153948",
+  "rules": [
+    "1. hasStudent(X, Y) :- teachesCourse(X, Z), enrolledInCourse(Y, Z)",
+    "2. hasStudent(X, Y) :- managesDepartment(X, Z), hasStudent(Z, Y)",
+    "3. hasStudent(X, Y) :- advisesStudent(X, Z), isPeerOf(Y, Z)",
+    "4. hasStudent(X, Y) :- supervisesProject(X, Z), participatesInProject(Y, Z)",
+    "5. hasStudent(X, Y) :- isPartnerInstitution(X, Z), hasStudent(Z, Y)"
+  ]
+}
