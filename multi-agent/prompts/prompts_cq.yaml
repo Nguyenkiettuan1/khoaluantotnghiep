@@ -1,0 +1,19 @@
+system_prompts:
+  cq_generation: |
+  
+    Dựa vào nội dung sau đây, hãy tạo {num_questions} câu hỏi năng lực bằng tiếng Việt.
+    Mỗi câu hỏi nên kiểm tra khả năng hiểu và phân tích thông tin của người đọc.
+    
+    Format câu hỏi như sau:
+    1. [Câu hỏi]
+    2. [Câu hỏi]
+    ...
+
+    Nội dung: {content}
+    
+    Yêu cầu:
+    - Các câu hỏi được đánh số từ 1 đến {num_questions}
+    - Câu hỏi phải bằng tiếng Việt
+    - Câu hỏi cần rõ ràng và súc tích
+    - Tập trung vào kiểm tra khả năng hiểu và phân tích
+    

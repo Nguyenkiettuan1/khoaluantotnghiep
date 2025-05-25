@@ -1,7 +1,8 @@
 import os
+import re
 from openai import OpenAI
 from dotenv import load_dotenv
-from neo4jconnector import Neo4jConnection
+
 import json
 from datetime import datetime
 
@@ -143,115 +144,6 @@ def validate_cypher_query(query: str, model: str = "gpt-4o-mini") -> dict:
             }],
             "fixed_query": None
         }
-def run_test_queries_and_save_results(
-    uri: str, 
-    user: str, 
-    password: str, 
-    dbname: str,
-    test_queries_path: str = "testcase/test_queries_cypher.txt",
-    output_path: str = "testcase/test_answer_cypher.txt"
-):
-    """
-    Thực thi các câu truy vấn test và lưu kết quả
-    
-    Args:
-        uri: URI kết nối Neo4j
-        user: Tên người dùng Neo4j
-        password: Mật khẩu Neo4j
-        dbname: Tên database
-        test_queries_path: Đường dẫn file chứa các câu query test
-        output_path: Đường dẫn file để lưu kết quả
-    """
-    try:
-        # Kết nối đến Neo4j
-        conn = Neo4jConnection(uri, user, password, dbname)
-        print("✅ Đã kết nối thành công đến Neo4j")
-
-        # Đọc file queries
-        with open(test_queries_path, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        # Tách các câu query riêng biệt
-        queries = []
-        current_query = []
-        current_comment = []
-        
-        for line in content.split("\n"):
-            line = line.strip()
-            if line.startswith("//"):
-                if current_query:  # Nếu đã có query trước đó
-                    queries.append({
-                        "comment": "\n".join(current_comment),
-                        "query": "\n".join(current_query)
-                    })
-                    current_query = []
-                current_comment = [line.lstrip("/ ")]
-            elif line:  # Nếu không phải comment và không phải dòng trống
-                current_query.append(line)
-        
-        # Thêm query cuối cùng nếu có
-        if current_query:
-            queries.append({
-                "comment": "\n".join(current_comment),
-                "query": "\n".join(current_query)
-            })
-
-        # Tạo thư mục output nếu chưa tồn tại
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-        # Thực thi từng query và lưu kết quả
-        results = []
-        for i, q in enumerate(queries, 1):
-            try:
-                print(f"Đang thực thi query {i}/{len(queries)}")
-                result = conn.run_cypher(q["query"])
-                
-                results.append({
-                    "query_number": i,
-                    "description": q["comment"],
-                    "query": q["query"],
-                    "result": result,
-                    "status": "success",
-                    "error": None
-                })
-            except Exception as e:
-                results.append({
-                    "query_number": i,
-                    "description": q["comment"],
-                    "query": q["query"],
-                    "result": None,
-                    "status": "error",
-                    "error": str(e)
-                })
-                print(f"❌ Lỗi khi thực thi query {i}: {str(e)}")
-
-        # Format kết quả và lưu vào file
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(f"# Test Results - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-            
-            for r in results:
-                f.write(f"## Query {r['query_number']}\n")
-                f.write(f"### Description\n{r['description']}\n\n")
-                f.write(f"### Query\n```cypher\n{r['query']}\n```\n\n")
-                f.write(f"### Status: {r['status']}\n\n")
-                
-                if r['status'] == 'success':
-                    f.write("### Result\n```json\n")
-                    f.write(json.dumps(r['result'], indent=2, ensure_ascii=False))
-                    f.write("\n```\n\n")
-                else:
-                    f.write(f"### Error\n```\n{r['error']}\n```\n\n")
-                
-                f.write("---\n\n")
-
-        print(f"✅ Đã lưu kết quả vào file: {output_path}")
-        
-    except Exception as e:
-        print(f"❌ Lỗi: {str(e)}")
-    finally:
-        if 'conn' in locals():
-            conn.close()
-            print("✅ Đã đóng kết nối Neo4j")
 
 if __name__ == "__main__":
     # Load environment variables

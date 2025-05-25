@@ -37,7 +37,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # Đảm bảo thư mục cypher tồn tại
 os.makedirs("./cypher_deepseek_sguv1", exist_ok=True)
 
-# Prompt hệ thống (tiếng Việt)
+
 conversation_messages = [
     {
         "role": "system",

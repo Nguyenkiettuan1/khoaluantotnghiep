@@ -2,8 +2,9 @@ import os
 from google.generativeai import GenerativeModel
 from dotenv import load_dotenv
 from neo4jconnector import Neo4jConnection
-from clearCypher import clean_cypher_code
+
 from gemini_config import gemini
+from utils import clean_cypher_code
 
 load_dotenv()
 
@@ -125,3 +126,5 @@ try:
 
 except Exception as e:
     print(f"❌ Lỗi khởi tạo: {str(e)}")
+    
+
