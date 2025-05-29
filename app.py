@@ -27,19 +27,27 @@ class SearchResult:
     similarity: float
     description: Optional[str] = None
 
-def init_neo4j():
-    """Initialize Neo4j connection"""
-    try:
-        return Neo4jConnection(
-            uri=os.getenv('NEO4J_URI', 'bolt://localhost:7687'),
-            user=os.getenv('NEO4J_USER', 'neo4j'),
-            password=os.getenv('NEO4J_PASSWORD'),
-            dbname=os.getenv('NEO4J_DATABASE', 'neo4j')
-        )
-    except Exception as e:
-        st.error(f"Failed to connect to Neo4j: {str(e)}")
-        return None
+def init_neo4j_clients() -> Dict[str, Dict]:
+    cfg = {
+        "uri": os.getenv("NEO4J_URI", "bolt://localhost:7687"),
+        "user": os.getenv("NEO4J_USER", "neo4j"),
+        "password": os.getenv("NEO4J_PASSWORD"),
+    }
 
+    return {
+        "deepseek": {
+            "conn": Neo4jConnection(**cfg, dbname="deepseek"),
+            "label_file": "labels/neo4j_labels_deepseek.txt",
+        },
+        "gemini": {
+            "conn": Neo4jConnection(**cfg, dbname="gemini"),
+            "label_file": "labels/neo4j_labels_gemini.txt",
+        },
+        "openai": {
+            "conn": Neo4jConnection(**cfg, dbname="openai"),
+            "label_file": "labels/neo4j_labels_openai.txt",
+        },
+    }
 def perform_search(neo4j: Neo4jConnection, query: str, node_types: List[str], min_similarity: float = 0.5, limit: int = 20) -> List[Dict]:
     """Perform vector search across specified node types"""
     all_results = []
@@ -102,80 +110,58 @@ def get_answer_from_search_results(neo4j: Neo4jConnection, userQuery: str, label
         st.error(f"Error getting answer: {str(e)}")
         return None
 
+@st.cache_data(show_spinner=False)
+def load_labels(path: str) -> List[str]:
+    with open(path, encoding="utf-8") as f:
+        return [l.strip() for l in f if l.strip()]
 
-
-def main():
+ 
+# ─── main.py (phần quan trọng) ─────────────────────────────────────────────
+def main() -> None:
     st.title("SGU Vector Search 🔍")
-    
-    # Initialize Neo4j connection
-    neo4j = init_neo4j()
-    if not neo4j:
-        st.stop()
-    
-    # Main search interface
-    st.header("Tìm kiếm thông tin")
-    
-    # Search parameters
-    col1, col2, col3 = st.columns([2, 1, 1])
-    with col1:
-        search_query = st.text_input("Nhập câu hỏi của bạn")
-    with col2:
-        min_similarity = st.slider("Độ tương đồng tối thiểu", 0.0, 1.0, 0.5, 0.1)
-    with col3:
-        max_results = st.slider("Số kết quả tối đa mỗi loại", 1, 10, 5)
 
-    # Load and process node type labels
-    with open("labels/neo4j_labels_deepseek.txt", "r") as f:
-        type_labels = [label.strip() for label in f.read().splitlines() if label.strip()]
-    
-    # Node type selection
-    default_types = ["Department"]  # Default selection that we know exists
-    default_types = [t for t in default_types if t in type_labels]  # Validate defaults
-    
-    node_types = st.multiselect(
-        "Chọn loại nội dung tìm kiếm",
-        type_labels,
-        default=default_types
-    )
-    
-    # Perform search
-    if search_query and node_types:
-        with st.spinner('Đang tìm kiếm...'):
-            try:
-                # Get search results
-                results = perform_search(
-                    neo4j, 
-                    search_query, 
-                    node_types, 
-                    min_similarity, 
-                    max_results
+    # 1) Chọn client
+    clients = init_neo4j_clients()
+    client_name = st.sidebar.selectbox("🔧 Chọn mô hình", list(clients))
+    neo4j_cfg = clients[client_name]
+    neo4j = neo4j_cfg["conn"]
+    labels = load_labels(neo4j_cfg["label_file"])     # ⚠ tất cả label hiện có
+
+    # 2) Nhập truy vấn + tham số
+    q = st.text_input("Nhập câu hỏi của bạn")
+    col1, col2 = st.columns(2)
+    with col1:
+        min_sim = st.slider("Độ tương đồng tối thiểu", 0.0, 1.0, 0.5, 0.05)
+    with col2:
+        limit = st.slider("Kết quả tối đa / label", 1, 20, 10)
+
+    # 3) Luôn tìm trên toàn bộ label
+    node_types = labels                            # ← không còn chọn lọc
+
+    # 4) Thực thi tìm kiếm
+    if q.strip():
+        with st.spinner("Đang tìm kiếm..."):
+            results = perform_search(neo4j, q, node_types, min_sim, limit)
+
+        if not results:
+            st.warning("Không tìm thấy kết quả.")
+            return
+
+        with st.spinner("Đang tạo câu trả lời..."):
+            answer = neo4j.generate_answer(q, results)
+
+        st.subheader("📝 Câu trả lời")
+        st.write(answer or "Không sinh được câu trả lời.")
+
+        with st.expander("🔎 Chi tiết kết quả"):
+            for r in results:
+                st.markdown(
+                    f"**{r['name']}** ({r['node_type']}) — "
+                    f"Similarity: `{r['similarity']:.4f}`"
                 )
-                
-                if results:
-                    # Generate answer
-                    with st.spinner('Đang tạo câu trả lời...'):
-                        answer = generate_answer(neo4j, search_query, results)
-                        
-                        if answer:
-                            st.header("Câu trả lời")
-                            st.write(answer)
-                            
-                            # Show search results in an expander
-                            with st.expander("Xem kết quả tìm kiếm chi tiết"):
-                                for result in results:
-                                    st.markdown(
-                                        f"**{result['name']}** ({result['node_type']}) - "
-                                        f"Độ tương đồng: {result['similarity']:.4f}"
-                                    )
-                                    if result.get('description'):
-                                        st.markdown(f"*{result['description']}*")
-                                    st.markdown("---")
-                else:
-                    st.info("Không tìm thấy kết quả phù hợp với tiêu chí của bạn")
-                    
-            except Exception as e:
-                logger.error(f"Search error: {str(e)}")
-                st.error(f"Đã xảy ra lỗi trong quá trình tìm kiếm: {str(e)}")
+                if desc := r.get("description"):
+                    st.write(desc)
+                st.divider()
 
 if __name__ == "__main__":
     main()

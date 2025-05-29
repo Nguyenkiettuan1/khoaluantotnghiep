@@ -94,7 +94,7 @@ def main():
             user=os.getenv('NEO4J_USER', 'neo4j'),
             password=os.getenv('NEO4J_PASSWORD'),
             # dbname=os.getenv('NEO4J_DATABASE', 'neo4j')
-            dbname="openai"
+            dbname="openai"  # Specify the database name directly for simplicity
         )
         
         try:
@@ -103,7 +103,7 @@ def main():
             
             # Step 2: Add embeddings to all nodes
             add_embeddings_to_all_nodes(neo4j)
-          
+            print("All embeddings added successfully.")
             
         except Exception as e:
             print(f"Error during execution: {str(e)}")

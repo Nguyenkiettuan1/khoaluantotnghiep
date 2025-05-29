@@ -285,7 +285,6 @@ class Neo4jConnection:
                 f"Độ tương đồng: {result['similarity']:.4f}"
                 for result in sorted(search_results, key=lambda x: x['similarity'], reverse=True)
             ])
-            
             # Prepare the prompt
             messages = [
                 {"role": "system", "content": """
@@ -309,7 +308,7 @@ class Neo4jConnection:
                 Kết quả tìm kiếm:
                 {context}
                 
-                Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại.
+                Quan trọng: Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại và làm mượt câu trả lời như một trợ lý mà không làm mất thông tin.
                 """}
             ]
             
