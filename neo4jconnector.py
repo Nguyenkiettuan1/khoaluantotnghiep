@@ -265,14 +265,80 @@ class Neo4jConnection:
             logger.error(f"Similarity search failed: {str(e)}")
             raise Neo4jVectorSearchError(f"Similarity search failed: {str(e)}")
 
-    def generate_answer(self, query: str, search_results: List[Dict]) -> str:
-        """
-        Generate an answer using OpenAI based on search results
+    # def generate_answer(self, query: str, search_results: List[Dict]) -> str:
+    #     """
+    #     Generate an answer using OpenAI based on search results
         
+    #     Args:
+    #         query: User's question
+    #         search_results: List of search results with name and description
+            
+    #     Returns:
+    #         Generated answer
+    #     """
+    #     try:
+    #         # Format context from search results
+    #         context = "\n\n".join([
+    #             f"Thông tin {result['node_type']}:\n"
+    #             f"Tên: {result['name']}\n"
+    #             f"Mô tả: {result.get('description', 'Không có mô tả')}\n"
+    #             f"Độ tương đồng: {result['similarity']:.4f}"
+    #             for result in sorted(search_results, key=lambda x: x['similarity'], reverse=True)
+    #         ])
+            
+    #         # Prepare the prompt
+    #         messages = [
+    #             {"role": "system", "content": """
+    #             Bạn là trợ lý AI của trường Đại học Sài Gòn (SGU). Nhiệm vụ của bạn là trả lời câu hỏi dựa trên kết quả tìm kiếm được cung cấp.
+
+    #             Hướng dẫn:
+    #             1. Chỉ sử dụng thông tin từ kết quả tìm kiếm để trả lời
+    #             2. Nếu thông tin trong kết quả tìm kiếm không đủ để trả lời câu hỏi, hãy nói rõ điều đó
+    #             3. Nếu độ tương đồng của kết quả tìm kiếm cao (>0.6) và thông tin phù hợp với câu hỏi, hãy trả lời chi tiết
+    #             4. Trình bày câu trả lời một cách rõ ràng, mạch lạc và chuyên nghiệp
+    #             5. Nếu thấy thông tin mâu thuẫn giữa các kết quả, hãy nêu rõ điều này
+    #             6. Nếu câu hỏi yêu cầu thông tin cụ thể (như số lượng, địa điểm, thời gian) mà không tìm thấy trong kết quả, hãy nói rõ là không có thông tin này
+    #             7. Khi đề cập đến học bổng hoặc thông tin quan trọng, hãy cung cấp thông tin chi tiết từ kết quả tìm kiếm, không đưa ra giả định
+    #             8. Hãy phân tích độ tin cậy của thông tin dựa trên độ tương đồng trước khi đưa ra câu trả lời
+                
+    #             Luôn bắt đầu câu trả lời bằng cách đánh giá mức độ tin cậy của thông tin dựa trên độ tương đồng và độ phù hợp với câu hỏi.
+    #             """},
+    #             {"role": "user", "content": f"""
+    #             Câu hỏi: {query}
+                
+    #             Kết quả tìm kiếm:
+    #             {context}
+                
+    #             Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại.
+    #             """}
+    #         ]
+            
+    #         # Generate answer
+    #         logger.info("Generating answer using OpenAI")
+    #         response = self._openai_client.chat.completions.create(
+    #             model=self.CHAT_MODEL,
+    #             messages=messages,
+    #             temperature=0.7,
+    #         )
+            
+    #         answer = response.choices[0].message.content.strip()
+    #         logger.info("Successfully generated answer")
+    #         return answer
+            
+    #     except Exception as e:
+    #         logger.error(f"Failed to generate answer: {str(e)}")
+    #         raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
+
+    
+    def generate_answer(self, query: str, search_results: List[Dict], ontology_relations: List[Dict],chat_history: List[Dict]) -> str:
+        """
+        Generate an answer using OpenAI based on search results and ontology relations
+
         Args:
             query: User's question
             search_results: List of search results with name and description
-            
+            ontology_relations: List of triples: {subject, predicate, object}
+
         Returns:
             Generated answer
         """
@@ -285,116 +351,156 @@ class Neo4jConnection:
                 f"Độ tương đồng: {result['similarity']:.4f}"
                 for result in sorted(search_results, key=lambda x: x['similarity'], reverse=True)
             ])
-            
-            # Prepare the prompt
+
+            # Tìm các quan hệ liên quan đến các node trong search_results
+            related_relations = []
+            names = set(result['name'] for result in search_results)
+            for triple in ontology_relations:
+                subj_label = triple['subject'].split("#")[-1].replace("_", " ")
+                obj_label = triple['object'].split("#")[-1].replace("_", " ")
+                if subj_label in names or obj_label in names:
+                    pred_label = triple['predicate'].split("#")[-1]
+                    related_relations.append(f"{subj_label} → {pred_label} → {obj_label}")
+
+            # Thêm các quan hệ vào context nếu có
+            if related_relations:
+                context += "\n\nCác quan hệ liên quan:\n" + "\n".join(related_relations)
+            else:
+                context += "\n\n⚠️ Không tìm thấy quan hệ liên quan trực tiếp trong ontology."
+
+            # Chuẩn bị prompt
             messages = [
                 {"role": "system", "content": """
-                Bạn là trợ lý AI của trường Đại học Sài Gòn (SGU). Nhiệm vụ của bạn là trả lời câu hỏi dựa trên kết quả tìm kiếm được cung cấp.
+    Bạn là trợ lý AI của Trường Đại học Sài Gòn (SGU), có khả năng phân tích dữ liệu tri thức và tạo ra câu trả lời chuyên sâu.
+    Chỉ sử dụng thông tin từ kết quả tìm kiếm và quan hệ ontology đã cung cấp. Nếu không đủ dữ liệu, hãy nói rõ.
 
-                Hướng dẫn:
-                1. Chỉ sử dụng thông tin từ kết quả tìm kiếm để trả lời
-                2. Nếu thông tin trong kết quả tìm kiếm không đủ để trả lời câu hỏi, hãy nói rõ điều đó
-                3. Nếu độ tương đồng của kết quả tìm kiếm cao (>0.6) và thông tin phù hợp với câu hỏi, hãy trả lời chi tiết
-                4. Trình bày câu trả lời một cách rõ ràng, mạch lạc và chuyên nghiệp
-                5. Nếu thấy thông tin mâu thuẫn giữa các kết quả, hãy nêu rõ điều này
-                6. Nếu câu hỏi yêu cầu thông tin cụ thể (như số lượng, địa điểm, thời gian) mà không tìm thấy trong kết quả, hãy nói rõ là không có thông tin này
-                7. Khi đề cập đến học bổng hoặc thông tin quan trọng, hãy cung cấp thông tin chi tiết từ kết quả tìm kiếm, không đưa ra giả định
-                8. Hãy phân tích độ tin cậy của thông tin dựa trên độ tương đồng trước khi đưa ra câu trả lời
-                
-                Luôn bắt đầu câu trả lời bằng cách đánh giá mức độ tin cậy của thông tin dựa trên độ tương đồng và độ phù hợp với câu hỏi.
-                """},
+    Dữ liệu bạn được cung cấp bao gồm:
+    - **Các kết quả tìm kiếm từ cơ sở dữ liệu**: chứa thông tin mô tả, tên thực thể, loại thực thể và độ tương đồng.
+    - **Các quan hệ ontology**: bao gồm quan hệ trực tiếp và các chuỗi quan hệ gián tiếp (đường vòng) giữa các thực thể.
+
+    🔎 **Nguyên tắc trả lời**:
+    1. **Chỉ sử dụng thông tin từ kết quả tìm kiếm và quan hệ ontology đã cung cấp** – không suy đoán.
+    2. **Nếu có đủ quan hệ trực tiếp hoặc đường vòng để kết nối các thực thể với nhau**, hãy sử dụng chúng để diễn giải câu trả lời theo logic.
+    3. **Nếu không tìm thấy quan hệ liên quan nào**, hãy nói rõ điều đó: "Không có thông tin liên kết trong ontology".
+    4. **Nếu mô tả từ kết quả tìm kiếm hữu ích**, có thể sử dụng để hỗ trợ hoặc củng cố câu trả lời.
+    5. **Nếu kết quả tìm kiếm mâu thuẫn hoặc không khớp logic**, hãy nêu rõ và đưa ra cảnh báo.
+    6. **Ưu tiên các thực thể có độ tương đồng cao hơn 0.6** khi xây dựng nội dung trả lời và sử dụng các quan hệ liên quan.
+    7. **Tóm tắt cuối câu trả lời bằng cách nhấn mạnh nguồn thông tin đáng tin cậy nhất** đã dùng.
+    9. Hãy phản hồi như một trợ lý AI có tính đối thoại – không viết theo dạng báo cáo, liệt kê khô khan. Giữ giọng điệu thân thiện, rõ ràng, mạch lạc.
+    10. Nếu thấy thông tin không đầy đủ, hãy đề xuất hành động tiếp theo (ví dụ: liên hệ phòng ban, tra cứu thêm...).
+
+    🧠 **Lưu ý khi phản hồi**:
+    - Trình bày mạch lạc, rõ ràng, mang tính học thuật.
+    - Luôn đặt tính chính xác và trung thực với dữ liệu lên hàng đầu.
+    - Khi cần thiết, hãy chia nhỏ câu trả lời theo từng ý rõ ràng.
+
+    """}
+        ]
+            messages.extend(chat_history)
+            messages.append(
+
                 {"role": "user", "content": f"""
-                Câu hỏi: {query}
-                
-                Kết quả tìm kiếm:
-                {context}
-                
-                Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại.
-                """}
-            ]
-            
-            # Generate answer
+    Câu hỏi: {query}
+
+    Kết quả tìm kiếm:
+    {context}
+
+    Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này và phân tích cả các quan hệ liên kết nếu có. Nếu không có thông tin đủ, hãy nói rõ lý do.
+    """})
+
+            # Gọi OpenAI
             logger.info("Generating answer using OpenAI")
             response = self._openai_client.chat.completions.create(
                 model=self.CHAT_MODEL,
                 messages=messages,
                 temperature=0.7,
             )
-            
+
             answer = response.choices[0].message.content.strip()
             logger.info("Successfully generated answer")
             return answer
-            
+
         except Exception as e:
             logger.error(f"Failed to generate answer: {str(e)}")
             raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
+    
+    
+    
+        # def generate_answer(self, query: str, search_results: List[Dict], ontology_relations: List[Dict]) -> str:
+    #     """
+    #     Generate an answer using OpenAI based on search results and ontology relations
 
+    #     Args:
+    #         query: User's question
+    #         search_results: List of search results with name and description
+    #         ontology_relations: List of triples: {subject, predicate, object}
 
-    def generate_answer_chatbot(self, query: str, search_results: List[Dict]) -> str:
-        """
-        Generate an answer using OpenAI based on search results
-        
-        Args:
-            query: User's question
-            search_results: List of search results with name and description
-            
-        Returns:
-            Generated answer
-        """
-        try:
-            # Format context from search results
-            context = "\n\n".join([
-                f"Thông tin {result['node_type']}:\n"
-                f"Tên: {result['name']}\n"
-                f"Mô tả: {result.get('description', 'Không có mô tả')}\n"
-                f"Độ tương đồng: {result['similarity']:.4f}"
-                for result in sorted(search_results, key=lambda x: x['similarity'], reverse=True)
-            ])
-            
-            # Prepare the prompt
-            messages = [
-                {
-                    "role": "system",
-                    "content": """
-            Bạn là trợ lý AI của Trường Đại học Sài Gòn (SGU). Bạn chỉ được phép trả lời câu hỏi dựa trên các đoạn văn bản được trích xuất từ cơ sở dữ liệu nội bộ.
+    #     Returns:
+    #         Generated answer
+    #     """
+    #     try:
+    #         # Format context from search results
+    #         context = "\n\n".join([
+    #             f"Thông tin {result['node_type']}:\n"
+    #             f"Tên: {result['name']}\n"
+    #             f"Mô tả: {result.get('description', 'Không có mô tả')}\n"
+    #             f"Độ tương đồng: {result['similarity']:.4f}"
+    #             for result in sorted(search_results, key=lambda x: x['similarity'], reverse=True)
+    #         ])
 
-            Yêu cầu:
-            - Chỉ trả lời nếu có thông tin rõ ràng, chính xác trong kết quả tìm kiếm.
-            - Tránh suy đoán. Nếu không đủ dữ liệu, hãy trả lời rằng thông tin chưa đủ.
-            - Nếu có nhiều đoạn phù hợp, hãy tổng hợp lại thông tin một cách ngắn gọn và chính xác.
-            - Độ tương đồng càng cao thì mức độ tin cậy càng cao. Nếu < 0.6 thì nên nói rõ là không đủ cơ sở để trả lời.
-            - Nếu có mâu thuẫn giữa các kết quả, hãy nêu rõ thay vì chọn một phía.
-            - Ưu tiên thông tin có độ tương đồng cao nhất.
+    #         # Tìm các quan hệ liên quan đến các node trong search_results
+    #         related_relations = []
+    #         names = set(result['name'] for result in search_results)
+    #         for triple in ontology_relations:
+    #             subj_label = triple['subject'].split("#")[-1].replace("_", " ")
+    #             obj_label = triple['object'].split("#")[-1].replace("_", " ")
+    #             if subj_label in names or obj_label in names:
+    #                 pred_label = triple['predicate'].split("#")[-1]
+    #                 related_relations.append(f"{subj_label} → {pred_label} → {obj_label}")
 
-            Luôn bắt đầu câu trả lời bằng đánh giá ngắn gọn về độ tin cậy dựa trên độ tương đồng và mức độ khớp với câu hỏi.
-            """
-                },
-                {
-                    "role": "user",
-                    "content": f"""
-            [Câu hỏi]: {query}
+    #         # Thêm các quan hệ vào context nếu có
+    #         if related_relations:
+    #             context += "\n\nCác quan hệ liên quan:\n" + "\n".join(related_relations)
 
-            [Dữ liệu kết quả tìm kiếm]:
-            {context}
+    #         # Chuẩn bị prompt
+    #         messages = [
+    #             {"role": "system", "content": """
+    # Bạn là trợ lý AI của trường Đại học Sài Gòn (SGU). Nhiệm vụ của bạn là trả lời câu hỏi dựa trên kết quả tìm kiếm được cung cấp.
 
-            👉 Hãy trả lời câu hỏi một cách trung thực, rõ ràng, và dựa **100% trên thông tin đã cho**. Nếu không đủ dữ liệu, hãy nói rõ.
-            """
-                }
-            ]
+    # Hướng dẫn:
+    # 1. Chỉ sử dụng thông tin từ kết quả tìm kiếm để trả lời
+    # 2. Nếu thông tin trong kết quả tìm kiếm không đủ để trả lời câu hỏi, hãy nói rõ điều đó
+    # 3. Nếu độ tương đồng của kết quả tìm kiếm cao (>0.6) và thông tin phù hợp với câu hỏi, hãy trả lời chi tiết
+    # 4. Trình bày câu trả lời một cách rõ ràng, mạch lạc và chuyên nghiệp
+    # 5. Nếu thấy thông tin mâu thuẫn giữa các kết quả, hãy nêu rõ điều này
+    # 6. Nếu câu hỏi yêu cầu thông tin cụ thể (như số lượng, địa điểm, thời gian) mà không tìm thấy trong kết quả, hãy nói rõ là không có thông tin này
+    # 7. Khi đề cập đến học bổng hoặc thông tin quan trọng, hãy cung cấp thông tin chi tiết từ kết quả tìm kiếm, không đưa ra giả định
+    # 8. Hãy phân tích độ tin cậy của thông tin dựa trên độ tương đồng trước khi đưa ra câu trả lời
 
-            
-            # Generate answer
-            logger.info("Generating answer using OpenAI")
-            response = self._openai_client.chat.completions.create(
-                model=self.CHAT_MODEL,
-                messages=messages,
-                temperature=0.7,
-            )
-            
-            answer = response.choices[0].message.content.strip()
-            logger.info("Successfully generated answer")
-            return answer
-            
-        except Exception as e:
-            logger.error(f"Failed to generate answer: {str(e)}")
-            raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
+    # Luôn bắt đầu câu trả lời bằng cách đánh giá mức độ tin cậy của thông tin dựa trên độ tương đồng và độ phù hợp với câu hỏi.
+    # """},
+    #             {"role": "user", "content": f"""
+    # Câu hỏi: {query}
+
+    # Kết quả tìm kiếm:
+    # {context}
+
+    # Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại.
+    # """}
+    #         ]
+
+    #         # Gọi OpenAI
+    #         logger.info("Generating answer using OpenAI")
+    #         response = self._openai_client.chat.completions.create(
+    #             model=self.CHAT_MODEL,
+    #             messages=messages,
+    #             temperature=0.7,
+    #         )
+
+    #         answer = response.choices[0].message.content.strip()
+    #         logger.info("Successfully generated answer")
+    #         return answer
+
+    #     except Exception as e:
+    #         logger.error(f"Failed to generate answer: {str(e)}")
+    #         raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
