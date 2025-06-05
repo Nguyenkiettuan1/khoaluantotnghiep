@@ -1,0 +1,2852 @@
+{
+  "Bộ Giáo dục Đài Loan": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Đài Loan"
+    }
+  ],
+  "Trường Đại học Sài Gòn": [
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Giáo dục thường xuyên"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Liên thông Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Hỗ trợ sinh viên"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Tổ chức   Cán bộ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Liên thông Công nghệ Thông tin"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Học liệu"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Tài chính   Ngân hàng  Thạc sĩ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Vừa làm vừa học Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "hasField",
+      "neighbor": "Kinh tế   Kỹ thuật   Công nghệ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn bằng hai Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn học Việt Nam  Thạc sĩ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Văn phòng"
+    },
+    {
+      "predicate": "offersInternationalProgram",
+      "neighbor": "Chương trình chuyển tiếp Đại học Huddersfield"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Vừa làm vừa học Tài chính   Kế toán"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Lịch sử   Địa lý   Ngôn ngữ Anh"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn bằng hai Ngôn ngữ Anh"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Hóa hữu cơ  Tiến sĩ"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Nghệ thuật"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Văn hóa và Du lịch"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Ngôn ngữ học  Thạc sĩ"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Singapore"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Hội đồng trường"
+    },
+    {
+      "predicate": "hasField",
+      "neighbor": "Sư phạm"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Tuyển sinh   Truyền thông"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Giáo dục"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Sinh học   Quản trị Văn phòng"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Vừa làm vừa học Giáo dục Mầm non"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Australia"
+    },
+    {
+      "predicate": "hasResearchPolicy",
+      "neighbor": "Điều kiện tham gia NCKH"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Tài chính   Kế toán"
+    },
+    {
+      "predicate": "hasAward",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "offersCertificate",
+      "neighbor": "Bồi dưỡng nghiệp vụ sư phạm"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Âm nhạc   Kinh doanh Quốc tế"
+    },
+    {
+      "predicate": "offersInternationalProgram",
+      "neighbor": "Học bổng Đài Loan"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Lịch sử   Luật"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Thư viện   Văn phòng"
+    },
+    {
+      "predicate": "hasResearchPolicy",
+      "neighbor": "Đề tài NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Tiếng Anh   Quốc tế học"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Mỹ thuật   Quản lý Giáo dục"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Luật dân sự và tố tụng dân sự  Thạc sĩ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Hóa hữu cơ  Thạc sĩ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phó Hiệu trưởng"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Đại học Khoa học Ứng dụng IMC Krems"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Ngoại ngữ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Liên thông Kế toán"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Kế hoạch   Tài chính"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "hasResearchPolicy",
+      "neighbor": "Quyền li NCKH"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Bộ Y tế Singapore"
+    },
+    {
+      "predicate": "hasField",
+      "neighbor": "Nghệ thuật"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Công nghệ Thông tin"
+    },
+    {
+      "predicate": "offersInternationalProgram",
+      "neighbor": "Asian Nursing Scholarship"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "CNKT Điện  Điện tử   Thông tin   Thư viện"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Quản trị Kinh doanh  Thạc sĩ"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Hoa Kỳ"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Anh"
+    },
+    {
+      "predicate": "hasCampus",
+      "neighbor": "Cơ sở 273 An Dương Vương"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Thụy Điển"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Đào tạo"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Áo"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Viện Nghiên cứu Môi trường   Sức khỏe"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Malaysia"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Lịch sử Việt Nam  Tiến sĩ"
+    },
+    {
+      "predicate": "hasAward",
+      "neighbor": "Giải thưng Sinh viên NCKH EURÉKA"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Đào tạo quốc tế"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Quản lý Giáo dục  Thạc sĩ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Vừa làm vừa học Tài chính   Ngân hàng"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Toán học   Tài chính   Ngân hàng"
+    },
+    {
+      "predicate": "offersInternationalProgram",
+      "neighbor": "Thạc sĩ Giảng dạy tiếng Anh  TESOL"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Tập đoàn Y tế Quốc gia Singapore  MOHH"
+    },
+    {
+      "predicate": "hasDegree",
+      "neighbor": "Thạc sĩ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Liên thông Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Đào tạo sau đại học"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Giáo dục Tiểu học   Khoa học Môi trường"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Toán Giải tích  Thạc sĩ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Công đoàn"
+    },
+    {
+      "predicate": "offersCertificate",
+      "neighbor": "Tiếng Anh theo khung năng lực 6 bậc"
+    },
+    {
+      "predicate": "hasAccreditation",
+      "neighbor": "Kiểm định chất lượng giáo dục"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Công tác sinh viên"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Bộ Giáo dục Đài Loan"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Hội Sinh viên"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Pháp"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Hợp tác quốc tế   Doanh nghiệp"
+    },
+    {
+      "predicate": "offersInternationalProgram",
+      "neighbor": "Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Ban Quản lý Dự án   Xây dựng"
+    },
+    {
+      "predicate": "hasAward",
+      "neighbor": "Huân chương Lao động Hạng Ba"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Khoa học Máy tính  Thạc sĩ"
+    },
+    {
+      "predicate": "hasCampus",
+      "neighbor": "Cơ sở 04 Tôn Đức Thắng"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "LL   PPDH bộ môn Toán  Thạc sĩ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Quản lý khoa học"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn bằng hai Luật"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Khoa học Tự nhiên   Kỹ thuật Phần mềm"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Điện tử   Viễn thông"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn bằng hai Quản lý Giáo dục"
+    },
+    {
+      "predicate": "offersInternationalProgram",
+      "neighbor": "Đào tạo tiếng Hoa  Đài Loan"
+    },
+    {
+      "predicate": "hasCampus",
+      "neighbor": "Ký túc xá 99 An Dương Vương"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Vừa làm vừa học Luật"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Khoa học Chính trị"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Quản lý Giáo dục  Tiến sĩ"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn bằng hai Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Khảo thí"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Quản trị Kinh doanh  Tiến sĩ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Ngoại ngữ"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Nga"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Vừa làm vừa học Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "hasDegree",
+      "neighbor": "Tiến sĩ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Công nghệ thông tin"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Công nghệ Thông tin   Việt Nam học"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trường Tiểu học Thực hành Sài Gòn"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Hóa lý thuyết và Hóa lý  Thạc sĩ"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "New Zealand"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Công nghệ Thông tin  Chất lượng cao"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Toán   Ứng dụng"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Giáo dục Mầm non   Kế toán"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Liên thông Giáo dục Mầm non"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Đài Loan"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Ký túc xá"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Chính quy"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trạm Y tế"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Đoàn Thanh niên"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Giáo dục Chính trị   Du lịch"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Trường Đại học Quốc gia Sư Phạm Đài Loan"
+    },
+    {
+      "predicate": "hasField",
+      "neighbor": "Chính trị"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Giáo dục Quốc phòng   An ninh   Giáo dục Thể chất"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Giáo dục Mầm non"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Giáo dục thường xuyên"
+    },
+    {
+      "predicate": "hasDegree",
+      "neighbor": "Văn bằng hai"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Khảo thí   Đảm bảo chất lượng"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Văn bằng hai Kế toán"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Sư phạm Khoa học Xã hội"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Địa lý   Kỹ thuật Điện"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Hiệu trưởng"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Thiết bị"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Hóa học   Kỹ thuật Điện tử   Viễn thông"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "CNKT Điện tử   Viễn thông   Thanh nhạc"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Lịch sử Việt Nam  Thạc sĩ"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Tr lý nghiên cu khoa học"
+    },
+    {
+      "predicate": "hasResearchPolicy",
+      "neighbor": "Bài báo khoa học"
+    },
+    {
+      "predicate": "hasDegree",
+      "neighbor": "Liên thông"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Viện Khoa học Dữ liệu và Trí tuệ nhân tạo"
+    },
+    {
+      "predicate": "offersCertificate",
+      "neighbor": "Công nghệ Thông tin"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Vật lý   Tâm lý học"
+    },
+    {
+      "predicate": "hasDegree",
+      "neighbor": "Cử nhân"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Toán Giải tích  Tiến sĩ"
+    },
+    {
+      "predicate": "hasCampus",
+      "neighbor": "Cơ sở 105 Bà Huyện Thanh Quan"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Khoa học Môi trường"
+    },
+    {
+      "predicate": "cooperatesWithCountry",
+      "neighbor": "Trung Quốc"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Công nghệ Kỹ thuật Môi trường   Toán Ứng dụng"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Đảng ủy"
+    },
+    {
+      "predicate": "hasFaculty",
+      "neighbor": "Khoa Sư phạm Khoa học Tự nhiên"
+    },
+    {
+      "predicate": "hasField",
+      "neighbor": "Văn hóa xã hội"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Thanh tra   Pháp chế"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trường Trung học Thực hành Sài Gòn"
+    },
+    {
+      "predicate": "hasAward",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp Bộ"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Phòng Quản lý Khoa học"
+    },
+    {
+      "predicate": "offersProgram",
+      "neighbor": "Sư phạm Ngữ Văn   Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "hasDepartment",
+      "neighbor": "Trung tâm Thực hành Sư phạm"
+    },
+    {
+      "predicate": "hasInternationalCooperation",
+      "neighbor": "Đại học Huddersfield"
+    }
+  ],
+  "Khoa Sư phạm Khoa học Xã hội": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasDepartment": [
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Học liệu"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn phòng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Đào tạo quốc tế"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hội đồng trường"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Tuyển sinh   Truyền thông"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phó Hiệu trưởng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Kế hoạch   Tài chính"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Đào tạo"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Viện Nghiên cứu Môi trường   Sức khỏe"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Đào tạo sau đại học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Công đoàn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Công tác sinh viên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hội Sinh viên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Thiết bị"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Hợp tác quốc tế   Doanh nghiệp"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Ban Quản lý Dự án   Xây dựng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Quản lý khoa học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Khảo thí"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trường Trung học Thực hành Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Ngoại ngữ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Công nghệ thông tin"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trường Tiểu học Thực hành Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Ký túc xá"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trạm Y tế"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đoàn Thanh niên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Giáo dục thường xuyên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Khảo thí   Đảm bảo chất lượng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hiệu trưởng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Tr lý nghiên cu khoa học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Viện Khoa học Dữ liệu và Trí tuệ nhân tạo"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đảng ủy"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Thanh tra   Pháp chế"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Quản lý Khoa học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Thực hành Sư phạm"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung tâm Hỗ trợ sinh viên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Phòng Tổ chức   Cán bộ"
+    }
+  ],
+  "offersProgram": [
+    {
+      "predicate": "range",
+      "neighbor": "Giáo dục Mầm non   Kế toán"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Liên thông Giáo dục Mầm non"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Chính quy"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giáo dục Chính trị   Du lịch"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Địa lý   Kỹ thuật Điện"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Hóa học   Kỹ thuật Điện tử   Viễn thông"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "CNKT Điện tử   Viễn thông   Thanh nhạc"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Lịch sử Việt Nam  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Vật lý   Tâm lý học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Toán Giải tích  Tiến sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Công nghệ Kỹ thuật Môi trường   Toán Ứng dụng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Vừa làm vừa học Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Ngữ Văn   Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giáo dục thường xuyên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Liên thông Công nghệ Thông tin"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Tài chính   Ngân hàng  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Vừa làm vừa học Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Vừa làm vừa học Tài chính   Kế toán"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai Ngôn ngữ Anh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hóa hữu cơ  Tiến sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai Kế toán"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Ngôn ngữ học  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Vừa làm vừa học Giáo dục Mầm non"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Sinh học   Quản trị Văn phòng"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Âm nhạc   Kinh doanh Quốc tế"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Lịch sử   Luật"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Tiếng Anh   Quốc tế học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Mỹ thuật   Quản lý Giáo dục"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Luật dân sự và tố tụng dân sự  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hóa hữu cơ  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Liên thông Kế toán"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "CNKT Điện  Điện tử   Thông tin   Thư viện"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quản trị Kinh doanh  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Liên thông Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn học Việt Nam  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Lịch sử Việt Nam  Tiến sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Vừa làm vừa học Tài chính   Ngân hàng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Toán học   Tài chính   Ngân hàng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Lịch sử   Địa lý   Ngôn ngữ Anh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Liên thông Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giáo dục Tiểu học   Khoa học Môi trường"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Toán Giải tích  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa học Máy tính  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "LL   PPDH bộ môn Toán  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai Luật"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm Khoa học Tự nhiên   Kỹ thuật Phần mềm"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai Quản lý Giáo dục"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Vừa làm vừa học Luật"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quản lý Giáo dục  Tiến sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quản trị Kinh doanh  Tiến sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Công nghệ Thông tin   Việt Nam học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hóa lý thuyết và Hóa lý  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quản lý Giáo dục  Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Công nghệ Thông tin  Chất lượng cao"
+    }
+  ],
+  "Phòng Hợp tác quốc tế   Doanh nghiệp": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "cooperatesWithCountry": [
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Nga"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Anh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Malaysia"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "New Zealand"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Pháp"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trung Quốc"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Singapore"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Australia"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hoa Kỳ"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Thụy Điển"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Áo"
+    }
+  ],
+  "Trường Tiểu học Thực hành Sài Gòn": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Lịch sử Việt Nam  Tiến sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasCampus": [
+    {
+      "predicate": "range",
+      "neighbor": "Cơ sở 105 Bà Huyện Thanh Quan"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Cơ sở 273 An Dương Vương"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Cơ sở 04 Tôn Đức Thắng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Ký túc xá 99 An Dương Vương"
+    }
+  ],
+  "Giải thưng Sinh viên NCKH cấp Bộ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Bài báo khoa học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Thư viện   Văn phòng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Asian Nursing Scholarship": [
+    {
+      "predicate": "sponsoredBy",
+      "neighbor": "Bộ Y tế Singapore"
+    },
+    {
+      "predicate": "sponsoredBy",
+      "neighbor": "Tập đoàn Y tế Quốc gia Singapore  MOHH"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Đảng ủy": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "offersInternationalProgram": [
+    {
+      "predicate": "range",
+      "neighbor": "Thạc sĩ Giảng dạy tiếng Anh  TESOL"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đào tạo tiếng Hoa  Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Asian Nursing Scholarship"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Chương trình chuyển tiếp Đại học Huddersfield"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Học bổng Đài Loan"
+    }
+  ],
+  "Trung tâm Công nghệ thông tin": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasFaculty": [
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Khoa học Chính trị"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Toán   Ứng dụng"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Giáo dục Quốc phòng   An ninh   Giáo dục Thể chất"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Giáo dục Mầm non"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Sư phạm Khoa học Xã hội"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Quản trị Kinh doanh"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Khoa học Môi trường"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Sư phạm Khoa học Tự nhiên"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Giáo dục Tiểu học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Nghệ thuật"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Văn hóa và Du lịch"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Giáo dục"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Tài chính   Kế toán"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Thư viện   Văn phòng"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Ngoại ngữ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Công nghệ Thông tin"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Khoa Điện tử   Viễn thông"
+    }
+  ],
+  "Tạp chí Khoa học Đại học Sài Gòn": [
+    {
+      "predicate": "managedBy",
+      "neighbor": "Ban Biên tập Tạp chí Khoa học"
+    },
+    {
+      "predicate": "hasRequirement",
+      "neighbor": "Yêu cầu hình thức bài báo"
+    },
+    {
+      "predicate": "hasSubmissionProcess",
+      "neighbor": "Yêu cầu bài gửi"
+    },
+    {
+      "predicate": "hasSubmissionProcess",
+      "neighbor": "Quy trình gửi bài"
+    },
+    {
+      "predicate": "hasRequirement",
+      "neighbor": "Yêu cầu nội dung bài báo"
+    },
+    {
+      "predicate": "hasRequirement",
+      "neighbor": "Hình ảnh minh họa"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "hasRequirement",
+      "neighbor": "Trích dẫn tài liệu"
+    },
+    {
+      "predicate": "hasRequirement",
+      "neighbor": "Cấu trúc bài báo"
+    },
+    {
+      "predicate": "publishedBy",
+      "neighbor": "Trường Đại học Sài Gòn"
+    }
+  ],
+  "Nga": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Cơ sở 273 An Dương Vương": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Viện Khoa học Dữ liệu và Trí tuệ nhân tạo": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt": [
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Đài Loan"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasDegree": [
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Tiến sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Thạc sĩ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn bằng hai"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Liên thông"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Cử nhân"
+    }
+  ],
+  "Trích dẫn tài liệu": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Chương trình chuyển tiếp Đại học Huddersfield": [
+    {
+      "predicate": "partneredWith",
+      "neighbor": "Đại học Huddersfield"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasInternationalCooperation": [
+    {
+      "predicate": "range",
+      "neighbor": "Đại học Khoa học Ứng dụng IMC Krems"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Bộ Y tế Singapore"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đại học Huddersfield"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Tập đoàn Y tế Quốc gia Singapore  MOHH"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Bộ Giáo dục Đài Loan"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trường Đại học Quốc gia Sư Phạm Đài Loan"
+    }
+  ],
+  "hasRequirement": [
+    {
+      "predicate": "range",
+      "neighbor": "Cấu trúc bài báo"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Tạp chí Khoa học Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Yêu cầu hình thức bài báo"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Yêu cầu nội dung bài báo"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hình ảnh minh họa"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trích dẫn tài liệu"
+    }
+  ],
+  "Công nghệ Kỹ thuật Môi trường   Toán Ứng dụng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasAccreditation": [
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Kiểm định chất lượng giáo dục"
+    }
+  ],
+  "Phòng Giáo dục thường xuyên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung Quốc": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "CNKT Điện tử   Viễn thông   Thanh nhạc": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Hóa học   Kỹ thuật Điện tử   Viễn thông": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "CNKT Điện  Điện tử   Thông tin   Thư viện": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Luật dân sự và tố tụng dân sự  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "offersCertificate": [
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Công nghệ Thông tin"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Bồi dưỡng nghiệp vụ sư phạm"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Tiếng Anh theo khung năng lực 6 bậc"
+    }
+  ],
+  "Đào tạo tiếng Hoa  Đài Loan": [
+    {
+      "predicate": "partneredWith",
+      "neighbor": "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "partneredWith",
+      "neighbor": "Trường Đại học Quốc gia Sư Phạm Đài Loan"
+    }
+  ],
+  "Phòng Quản lý khoa học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử": [
+    {
+      "predicate": "partneredWith",
+      "neighbor": "Đại học Khoa học Ứng dụng IMC Krems"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "sponsoredBy": [
+    {
+      "predicate": "domain",
+      "neighbor": "Asian Nursing Scholarship"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Học bổng Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Tập đoàn Y tế Quốc gia Singapore  MOHH"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Bộ Giáo dục Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Bộ Y tế Singapore"
+    }
+  ],
+  "Trạm Y tế": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Công đoàn": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Công nghệ Thông tin": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Hỗ trợ sinh viên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hóa hữu cơ  Tiến sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Vừa làm vừa học Tài chính   Kế toán": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Giáo dục Quốc phòng   An ninh   Giáo dục Thể chất": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Quyền li NCKH": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "includes",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp Bộ"
+    },
+    {
+      "predicate": "includes",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "includes",
+      "neighbor": "Giải thưng Sinh viên NCKH EURÉKA"
+    }
+  ],
+  "Đề tài NCKH cấp cơ sở": [
+    {
+      "predicate": "leadsTo",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp Bộ"
+    },
+    {
+      "predicate": "leadsTo",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "leadsTo",
+      "neighbor": "Giải thưng Sinh viên NCKH EURÉKA"
+    }
+  ],
+  "hasAward": [
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp Bộ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH EURÉKA"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Huân chương Lao động Hạng Ba"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    }
+  ],
+  "New Zealand": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Liên thông Giáo dục Mầm non": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Công nghệ Thông tin  Chất lượng cao": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Công nghệ Thông tin": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Viện Nghiên cứu Môi trường   Sức khỏe": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Thụy Điển": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "locatedIn": [
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Quốc gia Sư Phạm Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Singapore"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Đại học Khoa học Ứng dụng IMC Krems"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Bộ Y tế Singapore"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Đại học Huddersfield"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Tập đoàn Y tế Quốc gia Singapore  MOHH"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Áo"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Bộ Giáo dục Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Anh"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đài Loan"
+    }
+  ],
+  "Vừa làm vừa học Quản trị Kinh doanh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "SGU": [
+    {
+      "predicate": "type",
+      "neighbor": "Ontology"
+    }
+  ],
+  "Kinh tế   Kỹ thuật   Công nghệ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasResearchPolicy": [
+    {
+      "predicate": "range",
+      "neighbor": "Bài báo khoa học"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Điều kiện tham gia NCKH"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đề tài NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quyền li NCKH"
+    }
+  ],
+  "Liên thông Quản trị Kinh doanh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Toán Giải tích  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "leadsTo": [
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp Bộ"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Đề tài NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH EURÉKA"
+    }
+  ],
+  "Sư phạm Ngữ Văn   Quản trị Kinh doanh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "includes": [
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp Bộ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Giải thưng Sinh viên NCKH EURÉKA"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Quyền li NCKH"
+    }
+  ],
+  "Chính trị": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai Quản lý Giáo dục": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "publishedBy": [
+    {
+      "predicate": "range",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Tạp chí Khoa học Đại học Sài Gòn"
+    }
+  ],
+  "Thạc sĩ Giảng dạy tiếng Anh  TESOL": [
+    {
+      "predicate": "partneredWith",
+      "neighbor": "Đại học Huddersfield"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Văn hóa và Du lịch": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Quản lý Khoa học": [
+    {
+      "predicate": "manages",
+      "neighbor": "Đề tài NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "manages",
+      "neighbor": "Quyền li NCKH"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "manages",
+      "neighbor": "Bài báo khoa học"
+    },
+    {
+      "predicate": "manages",
+      "neighbor": "Điều kiện tham gia NCKH"
+    }
+  ],
+  "Chính quy": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Đại học Huddersfield": [
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Anh"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Bộ Y tế Singapore": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Singapore"
+    }
+  ],
+  "Trung tâm Ký túc xá": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Ngôn ngữ học  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hội Sinh viên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Yêu cầu hình thức bài báo": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Giáo dục": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Âm nhạc   Kinh doanh Quốc tế": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "manages": [
+    {
+      "predicate": "range",
+      "neighbor": "Đề tài NCKH cấp cơ sở"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quyền li NCKH"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Phòng Quản lý Khoa học"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Bài báo khoa học"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Điều kiện tham gia NCKH"
+    }
+  ],
+  "Giáo dục Mầm non   Kế toán": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Khảo thí   Đảm bảo chất lượng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Khoa học Chính trị": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn hóa xã hội": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phó Hiệu trưởng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "partOf": [
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Ban Biên tập Tạp chí Khoa học"
+    }
+  ],
+  "Phòng Đào tạo": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Lịch sử   Địa lý   Ngôn ngữ Anh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Giáo dục Tiểu học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "partneredWith": [
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Chương trình chuyển tiếp Đại học Huddersfield"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Trường Đại học Quốc gia Sư Phạm Đài Loan"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Đào tạo tiếng Hoa  Đài Loan"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đại học Khoa học Ứng dụng IMC Krems"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Đại học Huddersfield"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Hiệp hội Phát triển Kinh tế Văn hóa Giáo dục Đài Việt"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Thạc sĩ Giảng dạy tiếng Anh  TESOL"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Cử nhân Quốc tế Quản trị Kinh doanh và Quản lý Thương mại Điện tử"
+    }
+  ],
+  "Khoa Quản trị Kinh doanh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasSubmissionProcess": [
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Tạp chí Khoa học Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Yêu cầu bài gửi"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Quy trình gửi bài"
+    }
+  ],
+  "Liên thông Giáo dục Tiểu học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Đoàn Thanh niên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Ban Biên tập Tạp chí Khoa học": [
+    {
+      "predicate": "partOf",
+      "neighbor": "Trường Đại học Sài Gòn"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hội đồng trường": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa học Máy tính  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "hasField": [
+    {
+      "predicate": "range",
+      "neighbor": "Chính trị"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Kinh tế   Kỹ thuật   Công nghệ"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Sư phạm"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Văn hóa xã hội"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Nghệ thuật"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Trường Đại học Sài Gòn"
+    }
+  ],
+  "Đài Loan": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Liên thông": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Áo": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Liên thông Kế toán": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Sinh học   Quản trị Văn phòng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Sư phạm Khoa học Tự nhiên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Khảo thí": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Khoa học Môi trường": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Vừa làm vừa học Tài chính   Ngân hàng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Ngoại ngữ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Quản lý Giáo dục  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Quản trị Kinh doanh  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trường Trung học Thực hành Sài Gòn": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hoa Kỳ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn học Việt Nam  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trường Đại học Quốc gia Sư Phạm Đài Loan": [
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Đài Loan"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Công tác sinh viên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "LL   PPDH bộ môn Toán  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hình ảnh minh họa": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Lịch sử   Luật": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Điện tử   Viễn thông": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Pháp": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Anh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Vừa làm vừa học Giáo dục Mầm non": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "managedBy": [
+    {
+      "predicate": "type",
+      "neighbor": "ObjectProperty"
+    },
+    {
+      "predicate": "domain",
+      "neighbor": "Tạp chí Khoa học Đại học Sài Gòn"
+    },
+    {
+      "predicate": "range",
+      "neighbor": "Ban Biên tập Tạp chí Khoa học"
+    }
+  ],
+  "Khoa Nghệ thuật": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Giải thưng Sinh viên NCKH cấp cơ sở": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Ký túc xá 99 An Dương Vương": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Đào tạo sau đại học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Tiếng Anh theo khung năng lực 6 bậc": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Điều kiện tham gia NCKH": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Giáo dục thường xuyên": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Tập đoàn Y tế Quốc gia Singapore  MOHH": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Singapore"
+    }
+  ],
+  "Cấu trúc bài báo": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Toán Giải tích  Tiến sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Huân chương Lao động Hạng Ba": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Cử nhân": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Mỹ thuật   Quản lý Giáo dục": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Tuyển sinh   Truyền thông": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Cơ sở 04 Tôn Đức Thắng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Bồi dưỡng nghiệp vụ sư phạm": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Yêu cầu nội dung bài báo": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Công nghệ Thông tin   Việt Nam học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Tổ chức   Cán bộ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Tiến sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai Luật": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Thực hành Sư phạm": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Quản trị Kinh doanh  Tiến sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Đại học Khoa học Ứng dụng IMC Krems": [
+    {
+      "predicate": "locatedIn",
+      "neighbor": "Áo"
+    },
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Học bổng Đài Loan": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    },
+    {
+      "predicate": "sponsoredBy",
+      "neighbor": "Bộ Giáo dục Đài Loan"
+    }
+  ],
+  "Liên thông Công nghệ Thông tin": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Địa lý   Kỹ thuật Điện": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Giáo dục Tiểu học   Khoa học Môi trường": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Malaysia": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Tr lý nghiên cu khoa học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Toán học   Tài chính   Ngân hàng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Học liệu": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Ngoại ngữ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Yêu cầu bài gửi": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai Ngôn ngữ Anh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Khoa học Tự nhiên   Kỹ thuật Phần mềm": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn phòng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hóa lý thuyết và Hóa lý  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Tiếng Anh   Quốc tế học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Giải thưng Sinh viên NCKH EURÉKA": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Trung tâm Đào tạo quốc tế": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Quy trình gửi bài": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Australia": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Kế hoạch   Tài chính": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai Kế toán": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Ban Quản lý Dự án   Xây dựng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Cơ sở 105 Bà Huyện Thanh Quan": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Nghệ thuật": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Sư phạm Vật lý   Tâm lý học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hóa hữu cơ  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai Quản trị Kinh doanh": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Thanh tra   Pháp chế": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Hiệu trưởng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Vừa làm vừa học Giáo dục Tiểu học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Vừa làm vừa học Luật": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Lịch sử Việt Nam  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Quản lý Giáo dục  Tiến sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Tài chính   Ngân hàng  Thạc sĩ": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Phòng Thiết bị": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Kiểm định chất lượng giáo dục": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Văn bằng hai Giáo dục Tiểu học": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Giáo dục Chính trị   Du lịch": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Tài chính   Kế toán": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Toán   Ứng dụng": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Khoa Giáo dục Mầm non": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ],
+  "Singapore": [
+    {
+      "predicate": "type",
+      "neighbor": "Class"
+    }
+  ]
+}
