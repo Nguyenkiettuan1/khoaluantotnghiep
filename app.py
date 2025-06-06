@@ -203,7 +203,7 @@ def handle_query(
     with st.chat_message("assistant"):
         with st.spinner("🤖 Trợ lý đang trả lời..."):
             chat_history_copy = st.session_state.chat_history.copy()
-            response_text = neo4j.generate_answer(
+            response_text = neo4j.generate_answer_v1(
                 prompt,
                 results,
                 ontology_relations=related_relations,

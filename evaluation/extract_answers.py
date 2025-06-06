@@ -139,8 +139,8 @@ def answer_v1_timed(client: Neo4jConnection, question: str, labels: List[str]) -
         if not search_results:
             answer = "Không tìm thấy kết quả phù hợp."
         else:
-            # Gọi generate_answer_v1 (không cần ontology)
-            answer = client.generate_answer_v1(question, search_results)
+            # Gọi generate_answer (không cần ontology)
+            answer = client.generate_answer(question, search_results)
 
         end = time.perf_counter()
         result["answer_v1"] = answer
@@ -180,7 +180,7 @@ def answer_v2_timed(client: Neo4jConnection, question: str, labels: List[str], c
         else:
             # Load ontology relations với search_results để chạy BFS
             ontology_relations = load_ontology_relations(client_name, search_results)
-            answer = client.generate_answer(
+            answer = client.generate_answer_v1(
                 question,
                 search_results,
                 ontology_relations=ontology_relations,

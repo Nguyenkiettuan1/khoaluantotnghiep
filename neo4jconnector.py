@@ -265,7 +265,7 @@ class Neo4jConnection:
             logger.error(f"Similarity search failed: {str(e)}")
             raise Neo4jVectorSearchError(f"Similarity search failed: {str(e)}")
 
-    def generate_answer_v1(self, query: str, search_results: List[Dict]) -> str:
+    def generate_answer(self, query: str, search_results: List[Dict]) -> str:
         """
         Generate an answer using OpenAI based on search results
         
@@ -294,7 +294,7 @@ class Neo4jConnection:
                 Hướng dẫn:
                 1. Chỉ sử dụng thông tin từ kết quả tìm kiếm để trả lời
                 2. Nếu thông tin trong kết quả tìm kiếm không đủ để trả lời câu hỏi, hãy nói rõ điều đó
-                3. Nếu độ tương đồng của kết quả tìm kiếm cao (>0.6) và thông tin phù hợp với câu hỏi, hãy trả lời chi tiết
+                3. Nếu độ tương đồng của kết quả tìm kiếm cao (>0.6) và thông tin phù hợp với câu hỏi thì hãy sử dụng nó để trả lời
                 4. Trình bày câu trả lời một cách rõ ràng, mạch lạc và chuyên nghiệp
                 5. Nếu thấy thông tin mâu thuẫn giữa các kết quả, hãy nêu rõ điều này
                 6. Nếu câu hỏi yêu cầu thông tin cụ thể (như số lượng, địa điểm, thời gian) mà không tìm thấy trong kết quả, hãy nói rõ là không có thông tin này
@@ -302,14 +302,18 @@ class Neo4jConnection:
                 8. Hãy phân tích độ tin cậy của thông tin dựa trên độ tương đồng trước khi đưa ra câu trả lời
                 
                 Luôn bắt đầu câu trả lời bằng cách đánh giá mức độ tin cậy của thông tin dựa trên độ tương đồng và độ phù hợp với câu hỏi.
+                
+                ** Chú ý khi trả lời **
+                - Câu trả lời phải phù hợp với câu hỏi và sử dụng thông tin từ kết quả tìm kiếm. Ví dụ câu hỏi về số lượng thì phải trả lời số lượng trước rồi mới liệt kê sau chi tiết.
+                ví dụ: "Số lượng học bổng là 10, bao gồm các loại sau: ...".
+                
                 """},
                 {"role": "user", "content": f"""
                 Câu hỏi: {query}
                 
                 Kết quả tìm kiếm:
                 {context}
-                
-                Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này đồng thời tóm tắt lại.
+                Hãy trả lời câu hỏi dựa trên những kết quả tìm kiếm này
                 """}
             ]
             
@@ -330,7 +334,7 @@ class Neo4jConnection:
             raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
 
     
-    def generate_answer(self, query: str, search_results: List[Dict], ontology_relations: List[Dict],chat_history: List[Dict] = None) -> str:
+    def generate_answer_v1(self, query: str, search_results: List[Dict], ontology_relations: List[Dict],chat_history: List[Dict] = None) -> str:
         """
         Generate an answer using OpenAI based on search results and ontology relations
 
@@ -380,18 +384,18 @@ class Neo4jConnection:
     10. Nếu thấy thông tin không đầy đủ, hãy đề xuất hành động tiếp theo (ví dụ: liên hệ phòng ban, tra cứu thêm...).
 
     **Lưu ý khi phản hồi**:
+    - Câu trả lời phải phù hợp với câu hỏi và sử dụng thông tin từ kết quả tìm kiếm. Ví dụ câu hỏi về số lượng thì phải trả lời số lượng trước rồi mới liệt kê chi tiết sau.
+    ví dụ: "Số lượng học bổng là 10, bao gồm các loại sau: ...".
     - Trình bày mạch lạc, rõ ràng, mang tính học thuật.
     - Luôn đặt tính chính xác và trung thực với dữ liệu lên hàng đầu.
     - Khi cần thiết, hãy chia nhỏ câu trả lời theo từng ý rõ ràng.
     - Có thể đề xuất thêm câu hỏi 
     - Nếu câu hỏi yêu cầu thông tin cụ thể (như số lượng, địa điểm, thời gian) mà không tìm thấy trong kết quả, hãy nói rõ là không có thông tin này.
-    
-
     """}
         ]
             if chat_history:
              messages.extend(chat_history)
-             messages.append(
+            messages.append(
 
                 {"role": "user", "content": f"""
     Câu hỏi: {query}
@@ -417,5 +421,6 @@ class Neo4jConnection:
         except Exception as e:
             logger.error(f"Failed to generate answer: {str(e)}")
             raise Neo4jVectorSearchError(f"Failed to generate answer: {str(e)}")
+        
     
    
