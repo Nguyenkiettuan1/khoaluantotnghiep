@@ -7,7 +7,7 @@ import textwrap
 from openai import OpenAI
 from google.generativeai import GenerativeModel
 from dotenv import load_dotenv
-from gemini_config import gemini
+from model_configs import deepseek, openai_client, gemini
 from utils import clean_cypher_code
 
 load_dotenv()
@@ -30,31 +30,46 @@ class ModelConfig:
 class DeepSeekModel(ModelConfig):
     def __init__(self):
         super().__init__("DeepSeek", "./cypher_deepseek_sguv1")
-        self.client = OpenAI(
-            base_url="https://openrouter.ai/api/v1",
-            api_key=os.getenv("OPENROUTER_API_KEY"),
-        )
+        self.model = deepseek
 
     def generate_cypher(self, user_message):
-        self.conversation_messages.append({"role": "user", "content": user_message})
-        response = self.client.chat.completions.create(
-            messages=self.conversation_messages,
-            model="deepseek/deepseek-chat-v3-0324:free",
-            temperature=0.1,
-        )
-        generated_cypher = response.choices[0].message.content
-        for keyword in ["```cypher", "```"]:
-            generated_cypher = generated_cypher.replace(keyword, "")
+        message_chunks = chunk_text(user_message)
+        
+        full_response = []
+        for chunk in message_chunks:
+            try:
+                current_messages = self.conversation_messages + [{"role": "user", "content": chunk}]
+                formatted_messages = "\n".join([
+                    f"{msg['role']}: {msg.get('content', '')}" 
+                    for msg in current_messages
+                ])
+                
+                time.sleep(1)
+                
+                generated_chunk = clean_cypher_code(self.model.generate_content(formatted_messages))
+                full_response.append(generated_chunk)
+            
+            except Exception as e:
+                print(f"Warning: Error processing chunk: {str(e)}")
+                continue
+
+        final_response = "\n".join(full_response)
+        
         self.conversation_messages.append({
-            "role": "assistant", 
-            "content": generated_cypher
+            "role": "user",
+            "content": user_message
         })
-        return generated_cypher.strip()
+        self.conversation_messages.append({
+            "role": "assistant",
+            "content": final_response
+        })
+        
+        return final_response.strip()
 
 class GeminiModel(ModelConfig):
     def __init__(self):
         super().__init__("Gemini", "./cypher_gemini_sguv2")
-        self.model = gemini.model
+        self.model = gemini
 
     def generate_cypher(self, user_message):
         # Chia user message thành các phần nhỏ hơn nếu cần
@@ -93,30 +108,47 @@ class GeminiModel(ModelConfig):
         self.conversation_messages.append({
             "role": "assistant",
             "parts": [final_response]
-        })
-        
+        })        
         return final_response.strip()
 
 class OpenAIModel(ModelConfig):
     def __init__(self):
         super().__init__("OpenAI", "./cypher_openai_sguv3")
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.model = openai_client
 
     def generate_cypher(self, user_message):
-        self.conversation_messages.append({"role": "user", "content": user_message})
-        response = self.client.chat.completions.create(
-            messages=self.conversation_messages,
-            model="gpt-4o-mini",
-            temperature=0.1,
-        )
-        generated_cypher = response.choices[0].message.content
-        for keyword in ["```cypher", "```"]:
-            generated_cypher = generated_cypher.replace(keyword, "")
+        message_chunks = chunk_text(user_message)
+        
+        full_response = []
+        for chunk in message_chunks:
+            try:
+                current_messages = self.conversation_messages + [{"role": "user", "content": chunk}]
+                formatted_messages = "\n".join([
+                    f"{msg['role']}: {msg.get('content', '')}" 
+                    for msg in current_messages
+                ])
+                
+                time.sleep(1)
+                
+                generated_chunk = clean_cypher_code(self.model.generate_content(formatted_messages))
+                full_response.append(generated_chunk)
+            
+            except Exception as e:
+                print(f"Warning: Error processing chunk: {str(e)}")
+                continue
+
+        final_response = "\n".join(full_response)
+        
+        self.conversation_messages.append({
+            "role": "user",
+            "content": user_message
+        })
         self.conversation_messages.append({
             "role": "assistant",
-            "content": generated_cypher
+            "content": final_response
         })
-        return generated_cypher.strip()
+        
+        return final_response.strip()
 
 async def process_file_with_model(model, filename, data_text, ontology, prompts):
     try:
@@ -159,9 +191,12 @@ async def process_file_with_model(model, filename, data_text, ontology, prompts)
 async def main():
     # Load prompts
     prompts = load_prompts()
-    
-    # Khởi tạo models
-    models = [ GeminiModel()]
+      # Khởi tạo models
+    models = [
+        DeepSeekModel(),
+        GeminiModel(), 
+        OpenAIModel()
+    ]
     
     # Đọc ontology
     ontology_file = "./ontology/skeleton_ontology.ttl"

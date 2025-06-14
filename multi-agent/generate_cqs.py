@@ -6,7 +6,7 @@ import dotenv
 dotenv.load_dotenv()
 # Initialize OpenAI client
 client = OpenAI(
-    api_key="YOUR_API_KEY_HERE"
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 def read_dataset_files(folder_path):
