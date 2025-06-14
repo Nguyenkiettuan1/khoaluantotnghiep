@@ -1,0 +1,9 @@
+Degree
+Department
+Faculty
+InternationalCooperation
+Journal
+Program
+Research
+Student
+University

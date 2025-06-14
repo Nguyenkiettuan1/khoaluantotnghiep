@@ -1,0 +1,100 @@
+```turtle
+@prefix : <http://example.org/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Classes
+:University a rdfs:Class .
+:Department a rdfs:Class .
+:Program a rdfs:Class .
+:Degree a rdfs:Class .
+:Scholarship a rdfs:Class .
+:Journal a rdfs:Class .
+:Research a rdfs:Class .
+:Award a rdfs:Class .
+:InternationalCooperation a rdfs:Class .
+:Organization a rdfs:Class .
+
+# Properties
+:hasManagement a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Organization .
+
+:offersPrograms a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Program .
+
+:hasDepartments a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Department .
+
+:awardedScholarships a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Scholarship .
+
+:hasAwards a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Award .
+
+:hasResearchProjects a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :Research .
+
+:hasInternationalCooperations a rdf:Property ;
+    rdfs:domain :University ;
+    rdfs:range :InternationalCooperation .
+
+:publishesIn a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range :University .
+
+:hasArticles a rdf:Property ;
+    rdfs:domain :Journal ;
+    rdfs:range :Research .
+
+:hasPrograms a rdf:Property ;
+    rdfs:domain :Department ;
+    rdfs:range :Program .
+
+:hasDegree a rdf:Property ;
+    rdfs:domain :Program ;
+    rdfs:range :Degree .
+
+:offersCourses a rdf:Property ;
+    rdfs:domain :Program ;
+    rdfs:range :Course .
+
+# Relationships
+:University1 a :University ;
+    :hasManagement :Organization1 ;
+    :offersPrograms :Program1, :Program2 ;
+    :hasDepartments :Department1, :Department2 ;
+    :awardedScholarships :Scholarship1 ;
+    :hasAwards :Award1 ;
+    :hasResearchProjects :Research1 ;
+    :hasInternationalCooperations :InternationalCooperation1 .
+
+:Department1 a :Department ;
+    :hasPrograms :Program1 .
+
+:Program1 a :Program ;
+    :hasDegree :Degree1 ;
+    :offersCourses :Course1 .
+
+:Journal1 a :Journal ;
+    :publishesIn :University1 ;
+    :hasArticles :Research1 .
+
+:Research1 a :Research .
+
+:Organization1 a :Organization .
+
+:Award1 a :Award .
+
+:Scholarship1 a :Scholarship .
+
+:InternationalCooperation1 a :InternationalCooperation .
+
+:Degree1 a :Degree .
+
+:Course1 a :Course .
